@@ -1,0 +1,149 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 1 - Section 1.2} %can leave out if no title per sheet
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Prove that $\sqrt{3}$ is irrational. Does the same proof work for $\sqrt{6}$ and $\sqrt{4}$.
+\begin{solution}
+  Rather than a proof by contradiction like in the book, a direct proof is more illuminating, although we need to cheat a bit by using unique prime factorization. 
+  
+  Let $(\frac{p}{q})^{2} = 3$. Since the LHS is a square, it must have an even number of prime factors, while the RHS has an ood number of factors, qed.
+
+  This makes it immediately obvious that the proof works for any integer with an odd number of factors and conversely, it doesn't work for an integer with an even
+  number of factors.
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Show that there is no rational number satisfying $2^{r} = 3$.
+\begin{solution}
+  There is no solution to $2^{p} = 3^{q}$ because they have different parities.
+
+  More generally, to check whether $a^{n} = b^{m}$ has a solution, we can look at the prime factorizations. First, the set of prime factors must match.
+  Next, if we have $p^{x}$ in $a$ and $p^{y}$ in $b$, then we have $xn = ym \implies \frac{x}{y} = \frac{m}{n}$. This ratio must agree for all prime factors.
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion See the book.
+\begin{solution}
+  \begin{parts}
+    \part False, as in Example 1.2.2.
+    \part True. Note the crucial difference with part (a). In part (a) there's always the "next" set $A_{m+1}$ that doesn't contain $m$. In this part,
+    because $A_{1}$ is finite, then either $A_{i+1}=A_{i}$ in which case both contains $m$, or $A_{i+1} \subset A_{i}$ in which case the size of
+    intersections decreases by one and since $A_{1}$ is finite and $A_{n}$ not empty, this process must eventually end.
+    \part False. Let $A = \{1\}, B = \{2\}$ and $C = \{3\}$.
+    \part True.
+    \part True.
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Produce an infinite collection of sets $A_{1}, A_{2}, ...$ with the property that every $A_{i}$ has an infinite number of elements,
+$A_{i} \cap A_{j} = \emptyset$ for all $i \neq j$ and $\cup_{i=1}^{\infty}A_{i} = \textbf{N}$.
+\begin{solution}
+  First thought when I tried to visualize "crossing out integers" is the prime sieve e.g. like Sieve of Eratosthenes.
+  So the sets would be $A_{1} = \{2, 4, 6, 8, ...\}, A_{2} = \{3, 9, ...\}$. But there's also 1. If the first set contains
+  multiples of 1, then we'd only have a single set instead of infinite collection of sets.
+
+  It took me way too long to realize this but, we can just put 1 in any of the sets e.g. in the set that starts with 3, since 1 doesn't appear anywhere else..
+  Now I feel stupid.
+
+  There are many other excellent constructions. Another one I liked (and should have thought of, since it feels more "algorithmic") is to first
+  divide by parity, and then divide the even numbers into two sets: one divisible by only 2 and the other divisible by 4, and so on..
+  
+  A general way to decompose infinite sets is written  \href{https://math.stackexchange.com/a/51097}{here}.
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion (\textbf{De Morgan's Laws}). Let $A$ and $B$ be subsets of \textbf{R}.
+\begin{parts}
+  \part If $x \in (A \cap B)^{c}$, explain why $x \in A^{c} \cup B^{c}$. This shows that $(A \cap B)^{c} \subseteq A^{c} \cup B^{c}$.
+  \part Prove the reverse inclusion $(A \cap B)^{c} \supseteq A^{c} \cup B^{c}$, and conclude that $(A \cap B)^{c} = A^{c} \cup B^{c}$.
+  \part Show $(A \cup B)^{c} = A^{c} \cap B^{c}$ by demonstrating inclusion both ways.
+\end{parts} 
+
+\begin{solution}
+  Mostly straightforward. Too lazy to type.
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion Prove a bunch of absolute value stuffs. For all of these, the fastest way to gain an "intuitive" proof is to simply visualize them in the number line.
+Too lazy to type the full algebra.
+
+%------------------------- Problem 7 -------------------------
+\miquestion Given a function $f$ and a subset $A$ of its domain, let $f(A)$ represent the range of $f$ over $A$; that is, $f(A) = \{f(x): x \in A\}$.
+\begin{parts}
+  \part Let $f(x) = x^{2}$. If $A = [0, 2]$ and $B = [1, 4]$, find $f(A)$ and $f(B)$. Does $f(A \cap B) = f(A) \cap f(B)$ in this case? Does $f(A \cup B) = f(A) \cup f(B)$?
+  \part Find two sets $A$ and $B$ for which $f(A \cap B) \neq f(A) \cap f(B)$.
+  \part Show that, for an arbitrary function $g: \textbf{R} \implies \textbf{R}$, it is always true that $g(A \cap B) \subseteq g(A) \cap g(B)$ for all sets $A, B \subseteq \textbf{R}$.
+  \part Form an prove a conjecture about the relationship between $g(A \cup B)$ and $g(A) \cup g(B)$ for an arbitrary function $g$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part $f(A) = [0, 4]$ and $f(B) = [1, 16]$. 
+    
+    $f(A \cap B) = f([1, 2]) = [1, 4]$ and $f(A) \cap f(B) = [1, 4]$ so they're equal.
+
+    $f(A \cup B) = f([0, 4]) = [0, 16]$ and $f(A) \cup f(B) = [0, 16]$ so they're equal.
+
+    \part $A = [-4, -3]$ and $B = [3, 4]$. Then $f(A \cap B) = \emptyset$ but $f(A) \cap f(B) = f(A) = f(B) = [9, 16]$.
+
+    \part If $x \in A \cap B$, then $g(x) \in g(A)$ (because $x \in A$) and similarly $g(x) \in g(B)$, so $g(x) \in g(A) \cap g(B)$.
+
+    \part $g(A \cup B) = g(A) \cup g(B)$. This is not difficult to prove. Too lazy to type.
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 8 -------------------------
+\miquestion Give an example of each or state that the request is impossible:
+\begin{parts}
+  \part $f: \textbf{N} \rightarrow \textbf{N}$ that is injective but not surjective.
+  \part $f: \textbf{N} \rightarrow \textbf{N}$ that is surjective but not injective.
+  \part $f: \textbf{N} \rightarrow \textbf{Z}$ that is injective and surjective.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part $f(n) = 2n$. Odd numbers are not in the image of $f$.
+    \part $f(n) = floor(n/2)$. Yes, I'm including 0 as a natural number here, sue me.
+    \part Split \textbf{N} by parity and \textbf{Z} by sign (with 0 going to the negative subset). 
+    We'll map even \textbf{N} to positive \textbf{Z} and odd \textbf{N} to non-positive \textbf{Z}. Define:
+    \[
+      f(n) =
+      \begin{cases}
+      \frac{n}{2}, & \text{if } n \text{ is even} \\
+      -\left\lceil \frac{n}{2} \right\rceil, & \text{if } n \text{ is odd}
+      \end{cases}
+    \]
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 9 -------------------------
+\miquestion Skip. Looks similar to problem 7.
+
+%------------------------- Problem 10 -------------------------
+\miquestion Which are true and provide counterexamples if not.
+\begin{parts}
+  \part Two real numbers satisfy $a < b$ if and only if $a < b + \epsilon$ for every $\epsilon > 0$.
+  \part Two real numbers satisfy $a < b$ if $a < b + \epsilon$ for every $\epsilon > 0$.
+  \part Two real numbers satisfy $a \leq b$ if and only if $a < b + \epsilon$ for every $\epsilon > 0$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part False. We can have $a=b$.
+    \part False. We can have $a=b$.
+    \part True.
+  \end{parts}
+\end{solution}
+
+\miquestion I'm kinda tired of the rest. Maybe some other day...
+
+\end{questions}
+\end{document}
