@@ -1,0 +1,183 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 1 - Section 1.2} %can leave out if no title per sheet
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Doesn't look interesting. Skip for now.
+
+%------------------------- Problem 2 -------------------------
+\miquestion Give an example or state that it's impossible.
+\begin{parts}
+  \part A set $B$ with inf $B \geq$ sup $B$.
+  \part A finite set that contains its infimum but not its supremum.
+  \part A bounded subset of \textbf{Q} that contains its supremum but not its infimum.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part A single-element set has its infimum equal supremum.
+    \part Slightly tricky. The half-open interval [0, 1) of real numbers is *not* a valid answer, because it's not a finite set.
+
+    The answer is it's impossible. A finite set always has its minimum and maximum as infimum and supremum respectively.
+
+    \part (0, 1].
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion 
+\begin{parts}
+  \part Let $A$ be nonempty and bounded below, and define $B = \{b \in \textbf{R}: \text{b is a lower bound for A}\}$. Show that sup
+  $B = $ inf $A$.
+  \part Use (a) to explain why there is no need to assert that greatest lower bounds exist as part of the Axiom of Completeness.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part First we need to assert that sup $B$ actually exists. By the axiom completeness, any set bounded above has a supremum, and any element of $A$ is an
+    upper bound, so sup $B$ exists.
+
+    Next we prove that sup $B$ = inf $A$. Any real number less than sup $B$ clearly cannot be the infimum, since it wouldn't be the *greatest* lower bound.
+    There is also no lower bound greater than sup $B$, since by definition sup $B$ is greatest of all lower bounds. This completes the proof.
+
+    \part Because (a) already shows that the infimum exists (if the set is bounded below) as the supremum of another set, and it also gives the construction of such
+    a set (by taking the set of all lower bounds).
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Let $A_{1}, A_{2}, ..., $ be a collection of nonempty sets, each of which is bounded above.
+\begin{parts}
+  \part Find a formula for sup($A_{1} \cup A_{2}$). Extend this to sup($\cup^{n}_{k=1}A_{k}$).
+  \part Consider sup($\cup^{\infty}_{k=1}A_{k}$). Does the formula in (a) extend to the infinite case?
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part max(sup $A_{1}$, sup $A_{2}$). max(sup $A_{1}$, ..., sup $A_{n}$). Too lazy to write the formal proof, but it should be intuitively clear.
+    \part No, because the resulting union of supremums might not be bounded above. The simplest example is $A_{i}={i}$.
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion As in example example 1.3.7, let $A \subseteq \textbf{R}$ be nonempty and bounded above, and let $c \in \textbf{R}$. This time define the set
+$cA = \{ca: a \in A\}$.
+\begin{parts}
+  \part If $c \geq 0$, show that sup($cA$) = $c$ sup($A$).
+  \part Postulate a similar type of statement for sup($cA$) for the case $c < 0$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part $c$ sup $A$ is an upper bound because $a \leq \text{sup} A$ for all $a$ and that implies $ca \leq c \text{ sup } A$ for all $a$.
+
+    It is the \textit{least} upper bound. Suppose $x$ is any upper bound for $cA$. Then $x \leq ca \implies x/c \leq a$. This means $x/c$ is an
+    upper bound of $A$. But if it's an upper bound then $x/c \geq \text{ sup } A \implies x \geq c \text{ sup }A$.
+
+    \part $c$ inf $A$. Too lazy to write.
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion Boring. Skip.
+
+%------------------------- Problem 7 -------------------------
+\miquestion Prove that if $a$ is an upper bound for $A$, and if $a$ is also an element of $A$, then it must be that $a = $ sup $A$.
+\begin{solution}
+  This is basically saying $a$ is the maximum of the set.
+\end{solution}
+
+%------------------------- Problem 8 -------------------------
+\miquestion Compute, without proofs, the suprema and infima (if they exist) of the following sets:
+\begin{parts}
+  \part \{$m/n: m, n \in \textbf{N} \text{ with } m < n$\}.
+  \part \{$(-1)^{m}/n: m, n \in \textbf{N}$\}.
+  \part \{$n/(3n+1): n \in \textbf{N}$\}.
+  \part \{$m / (m+n): m, n \in \textbf{N}$\}.
+\end{parts}
+
+\begin{solution}
+  Note that we don't include 0 in \textbf{N}.
+  \begin{parts}
+    \part Supremum: 1/2. Infimum: 0 (set $m=1$ and $n$ arbitrarily big).
+    \part Supremum: 1. Infimum: -1.
+    \part Supremum: 1/3. Infimum: 1/4.
+    \part Supremum: 1/2. Infimum: 0.
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 9 -------------------------
+\miquestion
+\begin{parts}
+  \part If sup $a < $ sup $B$, show that there exists an element $b \in B$ that is an upper bound for $A$.
+  \part Give an example to show that this is not always the case if we only assume sup $A \leq $ sup $B$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part The idea is that there must be an element of $b$ between sup $A$ and sup $B$.
+    
+    Let $d = $ sup $B - $ sup $A$.
+    Since sup $B$ is the *least* upper bound, then there must be an element $b \in B$ such that $b > $ sup $B - d \implies b > \text{ sup } A$.
+  
+    \part Let $A = [0, 1]$ and $B = [0, 1)$.
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 10 -------------------------
+\miquestion \textbf{Cut Property}. The Cut Property of the real numbers is the following: \\
+If $A$ and $B$ are nonempty, disjoint sets with $A \cup B = \textbf{R}$ and $a < b$ for all $a \in A$ and $b \in B$, then there exists $c \in \textbf{R}$ such
+that $x \leq c$ whenever $x \in A$ and $x \geq c$ whenever $x \in B$.
+\begin{parts}
+  \part Use the AoC to prove the Cut Property.
+  \part Show that the implication goes the other way; that is, assume \textbf{R} possesses the Cut Property and let $E$ be a nonempty set that is bounded above.
+  Prove sup $E$ exists.
+  \part The punchline of parts (a) and (b) is that the Cut Property could be used in place of AoC as the fundamental axiom that distinguishes the real numbers from
+  the rationals. To drive this point home, give a concrete example showing that the Cut Property is not a valid statement when \textbf{R} is replaced by \textbf{Q}.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part Any element in $b$ is an upper bound of $A$ so by AoC, $A$ has a supremum (conversely, by exercise 3, $B$ has an infimum).
+    Take $c = $ sup $A$ (or $c = $ inf $B$).
+
+    \part Since $E$ be bounded above, let $B$ be the set of all upper bounds i.e. $B = \{b \in \textbf{R}: \text{ b is an upper bound of E}\}$. But this is yet enough to invoke the cut property, since
+    it's not necessarily true that $E \cup B = \textbf{R}$.
+
+    Let $A = \{a \in \textbf{R}: a < e \text{ for some } e \in E\}$. It's easy to verify that combining $A$ and $E$ does not change the upper bounds of $E$, so let $E = A \cup E$.
+    Now $E \cup B = \textbf{R}$. Invoke the Cut Property: the $c$ defined in the property is the supremum.
+
+    \part The idea is that the "cut" point should be an irrational number. So let $A$ be all rationals less than $\sqrt{2}$ and $B$ all rationals
+    greater than $\sqrt{2}$. Then $A \cup B = \textbf{Q}$ since the only missing point is not a rational number.
+
+    Next, suppose there is a $c$ such that $x \leq c$ whenever $x \in A$. Then $c$ must be greater than $\sqrt{2}$, for if $c < \sqrt{2}$ then $c \in A$
+    but if $c \in A$ then we can always find a rational greater than $c$ but less than $\sqrt{2}$. A similar argument shows that if $c$ satisfies
+    $x \leq c$ for all $x \in A$ then it cannot satisfy $x \geq c$ for all $x \in B$.
+  \end{parts}
+\end{solution}
+
+%------------------------- Problem 11 -------------------------
+\miquestion Decide if the following statements are true or false. Give a short proof if true, or a counterexample otherwise.
+\begin{parts}
+  \part If $A$ and $B$ are nonempty, bounded, and satisfy $A \subseteq B$, then sup $A \leq $ sup $B$.
+  \part If sup $A < $ inf $B$ for sets $A$ and $B$, then there exists a $c \in \textbf{R}$ satisfying $a < c < b$ for all $a \in A$ and $b \in B$.
+  \part If there exists a $c \in \textbf{R}$ satisfying $a < c < b$ for all $a \in A$ and $b \in B$, then sup $A < $ inf $B$.
+\end{parts}
+
+\begin{solution}
+  \begin{parts}
+    \part True. sup $B$ is an upper bound of $A$, so the *least* upper bound of $A$ must, by definition, be less than or equal to sup $B$.
+    \part True. The idea is that there must be a gap between sup $A$ and inf $B$ and we can take any number in that gap. For example, take
+    $c = (\text{ sup } A + \text{ inf } B) / 2$.
+    \part No. Take $A = [1, 2)$ and $B = (2, 3]$.
+  \end{parts}
+\end{solution}
+
+\end{questions}
+\end{document}
