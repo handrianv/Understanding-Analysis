@@ -1,0 +1,95 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 1 - Section 1.2} %can leave out if no title per sheet
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Basically it's a bounded sequence.
+
+%------------------------- Problem 2 -------------------------
+\miquestion Prove:
+\begin{itemize}
+  \item $\lim{\frac{2n+1}{5n+4}} = \frac{2}{5}.$
+  \item $\lim{\frac{2n^2}{n^3+3}} = 0.$
+  \item $\lim{\frac{\sin{(n^2)}}{{\sqrt[3]{n}}}} = 0.$
+\end{itemize}
+
+\begin{solution}
+  \begin{itemize}
+    \item This one is simple algebra. The final simplified form will be
+    $\frac{3}{25n+20} < \epsilon \implies n > \frac{3}{25\epsilon} - \frac{4}{5}$.
+  
+    \item The point of this one is to teach us that not all epsilon-delta style problems need to be solved by relentless algebra.
+    
+    In this case, we find that the given expression cannot be factored any further. But we can note that $\frac{2n^2}{n^3+3} < \frac{2n^2}{n^3}$
+    so we want $\frac{2}{n} < \epsilon \implies n > \frac{\epsilon}{2}$.
+
+    Basically, don't be afraid to discard constants and use inequalities to simplify expressions.
+
+    \item Like the previous problem, we don't need to do algebra here. Since $\sin(x) \leq 1$ for all $x$, then
+    $\frac{\sin{(n^2)}}{{\sqrt[3]{n}}} < \frac{1}{\sqrt[3]{n}} < \epsilon \implies n > \frac{1}{\epsilon^{3}}$.
+  \end{itemize}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion Straightforward.
+
+%------------------------- Problem 4 -------------------------
+\miquestion Give an example or state that the request is impossible.
+\begin{enumerate}[label=(\alph*)]
+  \item A sequence with infinite number of ones that does not converge to one.
+  \item A sequence with an infinite number of ones that converges to a limit not equal to one.
+  \item A divergent sequence such that for every $n \in \textbf{N}$ it is possible to find $n$ consecutive ones somewhere in the sequence.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Let S = 1, 1e6, 1, 1e6, ... Pick any $\epsilon$ less than half the distance, then for any value $L$, its $\epsilon$ nghbrhd cannot contain
+    both 1 and 1e6.
+    \item Impossible. Let $L \neq 1$ be the limit and $d = \lvert L - 1\rvert$. Take $\epsilon = d/2$. Since there are infinitely many ones, there is a
+    one that's outside $(L - \epsilon, L + \epsilon)$. This contradicts the fact that $L$ is the limit.
+    \item 1, 1e6, 1, 1, 1e6, 1, 1, 1, 1e6, ....
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion Easy.
+
+%------------------------- Problem 6 -------------------------
+\miquestion Prove limit is unique.
+\begin{solution}
+  Classic problem. The idea is to prove by contradiction. Suppose there are two limits $L_{1}$ and $L_{2}$ and let $d$ be their difference. Pick
+  $\epsilon < \frac{d}{2}$, then a number cannot be in the $\epsilon$ nghbrhd of both $L_{1}$ and $L_{2}$ simultaneously.
+
+  More formally, by definition of convergence, there exists $N_{1}$ such that $n \geq N_{1} \implies \lvert a_{n}-L_{1} \rvert < \frac{d}{2}$.
+  Similiarly, there exists $N_{2}$ such that $n \geq N_{2} \implies \lvert a_{n}-L_{2} \rvert < \frac{d}{2}$. Let $N = max(N_{1}, N_{2})$, then
+  for any $n \geq N$, $a_{n}$ satisfies both inequalities.
+  
+  Now for the contradiction: if a point is simultaneously in the nghbrhd of both $L_{1}$ and $L_{2}$, then the sum of
+  distance to that point from both $L$'s must be $\geq d$. In other words, we have the triangle inequality
+  $\lvert L_{1} - L_{2} \rvert \leq \lvert a_{n} - L_{1}\rvert + \lvert a_{n} - L_{2}\rvert$.
+  But the RHS are both less than $\frac{d}{2}$, so we have $d \leq \lvert a_{n} - L_{1}\rvert + \lvert a_{n} - L_{2}\rvert < d$, a contradiction.
+\end{solution}
+
+%------------------------- Problem  7 -------------------------
+\miquestion See the book for the statement.
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Eventually but not frequently.
+    \item Eventually implies frequently, but not the other way around. So "eventually" is a stronger condition.
+    \item "Eventually" can be used to describe convergence. Let $S_{\epsilon}$ be the set of all $a_{n}$ such that $\lvert a_{n} - L\rvert < \epsilon$,
+    then the limit of a sequence is $L$ if the sequence is eventually in $S_{\epsilon}$.
+    \item Frequently but not eventually.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem  8 -------------------------
+\miquestion Doesn't look interesting, skip.
+
+\end{questions}
+\end{document}
