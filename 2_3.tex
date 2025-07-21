@@ -1,0 +1,193 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 2 - Section 2.3} %can leave out if no title per sheet
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Let $x_{n} \geq 0$ for all $n \in \textbf{N}$.
+\begin{enumerate}[label=(\alph*)]
+  \item If ($x_{n}) \implies 0$, show that ($\sqrt(x_{n}) \implies 0$.
+  \item If ($x_{n}) \implies x$, show that ($\sqrt(x_{n}) \implies \sqrt{x}$.
+\end{enumerate}
+
+\begin{solution}
+  Note that we \textit{cannot} use either the algebraic or order limit theorem here, because they require that \textit{both limits exist}.
+  In this problem, the existence of $\lim \sqrt{(x_{n})}$ is what we need to prove in this first place!
+  
+  With that out of the way, we need to fall back to good ol' epsilon-delta proof.
+
+  \begin{enumerate}[label=(\alph*)]
+    \item We need to prove that for any $\epsilon > 0$, there exists $N$ such that $n \geq N \implies \lvert \sqrt{x_{n}} \rvert < \epsilon$. We can
+    discard the abs sign since $x \geq 0$ and sqrt is non-negative.
+
+    We know $(x_{n}) \implies 0$ so we can pick $N$ such that $x_{n} < \epsilon^{2}$ which'd make $\sqrt{x_{n}} < \epsilon$.
+
+    \item We need $N$ such that $\lvert \sqrt{x_{n}} - \sqrt{x} \rvert < \epsilon$.
+    
+    We want $\lvert x_{n} - x \rvert$ to appear so let's rationalize
+    : $\lvert \frac{x_{n}-x}{\sqrt{x_{n} + \sqrt{x}}} \rvert < \epsilon$.
+    
+    As is common in epsilon-delta proof, we can use inequalities to discard terms
+    and simplify expressions. In this case, we're given $x_{n} \geq 0$ for all $n$ so we have
+    $\lvert \frac{x_{n}-x}{\sqrt{x_{n} + \sqrt{x}}} \rvert \leq \lvert \frac{x_{n}-x}{\sqrt{x}} \rvert < \epsilon$.
+
+    Since we're given $(x_{n}) \implies x$ we can make $\lvert x_{n} - x \rvert$ as small as we want, so let's pick N such that
+    $n \geq N \implies \lvert x_{n} - x \rvert < \epsilon\sqrt{x}$, so we have
+    $\frac{x_{n} - x}{\sqrt{x}} < (\frac{\epsilon\sqrt{x}}{\sqrt{x}} = \epsilon)$, as needed.
+
+    Note that this is only valid if $x \neq 0$, but the case $x = 0$ has been handled in part (a).
+\end{enumerate}
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Using only the definition of convergence, prove that if $(x_{n}) \implies 2$, then
+\begin{enumerate}[label=(\alph*)]
+  \item $(\frac{2x_{n}-1}{3}) \implies 1$;
+  \item $(1 / x_{n}) \implies 1/2$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We need $\lvert \frac{2(x_{n}-2)}{3} \rvert < \epsilon$. Pick $n \geq N$ such that $\lvert x_{n} - 2 \rvert < \frac{3\epsilon}{2}$.
+    \item TODO.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion \textbf{(Squeeze Theorem)}. Show that if $x_{n} \leq y_{n} \leq z_{n}$ for all $n \in \textbf{N}$ and if $\lim x_{n} = \lim z_{n} = l$, then
+$\lim y_{n} = l$ as well.
+
+\begin{solution}
+  Just like problem 1, we can't use the algebraic or order limit theorem because it requires that $\lim y_{n}$ exist, which is what we're trying to
+  prove.
+
+  Intuitively, we can pick an $N$ that works for both $(x_{n})$ and $(z_{n})$ simultaneously and it should work for $(y_{n})$ as well. Visualize it:
+  either both $(x_{n})$ and $(z_{n})$ are to one side of $l$, or $(x_{n})$ is to the left and $z_{n}$ to the right. Either case, $(y_{n})$ will also be
+  in the $\epsilon$ neighborhood of $l$.
+
+  To put it more formally, pick $N$ that satisfies both $x$ and $z$, then $\lvert y - l \rvert \leq max(\lvert x - l \rvert, \lvert z - l\rvert) < \epsilon$.
+
+  The proof in Wikipedia is also nice.
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Let $(a_{n}) \implies 0$ and use the Algebraic Limit Theorem to compute each of the following limits (assuming the fractions are always defined):
+\begin{enumerate}[label=(\alph*)]
+  \item $\lim{\frac{1+2a_{n}}{1+3a_{n}-4a_{n}^{2}}}$.
+  \item $\lim{\frac{(a_{n}+2)^{2}-4}{a_{n}}}$.
+  \item $\lim{\frac{\frac{2}{a_{n}} + 3}{\frac{1}{a_{n}}+5}}$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item 1.
+    \item Simplify to $\frac{a_{n}^{2} + 4a_{n}}{a_{n}} = a_{n} + 4$, then the limit is 4.
+    \item $\lim{\frac{\frac{2}{a_{n}} + 3}{\frac{1}{a_{n}}+5}}$.
+    \item 2.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion Let $(x_{n})$ and $(y_{n})$ be given, and define $(z_{n})$ to be the "shuffled" sequence 
+
+$(x_{1}, y_{1}, x_{2}, y_{2}, .., x_{n}, y_{n}, ..)$.
+Prove that $(z_{n})$ is convergent if and only if $(x_{n})$ and $(y_{n})$ are both convergent with $\lim x_{n} = \lim y_{n}$.
+
+\begin{solution}
+  The problem statement doesn't say it, but we can actually prove that $(z_{n})$ converges to the same limit as $(x_{n})$ and $(y_{n})$.
+  
+  Let's prove the "if" part first: if $(x_{n})$ and $(y_{n})$ converges to the same limit then $(z_{n})$
+  is convergent. Pick an $N_{xy}$ that works for both $(x_{n})$ and $(y_{n})$, then let $N_{z} = 2N_{xy}$.
+
+  The other direction is similar. We want to prove that if $(z_{n})$ is convergent then $(x_{n})$ and $(y_{n})$ converge to the same limit.
+  Pick an $N_{z}$ for $(z_{n})$. This $N_{z}$ immediately works for both $(x_{n})$ and $(y_{n})$, since it covers all
+  the $y_{n}$ where $n \geq floor(N_{z}/2)$ in $(z_{n})$. Similarly for $(x_{n})$.
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion (TODO again). The answer is -1, but try to redo it next time.
+
+%------------------------- Problem 7 -------------------------
+\miquestion Give an example or state that the request is impossible by referencing the proper theorem(s):
+\begin{enumerate}[label=(\alph*)]
+  \item sequences $(x_{n})$ and $(y_{n})$ which both diverge but whose sum $(x_{n} + y_{n})$ converges.
+  \item sequences $(x_{n})$ and $(y_{n})$ where $(x_{n})$ converges, $(y_{n})$ diverges, and $(x_{n} + y_{n})$ converges.
+  \item a convergent sequence $(b_{n})$ with $b_{n} \neq 0$ for all $n$ such that $(1/b_{n})$ diverges.
+  \item an unbounded sequence $(a_{n})$ and a convergent sequence $(b_{n})$ with $(a_{n}-b_{n})$ bounded.
+  \item two sequences $(a_{n})$ and $(b_{n})$ where $(a_{n}b_{n})$ and $(a_{n})$ converge but $(b_{n})$ does not.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item $(x_{n}) = 1, -1, 1, -1, ...$ and $(y_{n}) = -1, 1, -1, 1, ...$. Then $(x_{n}+y_{n}) = 0, 0, 0, ...$.
+    \item This is impossible. Intuitively, if $(x_{n})$ converges, then for $(x_{n}+y_{n})$ to also converge then $x_{n}$ can only be "bumped"
+    by something that's also convergent and not randomly by a divergent sequence.
+
+    Formally, we'll prove that if $(x_{n})$ and $(x_{n}+y_{n})$ converge then $(y_{n})$ must be convergent (or in logic speak, let the statement
+    that a sequence is convergent have a truth value "True", then we want to prove "a and not b and c" is false by proving that "(a and c) implies b").
+
+    Let $z_{n} = (x_{n} + y_{n})$, then $\lim y_{n} = \lim z_{n} + -x_{n} = \lim (z_{n}) + -1*\lim (x_{n})$. So by the algebraic limit theorem,
+    $\lim y_{n}$ exists.
+
+    \item It's tempting to say that by the algebraic division theorem, this is impossible. But note that the theorem applies only when $\lim b_{n} \neq 0$.
+    
+    Consider $(b_{n}) = 1, 1/2, 1/3, ...$. The limit is 0, but $(1/b_{n}) = 1, 2, 3, ...$ diverges.
+
+    \item Impossible. By theorem 2.3.2, every convergent sequence is bounded, so $(b_{n})$ is bounded. Since $(a_{n}) = (a_{n}-b_{n}) + (b_{n})$
+    and the sum of the bounds of the RHS must be a bound for $(a_{n})$ as well.
+    
+    \item This is the reverse of part (c). Let $(a_{n}) = 1, 1/2, 1/3, ...$ and $(b_{n}) = 1, 2, 3, ...$. Then $(a_{n}b_{n}) = 1, 1, 1, ..$.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 8 -------------------------
+\miquestion Let $(x_{n}) \implies x$ and let $p(x)$ be a polynomial.
+\begin{enumerate}[label=(\alph*)]
+  \item Show $p(x_{n}) = p(x)$.
+  \item Find an example of a function $f(x)$ and a convergent sequence $(x_{n}) \implies x$ where the sequence $f(x_{n})$ converges, but not to $f(x)$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item $p(x_{n}) = \sum_{i=i}^{m}a_{i}x_{n}^{i}$ for a polynomial of degree $m$. We can apply the algebraic limit theorem:
+    $\lim a_{i}x_{n}^{i} = a_{i}\lim(x_{n})\lim(x_{n})... \text{(i times)} = a_{i}x^{i}$.
+
+    \item Although the book hasn't touched the concept of continuity at this point, but we just need to make the $f$ discontinuous at $x$.
+    For example, let $(x_{n}) = 1/n$, this sequence converges to 0. Now we make $f(0)$ discontinuous. For example, $f(y) = 1$ if $y \neq 0$
+    else $0$. $f$ converges to 1, but $f(0) = 0$.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 9 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Let $(a_{n})$ be a bounded (not necessarily convergent) sequence, and assume $\lim b_{n}=0$. Show that $\lim (a_{n}b_{n})=0$. Why are
+  we not allowed to use the Algebraic Limit Theorem to prove this? 
+  \item Can we conclude anything about the convergence of $(a_{n}b_{n})$ if we assume that $(b_{n})$ converges to some nonzero limit $b$?
+  \item Use (a) to prove Theorem 2.3.3, part (iii), for the case when $a=0$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We need $\lvert a_{n}b_{n} \rvert < \epsilon$. Let $B$ be a bound of $(a_{n})$, then $\lvert a_{n}b_{n} \rvert \leq \lvert B \lvert \lvert b_{n} \rvert$.
+    Since we have $\lim b_{n} = 0$, we make $\lvert b_{n} \rvert < \frac{\epsilon}{\lvert B \rvert}$.
+
+    We can't use the Algebraic Limit Theorem because it requires that we know that $(a_{n})$ is convergent.
+  
+    \item No. If we try the epsilon-delta style proof, we'll get $\lvert a_{n}(b_{n}-L) \rvert + \lvert (a_{n}-1)L\rvert$. Unlike
+    part (a), we can't just directly bound $a_{n}-1$. We only know that $a_{n}$ is bounded, but $a_{n}-1$ may lie outside the bound.
+
+    For a concrete counterexample, let $(a_{n}) = 1, -1, 1, -1, ..$ and $(b_{n}) = 5, 5, 5, 5...$.
+  
+    \item Prove the limit multiplication theorem in case $(a_{n}) \implies 0$. Well, we just need to note that convergent sequence is always
+    bounded and directly apply part (a).
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
