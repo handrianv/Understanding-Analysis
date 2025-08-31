@@ -1,0 +1,115 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 2 - Section 2.5} %can leave out if no title per sheet
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Give an example of each of the following or state that it is impossible.
+  \begin{enumerate}[label=(\alph*)]
+    \item A sequence that has a subsequence that is bounded but contains no subsequence that converges.
+    \item A sequence that does not contain 0 or 1 as a term but contains subsequences converting to each of these values.
+    \item A sequence that contains subsequences converging to every point in the infinite set $\{1, 1/2, 1/3, 1/4, ...\}$.
+    \item A sequence that contains subsequences converging to every point in the infinite set $\{1, 1/2, 1/3, 1/4, ...\}$, and no subsequences
+    converging to points outside of this set.
+  \end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+      \item Impossible. A bounded subsequence it itself a candidate sequence for the Bolzano-Weierstrass theorem, so it must have a convergent subsequence and this
+      convergent subsequence of the bounded subsequence is itself a convergent subsequence of the original sequence (damn that was confusing to type).
+      \item $\{0.51, 0.9, 1/2, 0.99, 1/3, 0.999, 1/4, 0.9999, ...\}$. Or from the solution manual, $\{1/2, 1/2, 1/3, 2/3, 1/4, 3/4, ..., 1/n, (n-1)/n\}$.
+      \item I failed this one. The solution manual's construction is clever,
+      
+      $\{1, 1, \frac{1}{2}, 1, \frac{1}{2}, \frac{1}{3}, 1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, 1, \frac{1}{2}, ...\}$.
+      \item The idea is that the requested set of limit converges to 0, so if a solution exists, it must contain
+      a subsequence that gets arbitrarily close to 0 as well.
+      
+      From the construction in part (c), it should be clear that we can just pick the subsequence
+      $\{1, \frac{1}{2}, \frac{1}{3}, ...\}$ and that converges to 0. But here's a more formal approach, in which we'll pick a slightly different subsequence.
+
+      Pick the subsequence $N_{1}, N_{2}, ...$ where for $N_{k}$:
+      \begin{itemize}
+        \item We pick $N_{k}$ from the subsequence that converges to $\frac{1}{k}$.
+        \item $0 < N_{k} < \frac{2}{k}$. This is always possible since the subsequence converges to $\frac{1}{k}$. There's nothing special about $\frac{2}{k}$,
+        we just arbitrarily choose $\epsilon < \frac{1}{k}$.
+      \end{itemize}
+
+      Now we have a sequence where each term is bounded by 0 and $\frac{2}{k}$. By the squeeze theorem, this sequence converges to 0. Note that
+      we don't require the sequence to be monotonically decreasing.
+    \end{enumerate}
+\end{solution}
+
+\miquestion Skip.
+
+%------------------------- Problem 3 -------------------------
+\miquestion
+  \begin{enumerate}[label=(\alph*)]
+    \item Prove the associative property for a convergent series. See the book for the full problem statement.
+    \item Compare this result to the example at the end of section 2.1 where associativity fails. Why doesn't the proof in (a) apply?
+  \end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Let the series be $a_{1} + a_{2} + a_{3} + ...$. Recall that a convergent series means the sequence of partial sum $S = S_{1}, S_{2}, S_{3}, ...$ converges,
+    with $S_{n} = \sum_{i=1}^{n}a_{n}$.
+
+    Now consider a grouping $(a_{1} + a_{2} + ... + a_{n1}) + (a_{n1+1} + ... + a_{n2}) + (...)$. Let the sum of the i'th group be $G_{i}$, then
+    the sequence of partial sum is $G = G_{1}, G_{1}+G_{2}, G_{1}+G_{2}+G_{3}$. But each element in this sequence is simply a prefix sum of the original sequence,
+    so they form a subsequence of $S$. E.g. $G_{1}+G_{2}+G_{3}$ is simply the prefix sum from $a_{1}$ to $a_{n3}$ i.e. $S_{n3}$.
+
+    Since $S$ converges, by Theorem 2.5.2 its subsequences converge to the same limit, so $G$ converges to the same limit.
+
+    \item The example is $-1 + 1 + (-1) + 1 + (-1) + 1 + ...$. $S = -1, 0, -1, 0, -1, 0, ...$. The grouping $(-1 + 1) + (-1 + 1) + ...$ results
+    in $G = 0, 0, 0, ...$. The proof fails because $S$ doesn't converge while $G$ does.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Skip.
+
+%------------------------- Problem 5 -------------------------
+\miquestion Assume $(a_{n})$ is a bounded sequence with the property that every convergent subsequence of $(a_{n})$ converges to the same limit $a \in \textbf{R}$.
+Show that $(a_{n})$ must converge to $a$.
+
+\begin{solution}
+  Failed to find a direct proof, so here's a proof by contradiction.
+
+  Let's split the sequence into 2, $(b_{n})$ where every element is part of a convergent subsequence and $c_{n}$ otherwise. Clearly $(b_{n})$ and $(c_{n})$ have no elements in common.
+
+  Now, the original sequence $(a_{n})$ is bounded, so $(c_{n})$ is also bounded and the Bolzano-Weierstrass theorem applies to it, so $(c_{n})$ has a convergent subsequence.
+  But since by the problem hypothesis all convergent subsequences converge to $a$, then the convergent subsequence of $(c_{n})$ must be an element of $(b_{n})$, a contradiction.
+
+  This basically says that if all convergent subsequences converge to $a$, then \textit{all} subsequences converge to $a$, so $(a_{n})$ also converges to $a$.
+
+  EDIT: the above proof is incorrect. There's no guarantee that $(c_{n})$ is infinite, in which case the BWT doesn't apply.
+
+  Here's an elegant proof I found on MSE. If all subsequences converge to $a$, then the limsup of the \textit{whole sequence} is $a$. This is because we can always construct
+  a subsequence that converge to the limsup (TODO: prove this again). Same goes with liminf. So we have limsup = liminf = $a$ and that implies $\lim (a_{n}) = a$. 
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion Skip.
+
+%------------------------- Problem 7 -------------------------
+\miquestion Show that lim($b^{n}$) = 0 iff $-1 < b < 1$.
+\begin{solution}
+  The case $b \geq 0$ has already been explained in Example 2.5.3, so now we'll handle $b < 0$. The proof for $b \geq 0$ used in the book fails
+  in this case because the sequence is no longer monotone; it alternates between positive and negative e.g. ${1/2, -1/4, 1/8, -1/16, ...}$.
+
+  It's easy to see that the sequence can be split into the positive and negative part, and that each subsequence converges to 0. We claim that this implies the whole sequence converges to 0.
+
+  This fact can be generalized; if a sequence can be split into two disjoint subsequences that cover the whole sequence, and both subsequences converge to the
+  same limit L, then the whole sequence converges to L. Proof idea: use the definition of convergence. Let the disjoint subsequences be $(b_{n})$ and $(c_{n})$.
+  For any $epsilon > 0$, there exists $N_{b}$ and $N_{c}$ that works for $(b_{n})$ and $(c_{n})$ respectively. Convert them back to their index in $(a_{n})$ and pick
+  the bigger one and that will work as the $N$ for $(a_{n})$.
+\end{solution}
+
+
+
+\end{questions}
+\end{document}
