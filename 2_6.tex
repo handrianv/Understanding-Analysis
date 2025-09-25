@@ -1,0 +1,132 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 2 - Section 2.6} %can leave out if no title per sheet
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Prove that every convergent sequence is a Cauchy sequence.
+
+\begin{solution}
+  \\
+  Intuition: Since the sequence is convergent, let the limit be $L$. For any $\epsilon_{a}$ there exists an $N_{a}$ that works.
+
+  Now for the Cauchy sequence, we need to make all elements eventually within $\epsilon_{b}$. Choose $\epsilon_{a} \leq \epsilon{b}/2$.
+  It should be easy to visualize that for all $a_{n}, n \geq N_{a}$, the largest distance an element can be from each other is one below
+  and one above the limit $L$, both of which is below $\epsilon_{a} \leq \epsilon_{b}/2$. 
+
+  More formally, for all $n, m \geq N_{a}$, we have:\\
+  $\lvert a_{n} - a_{m }\rvert \leq \lvert a_{n} - L \rvert + \lvert a_{m} - L \rvert < \epsilon_{a} + \epsilon_{a} \leq 2*\frac{\epsilon_{b}}{2} = \epsilon_{b}$.
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Give an example or argue that it's impossible.
+\begin{enumerate}[label=(\alph*)]
+    \item A Cauchy sequence that is not monotone.
+    \item A Cauchy sequence with an unbounded subsequence.
+    \item A divergent monotone sequence with a Cauchy subsequence.
+    \item An unbounded sequence containing a subsequence that is Cauchy.
+\end{enumerate}
+
+\begin{solution}
+  For all of these, we'll use the fact that over the reals, a Cauchy sequence is equivalent to a convergent sequence.
+  \begin{enumerate}[label=(\alph*)]
+    \item \{1, -1, 1/2, -1/2, 1/3, -1/3, ...\} is not monotone and converges to 0.
+    \item Impossible. Every convergent sequence is bounded and a subsequence of a bounded sequence is also bounded.
+    \item Impossible. A divergent monotone sequence must be unbounded (because by MCT, a bounded monotone sequence must be convergent).
+    Subsequence of an unbounded sequence must also be unbounded, but a Cauchy sequence must be bounded.
+    \item $\{1, 1, 2, 1/2, 3, 1/3, 4, 1/4\}$. The subsequence $\{1, 1/2, 1/3, 1/4, ...\}$ converges to 0.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion Give a direct argument that does not use the Cauchy criterion or the Algebraic Limit Theorem. If $(x_{n})$ and $(y_{n})$ are Cauchy
+\begin{enumerate}[label=(\alph*)]
+  \item $(x_{n} + y_{n})$ is Cauchy.
+  \item Do the same for $(x_{n}y_{n})$.
+\end{enumerate}
+
+\begin{solution}
+  Both proofs are reminiscent of the ones for the Algebraic Limit Theorem.
+
+  \begin{enumerate}[label=(\alph*)]
+    \item We want to prove that given any $\epsilon > 0$, there is an $N$ such that for all $n, m \geq N$, $\lvert (a_{n} + b_{n}) - (a_{m} + b_{m})\rvert < \epsilon$.
+    
+    Rearrange to $\lvert (a_{n}-a_{m}) + (b_{n}-b_{m}) \rvert \leq \lvert a_{n}-a_{m} \rvert + \lvert b_{n} - b_{m}\rvert$. Since $(a_{n})$ and $(b_{n})$ are Cauchy,
+    there exist $N_{a}, N_{b}$ such that both terms are less than $\frac{\epsilon}{2}$. Pick $N = max(N_{1}, N_{2})$ then 
+    $\lvert a_{n}-a_{m} \rvert + \lvert b_{n} - b_{m}\rvert < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
+
+    \item
+    \begin{align*}
+      |a_n b_n - a_m b_m|
+        &= |a_n b_n - a_m b_n + a_m b_n - a_m b_m| \\
+        &\le |(a_n - a_m)b_n| + |(b_n - b_m)a_m| \\
+        &= |a_n - a_m||b_n| + |b_n - b_m||a_m|
+    \end{align*}
+
+    Now we use the fact that every Cauchy sequence is bounded, so there is an $L_a$ such that $|a_n| \leq |L_a|$ for all $n$. Similarly for $b_n$ and $L_b$. Let $L = max(L_a, L_b)$, then
+    \begin{align*}
+      |a_n - a_m||b_n| + |b_n - b_m||a_m|
+        &\leq |a_n - a_m||L| + |b_n - b_m||L|
+    \end{align*}
+    There exist $N_a$ and $N_b$ such that both $|a_n-a_m|$ and $|b_n-b_m|$ are both less than $\frac{\epsilon}{2|L|}$. Pick $N = max(N_a, N_b)$, then
+    \begin{align*}
+      |a_n - a_m||L| + |b_n - b_m||L|
+        &< \frac{\epsilon}{2|L|}|L| + \frac{\epsilon}{2|L|}|L| \\
+        &= \epsilon 
+    \end{align*}
+
+    One more special case to handle: if $|L| = 0$ then both $(a_n)$ and $(b_n)$ are just the zero sequence.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Let $a_n$ and $b_n$ be Cauchy sequences. Decide whether each of the following sequences is a Cauchy sequence, justifying each conclusion.
+\begin{enumerate}[label=(\alph*)]
+  \item $c_n = |a_n - b_n|$
+  \item $c_n = (-1)^{n}a_n$
+  \item $c_n = \lfloor a_n \rfloor$
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Yes. We first prove that $|a_n|$ is Cauchy for any Cauchy sequence $|a_n|$. Use the fact that $|a-b| \geq ||a|-|b||$ for any real numbers $a$ and $b$
+    (the distance between two numbers is at least as great as the distance between their absolute values).
+
+    To prove $|a_n|$ is Cauchy we need to prove that for any $\epsilon > 0$, there exists $N$ such that for all $n, m \geq N$, $||a_n|-|a_m|| < \epsilon$.
+    Now use the inequality: $||a_n|-|a_m|| \leq |a_n-a_m|$ and the rest follows from the fact that $a_n$ is Cauchy.
+
+    Back to the original problem: $a_n-b_n$ is Cauchy by the Algebraic Limit Theorem so $|a_n-b_n|$ is Cauchy as well.
+
+    \item No. $\{1, 1, 1, ...\}$ is Cauchy but $\{1, -1, 1, -1, ...\}$ is not.
+    
+    \item No. We'll use the Cauchy criterion and talk about convergence instead.
+    \begin{itemize}
+      \item Counterexample 1: $\{1, 0.9, 1, 0.99, 1, 0.999, ....\}$ converges to 1 but its floor $\{1, 0, 1, 0, ...\}$ diverges.
+      \item Counterexample 2: This one's more formulaic. Let $a_{2k-1}=1$ and $a_{2k}=1-\frac{1}{k}$ for $k = (1, 2, ...)$. The sequence looks like
+      $(1, 1-\frac{1}{1}, 1, 1-\frac{1}{2}, 1, 1-\frac{1}{3}, ...)$. The sequence converges to 1 but its floor $(1, 0, 1, 0, ...)$ diverges.
+    \end{itemize}
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion Consider the following (invented) definition: A sequence ($s_n$) is \textit{pseudo-Cauchy} if, for all $\epsilon > 0$, there exist an $N$ such that
+if $n \geq N$, then $|s_{n+1} - s_{n}| < \epsilon$. Decide which one of the following two propositions is actually true. Supply a proof or a counterexample.
+\begin{enumerate}[label=(\alph*)]
+  \item Pseudo-Cauchy sequences are bounded.
+  \item If $(x_n)$ and $(y_n)$ are pseudo-Cauchy then $(x_n + y_n)$ is pseudo-Cauchy as well.  
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Not necessarily. One counterexample is $(s_n) = \sqrt{n}$.
+    \item Yes. $|(x_n + y_n) - (x_{n+1} + y_{n+1})| = |(x_n - x_{n+1}) + (y_n-y_{n+1}| \leq |x_n-x_{n+1}| + |y_n-y_{n+1}|$. Make each term less than $\epsilon/2$.
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
