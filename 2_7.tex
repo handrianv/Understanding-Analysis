@@ -1,0 +1,410 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 2 - Section 2.7} %can l7ave out if no title per sheet
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Proving the Alternating Series Test amounts to showing that the sequence of partial sums
+\[s_n = a_1 - a_2 + a_3 - ... \pm a_n\]
+converges.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Prove it by showing that $(s_n)$ is a Cauchy sequence.
+  \item Supply another proof using the Nested Interval Property.
+  \item Consider the subsequences $(s_{2n})$ and $s_{2n+1}$, and show how the Monotone Converge Theorem leads to a third proof.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Intuition: look back at the condition of the Alternating Series Test and visualize the graph of $s_n$.
+    
+    It's a zigzag (from the alternating signs) where if we start from an index $i$, then the \textbf{absolute value} of all
+    the suffix sum starting from $i$ is $\leq a_{i}$ (from the fact that ($a_n$) is non-decreasing and $a_n \geq 0$).
+    Formally, for any $i < j$, we have:
+
+    \[|s_j - s_{i}| = |\sum_{k=i+1}^{j}(-1)^{k+1}a_{k}| \leq a_{i+1}\]
+
+    *this can be formally proved by induction, but I'm too lazy to write it. \\
+    **note that this applies regardless of the parity of $i$. I was initially confused by this. The important point is the \textbf{absolute value} sign.
+
+    This means that to fulfill the Cauchy criterion, we only need to find $N$ such that for all $n \geq N$, $a_n < \epsilon$, because we know
+    the (absolute) suffix sum starting from $a_N$ will all be $\leq a_N$. In other words, set $i=N$ then $a_{i+1} \leq a_{i} < \epsilon$ implies $|s_j - s_{i}| \leq a_{i+1} < \epsilon$ for all $i < j$.
+
+    Now we use condition (ii) of the Alternating Series Test: $(a_n) \implies 0$, so for any $\epsilon > 0$ there exist $N$ such that $n \geq N$, $|a_n| < \epsilon$.
+  
+    \item TODO do the other two proofs.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Converges or diverges:
+\begin{enumerate}[label=(\alph*)]
+  \item $\sum_{n=1}^{\infty}\frac{1}{2^{n} + n}$.
+  \item $\sum_{n=1}^{\infty}\frac{\sin(n)}{n^{2}}$.
+  \item $1 - \frac{3}{4} + \frac{4}{6} - \frac{5}{8} + \frac{6}{10} - \frac{7}{12} + ...$
+  \item $1 + \frac{1}{2} - \frac{1}{3} + \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \frac{1}{7} + \frac{1}{8} - \frac{1}{9} + ...$
+  \item $1 - \frac{1}{2^2} + \frac{1}{3} - \frac{1}{4^2} + \frac{1}{5} - \frac{1}{6^2} + ...$
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We know that $\sum_{n=1}^{\infty}\frac{1}{2^n}$ is a convergent geometric series (because $r=\frac{1}{2}$ satisfies $|r| < 1$).
+    By the Comparison Test, $\sum_{n=1}^{\infty}\frac{1}{2^{n} + n}$ converges.
+
+    I initially proved this by comparing with $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ instead, which the book has proved to converge in example 2.4.4, page 57. This works,
+    but comparing with $2^{n}$ feels more natural.
+
+    \item This is what the book means in page 73 about combining the Comparison Test with the Absolute Convergence Test to handle series that contain some negative terms.
+    
+    Example 2.4.4 has proved that $\sum_{n=1}^{\infty}\frac{1}{n^{2}}$ converges. We have $|\sin(n)| \leq 1$ for all $n$, so $|\frac{\sin(n)}{n^{2}}| \leq \frac{1}{n^2}$
+    By the Comparison Test, the series $\sum_{n=1}^{\infty}|\frac{\sin(n)}{n^{2}}|$ converges and by the Absolute Convergence Test,
+    $\sum_{n=1}^{\infty}\frac{\sin(n)}{n^{2}}$ also converges.
+
+    \item The series is $\sum_{n=2}^{\infty}(-1)^{n} \frac{n}{2n-2}$. The sequence $\frac{n}{2n-2}$ converges to $\frac{1}{2}$. To see this, divide both nume and denom by $n$
+    to get $\frac{1}{2-\frac{2}{n}}$ and apply the Algebraic Limit Theorem. Or intuitively, for large $n$ the term $\frac{n}{2n}$ will eventually dominate,  so we can "discard"
+    the "- 2" term in the denom.
+
+    \item (TODO again. Got help from MSE). \\
+    I was initially trying to apply the convergence tests, which didn't work.
+
+    Since the sign pattern repeat every 3 terms, we can try grouping by 3: $(1 + \frac{1}{2} - \frac{1}{3}) + (\frac{1}{4} + \frac{1}{5} - \frac{1}{6}) + (\frac{1}{7} + \frac{1}{8} - \frac{1}{9}) + ...$.
+    This is \textit{less} than $(1) + (\frac{1}{4}) + (\frac{1}{7}) + ... = \sum_{k=1}^{\infty}\frac{1}{3k-2}$, and the last series diverges, because
+
+    \begin{align*}
+      \sum_{k=1}^{\infty}\frac{1}{3k-2} = \frac{1}{3}\sum_{k=1}^{\infty}\frac{1}{k-\frac{2}{3}}
+      &\geq \frac{1}{3}\sum_{k=1}^{\infty}\frac{1}{k}
+    \end{align*}
+    And the Harmonic Series diverges.
+
+    \item Group by two:
+    \[(1 - \frac{1}{2^2}) + (\frac{1}{3} - \frac{1}{4^2}) + (\frac{1}{5} - \frac{1}{6^2}) + ...\]
+    And we have:
+    \[(1 - \frac{1}{2^2}) + (\frac{1}{3} - \frac{1}{4^2}) + (\frac{1}{5} - \frac{1}{6^2}) + ... \geq \frac{1}{2} + \frac{1}{4} + \frac{1}{6} + ... = \sum_{k=1}^{\infty}\frac{1}{2k}\]
+    So the series diverges, because we can use the Comparison Test on the last inequality, and we have
+    $\sum_{k=1}^{\infty}\frac{1}{2k} = \frac{1}{2}\sum_{k=1}^{\infty}\frac{1}{k}$ and the Harmonic Series diverges.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Provide the details for the proof of the Comparison Test (Theorem 2.7.4) using the Cauchy Criterion for Series.
+  \item Give another proof using the Monotone Convergence Theorem.
+\end{enumerate}
+
+\begin{solution}
+   Recall the condition for the Comparison Tests: $0 \leq a_{k} \leq b_{k}$.
+  \begin{itemize}
+    \item As the book says in page 73, this follows immediately from the inequality $|a_{m+1} + a_{m+2} + ... + a_{n}| \leq |b_{m+1} + b_{m+2} + ... + b_{n}|$.
+    
+    \begin{itemize}
+      \item If $(b_{k})$ converges, then $(a_{k})$ converges. \\
+      We have $|a_{m+1} + a_{m+2} + ... + a_{n}| \leq |b_{m+1} + b_{m+2} + ... + b_{n}| < \epsilon$.
+
+      \item If $(a_{k})$ diverges, then $(b_{k})$ diverges. \\
+      $\epsilon < |a_{m+1} + a_{m+2} + ... + a_{n}| \leq |b_{m+1} + b_{m+2} + ... + b_{n}|$
+    \end{itemize}
+
+    \item We'll prove that if $(b_{k})$ converges then $(a_{k})$ converges. Let $s_{n} = \sum_{i=1}^{n} b_{i}$ be the sequence of partial sums of $(b_{k})$.
+    Since $(b_{k}) \geq 0$ and convergent, by MCT it's bounded. Since $(a_{k}) \leq (b_{k})$, the same bound works for $(a_{k})$. The partial sums of $(a_{k})$
+    is also non-decreasing, so by MCT $(a_{k})$ is also convergent.
+    
+    The proof for divergence is similar.
+  \end{itemize}
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Give an example of each or explain why the request is impossible, referencing the proper theorem(s).
+\begin{enumerate}[label=(\alph*)]
+    \item Two series $\sum x_{n}$ and $\sum y_{n}$ that both diverge but where $\sum x_{n}y_{n}$ converges.
+    \item A convergent series $\sum x_{n}$ and a bounded sequence $(y_{n})$ such that $\sum x_{n}y_{n}$ diverges.
+    \item Two sequences $(x_{n})$ and $(y_{n})$ where $\sum x_{n}$ and $\sum (x_{n}+y_{n})$ both converge but $\sum y_{n}$ diverges.
+    \item A sequence $(x_{n})$ satisfying $0 \leq x_{n} \leq 1/n$ where $\sum (-1)^{n}x_{n}$ diverges.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Let $\sum x_{n}$ and $\sum y_{n}$ both be the harmonic series, then $\sum x_{n}y_{n} = \sum_{i=1}^{\infty} \frac{1}{p^2}$ which has been proven to converge in
+    Example 2.4.4
+
+    \item Let $\sum x_{n}$ be the alternating harmonic series and $(y_{n}) = 1, -1, 1, -1, ...$. Then $\sum x_{n}y_{n}$ is the harmonic series, which diverges.
+    
+    Remark: I initially tried to prove that this was possible, by considering the sequence of partial sums and multiplying that with $(y_{n})$. But the problem becomes
+    "must the product of a convergent sequence and a bounded sequence be convergent"? This shouldn't be true, since the Algebraic Limit Theorem states that \textit{both}
+    sequences must be convergent, not only bounded.
+
+    I then tried to think of a bounded non-convergent sequence, and $1, -1, 1, -1, ...$ came to mind. But seeing the alternating signs instantly reminded me of the
+    alternating harmonic series, and the problem was done.
+
+    I guess the moral of the story is: $1, -1, 1, -1, ...$ is always a useful case to consider for any problem that's related to "bounded but not necessarily convergent" sequence.
+  
+    \item Impossible. By the Algebraic Limit Theorem for Series, $\sum y_{n} = \sum (x_{n}+y_{n}) + (-1)(\sum_{x_{n}})$. Since the RHS converges, $\sum y_{n}$ must converge as well.
+    
+    \item Let $(x_{n})$ be 0 if $n$ is odd or $\frac{1}{n}$ otherwise. Then the series (counting from $n=1$) $0 + \frac{1}{2} - 0 + \frac{1}{4} - 0 + \frac{1}{6}...$ diverges.
+    
+    Moral of the story: the Alternating Series Test requires that the sequence be monotone.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion Now that we have proved the basic facts about geometric series, supply a proof for Corollary 2.4.7.
+
+\begin{solution}
+  The corollary is: the series $\sum_{n=1}^{\infty} \frac{1}{n^p}$ converges if and only if $p > 1$. Note that $p$ is not necessarily an integer.
+
+  The fact about geometric series that we're going to use is Example 2.7.5: a geometric series with ratio $r$ converges iff $|r| < 1$.
+
+  We first prove the "only if" direction: if $p > 1$ then the series converges. This looks easier than the "if" direction because here we're given the
+  assumption $p > 1$.
+
+  We use the Cauchy Condensation Test to turn this into a geometric series. The test states that the series converges iff
+  $\frac{1}{1^p} + 2\frac{1}{2^p} + 4\frac{1}{4^p} + 8\frac{1}{8^p} + ... = \sum_{n=1}^{\infty}2^{n}\frac{1}{2^{np}} = 2^{n(1-p)}$ converges.
+  This is a geometric series with ratio $r = 2^{1-p}$. If $p > 1$ then $|r| < 1$, so the condensed series converges, hence the original series also converges.
+  
+  \vspace{0.5cm}
+  \hrule
+  \vspace{0.5cm}
+
+  Next, the "if" direction: if $\sum_{n=1}^{\infty} \frac{1}{n^p}$ converges then $p > 1$.
+
+  First, we discard the possibility that $p \leq 0$, since in that case the terms of series does not even converge to 0. Now assume $p > 0$,
+  then the series satisfies the precondition for the Cauchy Condensation Test (the series must be decreasing and $\geq 0$).
+  
+  Note that the Condensation Test is both a necessity and sufficiency test, so we can claim that if $\sum_{n=1}^{\infty} \frac{1}{n^p}$ converges then $\sum_{n=1}^{\infty}2^{n}\frac{1}{2^{np}}$
+  must converge as well. Then we use the same fact as the "only if" direction; the series converges iff $r = 2^{(1-p)} < 1$, and this condition is satisfied
+  iff $1-p < 0 \implies p > 1$.
+
+  By the Cauchy Condensation Test, $\sum \frac{1}{n^{p}}$ converges iff $\sum 2^{n}(\frac{1}{2^{n}})^{p}$ converges. But notice that
+  $\sum 2^{n}(\frac{1}{2^{n}})^{p} = \sum (\frac{1}{2^{p-1}})^{n}$.
+
+  By the Geometric Series Test, this series converges iff $|\frac{1}{2^{p-1}}| < 1$. Solving for $p$ we find that $p$ must satisfy $p > 1$.
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion Let's say that a series \textit{subverges} if the sequence of partial sums contains a subsequence that converges. Decide which of the following statements are valid.
+\begin{enumerate}[label=(\alph*)]
+  \item If $(a_{n})$ is bounded, then $\sum a_{n}$ subverges.
+  \item All convergent series are subvergent.
+  \item If $\sum |a_{n}|$ subverges, then $\sum a_{n}$ subverges as well.
+  \item If $\sum a_{n}$ subverges, then $(a_{n})$ has a convergent subsequence.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item False. Take $(a_{n}) = 1, 1, 1, 1, ...$. The sequence of partial sums $1, 2, 3, 4, ...$ diverges and none of its subsequences converge.
+    \item Yes. A convergent series must have its sequence of partial sums converge as well, and any subsequence of a convergent sequence must converge to the same limit (Theorem 2.5.2).
+    \item Yes. The proof is very similar to the proof of the Absolute Convergence Test.
+    
+    Let $(s_{n_{m}})$ be the subsequence of the partial sums of $\sum |a_{n}|$ that converges.
+    By the Cauchy Criterion, there exists $M \in \textbf{N}$ such that for all $p, q \geq M$, $|a_{n_{p+1}}| + ... + |a_{n_{q}}| < \epsilon$. By the triangle inequality,
+    $|a_{n_{p+1}}+...+a_{n_{q}}| \leq |a_{n_{p+1}}| + ... + |a_{n_{q}}| < \epsilon$, so the same subsequence indices in $\sum a_{n}$ converges as well.
+
+    \item I initially tried to prove that this was possible, using the inequality from part (c). But the fact that $|a_{n_{p+1}} + ... + a_{n_{q}}| < \epsilon$ does not tell
+    us anything about whether any individual $|a_{n}|$ is less than $\epsilon$. The only thing it guarantees is that we can get convergence if we sum possibly multiple
+    terms of $a_{n}$ each time.
+
+    This gives an idea of a counterexample: construct a subvergent series where the subvergence only shows every block of $n$ terms ($n > 1$). So something like 
+    \[1-1+1-1+1...\]
+    won't work. But
+    \[6 + (-1) + (-2) + (-3) + 60 + (-10) + (-20) + (-30) + 600 + (-100) + ...\] 
+    works. The partial sums are: \[6, 5, 3, 0, 60, 50, 30, 0, 600, 500, ...\]
+    so there's a subsequence of $0, 0, 0, ...$. But the sequence: \[6, (-1), (-2), (-3), 60, (-10), (-20), ...\] clearly diverges.
+  \end{enumerate}
+
+  Remark:
+  I guess the moral of the problem is to show the hierarchy (from strong to weak) between convergence, subsequence convergence, and boundedness.
+\end{solution}
+
+%------------------------- Problem 7 -------------------------
+\miquestion 
+  \begin{enumerate}[label=(\alph*)]
+    \item Show that if $a_{n} > 0$ and lim$(na_{n}) = l$ with $l \neq 0$, then the series $\sum a_{n}$ diverges.
+    \item Assume $a_{n} > 0$ and lim$(n^{2}a_{n})$ exists. Show that $\sum a_{n}$ converges.
+  \end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item First, note that the $n$ in lim$(na_{n})$ is \textit{not} a constant! It's instead the indices: $(na_{n}) = a_{1}, 2a_{2}, 3a_{3}, ...$.
+    
+    ------------------ INCORRECT SOLUTION FOR POSTERITY ------------------
+  
+    My first intuition is that we will probably prove that $(a_{n})$ doesn't converge to 0, since that's the easiest criteria to prove divergence.
+
+    Next, I tried to play around with the sequence $(na_{n})$ and see what I conclusions I can make about $(a_{n})$. We are told $l \neq 0$, so I thought
+    $(a_{n})$ can't converge to 0. I initially tried to use the Algebraic Limit Theorem: $lim (n) * lim (a_{n}) = l$, but it's not applicable here because
+    $lim (n)$ diverges (the theorem requires that both limits are known).
+
+    But it's still not too difficult to prove that $lim(a_{n}) \neq 0$. We prove it by contradiction. If $lim(a_{n}) = 0$, then $lim(na_{n}) = 0$, because
+    we can always pick $N$ such that $n \geq N \implies |a_{n}| < \frac{\epsilon}{n} \implies |na_{n}| < \epsilon$, contradicting the assumption that
+    $lim(na_{n}) = l$ with $l \neq 0$.
+
+    We've proved that $lim(a_{n}) \neq 0$, but to prove that $\sum a_{n}$ diverges we still need to prove that $(a_{n})$ is not the zero sequence.
+    This is where the assumption $a_{n} > 0$ comes into play.
+
+    ALL THIS IS INCORRECT. The epsilon-delta proof is wrong because $\frac{\epsilon}{n}$ is not a fixed quantity. Concrete counterexample: the harmonic series
+    converges to 0 but $(n\frac{1}{n})$ converges to 1. So yes, $(a_{n})$ can converge to 0 even if $(na_{n})$ doesn't.
+
+    ------------------ CORRECT SOLUTION ------------------
+
+    First, an intuition, although this uses a concept that the book doesn't introduce (big O).
+
+    Note that $a_{n} > 0$ implies $l > 0$.
+
+    The growth rate of the sequence $(n)$ is linear, so for $(na_{n})$ to converge, $(a_{n})$ must decrease at a rate of \textit{at least} $O(\frac{1}{n})$.
+    For example, if $(a_{n}) = \frac{2}{n}$ then lim$(na_{n})=2$ and if $(a_{n}) = \frac{1}{2n}$ then lim$(na_{n})=\frac{1}{2}$. They're all $O(\frac{1}{n})$,
+    up to a constant factor, where the constant factor is the limit.
+    
+    Of course, $(a_{n})$ can decrease \textit{faster} than $O(\frac{1}{n})$ e.g. $(a_{n}) = \frac{1}{n^{2}}$. But if $(a_{n})$ decreases any faster then $O(\frac{1}{n})$,
+    $(na_{n})$ will eventually converge to 0, and this is where the assumption $l \neq 0$ comes. It ensures that $(a_{n})$ is exactly $O(\frac{1}{n})$, so $\sum (a_{n})$ is
+    a constant multiple of the harmonic series, which diverges.
+
+    Now the formal solution. $(na_{n})$ converges means there is an $N$ such that eventually $|na_{n} - l| < \epsilon$ for all $n \geq N$. The idea is that we want to use
+    this inequality to get a lower bound for $(a_{n})$, and the lower bound should be a *positive* constant multiple $< 1$ of the harmonic series.
+    
+    To do this, plug a plausible number to
+    the $\epsilon$. If we put $\epsilon = 1$, then $|na_{n} - l| < 1 \implies na_{n} > l-1 \implies a_{n} > (l-1)\frac{1}{n}$. This bound is too lax because $(l-1)$ could be negative e.g.
+    the bound doesn't say that $(a_{n})$ can't be the zero sequence.
+    Instead, $l$ itself is a constant, so we can pick $\epsilon = \frac{l}{2}$ to derive $(a_{n}) > (\frac{l}{2})(\frac{1}{n})$. Since $l > 0$, $\frac{l}{2}$ is positive.
+    
+    So we've proved that there exists $N$ such that for all $n \geq N$, $(a_{n})$ eventually becomes a constant multiple of the harmonic series. We've also
+    satisfied all the conditions for the Comparison Test: $0 \leq (a_{n}) < (\frac{l}{2})(\frac{1}{n})$ and we know that the RHS diverges, so $\sum (a_{n})$ diverges.
+  
+    \item This is very similar to part (a) with the following differences:
+    \begin{itemize}
+      \item We want lower bound instead of upper bound.
+      \item There's no $l \neq 0$ condition, so $l$ can be zero (but still can't be negative, since $a_{n} > 0$). This means we need a different $\epsilon$ than part (a),
+      since $\frac{l}{2}$ could be zero. 
+    \end{itemize}
+
+    Pick $\epsilon = 1$ to get $a_{n} < (l+1)\frac{1}{n^{2}}$ then use the Comparison Test. Picking any $\epsilon > 0$ will also work.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 8 -------------------------
+\miquestion True or counterexample.
+\begin{enumerate}[label=(\alph*)]
+  \item If $\sum a_{n}$ converges absolutely then $\sum a_{n}^{2}$ converges absolutely.
+  \item If $\sum a_{n}$ converges and $(b_{n})$ converges then $\sum a_{n}b_{n}$ converges.
+  \item If $\sum a_{n}$ converges conditionally, then $\sum n^{2}a_{n}$ diverges.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item True. INCORRECT PROOF: Let $b_{n} = |a_{n}|$. Then by the Algebraic Limit Theorem, $\sum b_{n}^{2} = \sum |a_{n}^{2}|$ converges. It's incorrect because
+    the Alegbraic Limit Theorem for series doesn't cover multiplications.
+
+    Here's a correct proof from my own attempt. If $\sum a_{n}^{2}$ converges absolutely, then there exists $N$ such that for all $m, n \geq N$, $|a_{m}^2 + ... + a_{n}^2| < \epsilon$.
+    Now we use the inequality $(x^2 + y^2) \leq (|x| + |y|)^{2}$ to get $|a_{m}^2 + ... + a_{n}^2| \leq (|a_{m}| + ... + |a_{n}|)^2 < \epsilon$. Since $\sum a_{n}$ converges absolutely,
+    then we can make $(|a_{m}| + .. |a_{n}|)^2 < \sqrt{\epsilon}$, completing the proof.
+
+    Here's a smarter proof from the internet. Since $\sum |a_{n}|$ converges absolutely then the sequence $|a_{n}|$ must converge to 0, so there exists $N$ such that for all $n \geq N$,
+    $|a_{n}| < 1$. For those $n$, $|a_{n}^2| < |a_{n}|$, so we can apply the Comparison Test to conclude that $|a_{n}^2|$ converges absolutely.
+  
+    \item I was trying to find a counterexample, failed, and then tried to prove the statement is true as follows.
+    
+    If $\sum a_{n}b_{n}$ converges then there exists $N$ such that for all $m, n \geq N$, $|a_{m}b_{m} + ... + a_{n}b_{n}| < \epsilon$. I initially thought we can control $b_{n}$ to make
+    it less than 1, so that each $a_{i}b_{i} \leq a_{i}$ and apply the inequality $|a_{m}b_{m} + ... + a_{n}b_{n}| < |a_{1} + ... + a_{n}| < \epsilon$. But this is wrong because
+    $a_{i}b_{i} \leq a_{i}$ only follows if $a_{i}$ is non-negative.
+
+    This suggests that a counterexample can be found by alternating the signs of $a_{n}$. Let $a_{n} = \frac{(-1)^{n}}{\sqrt{n}}$ and $b_{n}$ be the same. $\sum a_{n}$ converges
+    by the Alternating Series Test. $(b_{n})$ converges to 0. But $\sum a_{n}b_{n} = \frac{1}{n}$ which diverges.
+
+    \item Be careful with the choice of $a_{n}$. I initially tried to use $(a_{n}) = \frac{(-1)^{n}}{n^{3}}$, but the problem states that $\sum a_{n}$ converges \textit{conditionally},
+    whereas my example converges \textit{absolutely}.
+
+    Like in problem 7(a), intuitively this should be true. For if $\sum n^{2}a_{n}$ converges, then $a_{n}$ must decrease at a rate of at least O($\frac{1}{n^{2}}$), but that growth rate converges
+    absolutely.
+
+    Now we want to find a bound for $a_{n}$. Let's see what we have. $\sum a_{n}$ converges conditionally gives lim$(a_{n}) = 0$, but that's not too useful. $\sum n^{2}a_{n}$ diverges doesn't
+    give any bounds either. Instead we can show the contrapositive. If $\sum n^{2}a_{n}$ converges then lim$(n^{2}a_{n}) = 0$ so we can bound $|a_{n}| < \frac{\epsilon}{n^{2}}$. Note that even
+    if some $a_{n}$ are negatives, we know that any sequence of the form $\frac{c}{n^{2}}$ for some constant $c$ converges absolutely, so $a_{n}$ must converge absolutely.
+  \end{enumerate}
+
+  Remarks:
+  \begin{itemize}
+    \item From part (b), when given the assumption that a sequence converges and asked to find a counterexample, the a *conditionally* convergent sequence is often useful.
+    \item I took way too long on part (c), even though it's quite similar to problem 7(a). Basically, once we get the intuition that a sequence must have a bounded growth rate, immediately
+    expand all definitions to try to find a more precise bound.
+  \end{itemize}
+\end{solution}
+
+%------------------------- Problem 9 -------------------------
+\miquestion \textbf{Ratio Test.} Given a series $\sum_{n=1}^{\infty} a_{n}$ with $a_{n} \neq 0$, the Ratio Test states that if $(a_{n})$ satisfies
+\[\lim\lvert \frac{a_{n+1}}{a_{n}} \rvert = r < 1.\]
+then the series converges absolutely.
+\begin{enumerate}[label=(\alph*)]
+  \item Let $r'$ satisfy $r < r' < 1$. Explain why there exists an $N$ such that $n \geq N$ implies $|a_{n+1}| \leq |a_{n}|r'$.
+  \item Why does $|a_{N}|\sum(r')^{n}$ converge?
+  \item Now, show that $\sum |a_{n}|$ converges, and conclude that $\sum a_{n}$ converges.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item It should be intuitive to see why this should be true. Given, say, $r=\frac{1}{4}$, the condition of the Ratio Test says that eventually, every element is a quarter of its
+    previous element. Now given, say $r' = \frac{1}{2}$, then of course this means every element is smaller than half of its previous, since $\frac{1}{4} < \frac{1}{2}$.
+
+    Formally, there exists an $N$ such that $n \geq N$ implies
+    \begin{align*}
+      \left|\frac{a_{n+1}}{a_{n}} - r\right| < \epsilon
+      &\implies \left|\frac{a_{n+1}}{a_{n}}\right| < \epsilon + r \\
+      &\implies |a_{n+1}| < (\epsilon + r) |a_{n}|
+    \end{align*}
+
+    By definition, for any $\epsilon$ there exists such an $N$, so $(\epsilon + r)$ is effectively just a constant. Let $r' = \epsilon + r$.
+
+    UPDATE: an easier way to think of the formal proof is this. Since $r < r'$, simply choose epsilon that's small enough as to stay below $r'$ e.g. $\epsilon = |r - r'|$, then apply
+    the definition of limit.
+
+    \item Note that $a_{N}$ is a constant; it's the $N$ we've chosen in part (a). This is simply a geometric series with $ 0 < r' < 1$, so it converges.
+    
+    \item Part (a) is basically saying that there is an $N$ such that from $N$ onwards, $|a_{N}|$ is a \textit{peak} i.e. $|a_{n}| \leq |a_{N}|$ for
+    all $n \geq N$. More precisely, we know that for all such $n$, $|a_{n+1}| < r'|a_{n}|$ (we can extend it by induction).
+    
+    $\sum_{k=0}^{N-1} |a_{n}|$ only forms a finite sum, so it doesn't affect converge. For the tail $n \geq N$, we can use the Comparison Test to compare $\sum |a_{n}|$ with $|a_{N}| \sum (r')^{n}$
+    as for all $n \geq N$, we have $|a_{n}| \leq |a_{N}|(r')^{n}$. We know from part (b) that the latter series converges, so $\sum |a_{n}|$ converges and by the Absolute Convergence Test,
+    $\sum a_{n}$ converges as well. 
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 10 -------------------------
+\miquestion \textbf{Infinite Products.} Review exercise 2.4.10 about infinite products and then answer the following questions:
+\begin{enumerate}[label=(\alph*)]
+  \item Does $\frac{2}{1} \cdot \frac{3}{2} \cdot \frac{5}{4} \cdot \frac{9}{8} \cdot \frac{17}{16} ...$ converge?
+  \item The infinite product $\frac{1}{2} \cdot \frac{3}{4} \cdot \frac{5}{6} \cdot \frac{7}{8} \cdot \frac{9}{10} ...$ certainly converges. (Why?) Does it converge to zero?
+  \item In 1655, John Wallis famously derived the formula
+  \[\left(\frac{2 \cdot 2}{1 \cdot 3}\right) \left(\frac{4 \cdot 4}{3 \cdot 5}\right) \left(\frac{6 \cdot 6}{5 \cdot 7}\right) \left(\frac{8 \cdot 8}{7 \cdot 9}\right) ... = \frac{\pi}{2}\]
+  Show that the left side of this identity at least converges to something.
+\end{enumerate}
+
+\begin{solution}
+  For reference, Exercise 2.4.10 part (b) claims that the product
+  \[\prod_{n=1}^{\infty}(1+a_{n}) = (1+a_{1})(1+a_{2})(1+a_{3})..., \quad \text{where } a_{n} \geq 0\]
+  converges if and only if $\sum_{n=1}^{\infty} a_{n}$ converges.
+
+  \begin{enumerate}[label=(\alph*)]
+    \item The product is $\prod_{n=0}^{\infty} a_{n} = \prod_{n=0}^{\infty} (\frac{2^{n} + 1}{2^{n}}) = \prod_{n=0}^{\infty} (1 + \frac{1}{2^{n}})$. Let $(b_{n}) = \frac{1}{2^{n}}$. $b_{n}$ is positive for all $n$
+    and $\sum b_{n}$ converges (it's a geometric series with $r=\frac{1}{2}$). So we can apply Exercise 2.4.10 part (b) to conclude that $\prod a_{n}$ converges.
+  
+    \item Each term is strictly positive and  $< 1$, so the sequence of partial products is monotonically decreasing and bounded (by 0 and $\frac{1}{2}$). By MCT, the infinite product
+    converges. TODO: don't know yet how to prove it doesn't converge to zero.
+    
+    \item The infinite product is $\prod_{n=1}^{\infty} \frac{(2n)(2n)}{(2n-1)(2n+1)} = \frac{4n^{2} - 1 + 1}{4n^{2}-1} = $
+    \begin{align*}
+      \prod_{n=1}^{\infty} \frac{(2n)(2n)}{(2n-1)(2n+1)}
+      &= \frac{4n^{2}}{4n^{2}-1} \\
+      &= \frac{4n^{2}-1+1}{4n^{2}-1} \\
+      &= 1 + \frac{1}{4n^{2}-1}
+    \end{align*}
+
+    $\frac{1}{4n^{2}-1}$ is strictly positive for all $n > 0$. By Comparison Test with $\sum \frac{1}{n^2}$, $\sum \frac{1}{4n^{2}-1}$ converges. Now we can apply Exercise 2.4.10 to conclude that
+    the infinite product converges.
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
