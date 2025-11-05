@@ -112,5 +112,79 @@
     \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 6 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 7 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 8 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 9 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 10 -------------------------
+\miquestion \textbf{(Infinite Products.)} A close relative of the infinite series is the \textit{infinite product}
+\[\prod_{n=1}^{\infty} b_{n} = b_{1}b_{2}b_{3}...\]
+
+which is understood in terms of its sequence of \textit{partial products}
+\[p_{m} = \prod_{n=1}^{m} b_{m} = b_{1}b_{2}b_{3}...b_{m}\]
+
+Consider the special class of infinite products of the formal
+\[\prod_{n=1}^{\infty}(1 + a_{n}) = (1+a_{1})(1+a_{2})(1+a_{3})..., \quad \text{where } a_{n} \geq 0.\]
+\begin{enumerate}[label=(\alph*)]
+  \item Find an explicit formula for the sequence of partial products in the case where $a_{n} = 1/n$ and decide whether the sequence converges. Write out the first few terms
+  in the sequence of partial products in the case where $a_{n} 1/n^{2}$ and make a conjecture about the convergence of this sequence.
+  \item Show, in general, that the sequence of partial product converges if and only if $\sum_{n=1}^{\infty} a_{n}$ converges. (The inequality $1 + x \leq 3^{x}$ for positive
+  $x$ will be useful in one direction.)  
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item For the case $a_{n} = 1/n$, we have the first few terms in the sequence of partial products:
+    \begin{align*}
+      p_{1} = 2 \\
+      p_{2} = 2 \cdot \frac{3}{2} = 3 \\
+      p_{3} = 2 \cdot \frac{3}{2} \cdot \frac{4}{3} = 4 \\
+      p_{4} = 2 \cdot \frac{3}{2} \cdot \frac{4}{3} \cdot \frac{5}{4} = 5\\
+    \end{align*}
+    It's a telescoping product with $p_{n} = n+1$, so the sequence of partial products diverges, hence the infinite product diverges.
+
+    For the case $a_{n} = 1/n^{2}$, plot the first hundred terms in Desmos and it looks like it converges?
+
+    \item 
+    ------------------ Necessity ------------------
+
+    First we prove the necessity. If $\prod_{n=1}^{\infty}(1 + a_{n}) = (1+a_{1})(1+a_{2})(1+a_{3})...$ where $a_{n} \geq 0$ converges,
+    then $\sum a_{n}$ converges.
+
+    Let's take a look at, say, $p_{3}$. It's $(1+a_{1})(1+a_{2})(1+a_{3}) = 1 + (a_{1}+a_{2}+a_{3}) + (a_{1}a_{2} + a_{1}a_{3} + a_{1}a_{2}a_{3})$.
+    
+    In general, the $m$'th partial product $p_{m}$ can be written as
+    \[(1+a_{1})...(1+a_{m}) = 1 + (a_{1}+...+a_{m}) + c_{m}\] 
+    where $c_{m}$ is the sum of all products of two or more distinct $a_{k}$'s. Given the hypothesis that $a_{n} \geq 0$ for all $n$, $c_{m} \geq 0$.
+  
+    Given that the infinite product converges, then the sequence $(p_{n}) = 1 + (a_{1}+...+a_{n}) + c_{n}$ is bounded. It's also monotone non-decreasing,
+    since all the terms are non-negative so
+    \[p_{n} \leq p_{n+1} = p_{n} \cdot (1+a_{n+1})\]
+    and we also have
+    \[(a_{1}+...+a_{n}) \leq p_{n}\]
+    So boundedness of $(p_{n})$ implies boundedness of $\sum a_{n}$.
+
+    This implies $(a_{1}+..+a_{n})$ i.e. the sequence of partial sums is also monotone and bounded, hence it converges.
+
+    ------------------ Sufficiency ------------------
+
+    For the sufficiency direction, we want to prove that if $\sum a_{n}$ converges then $\prod_{i=1}^{\infty} (1 + a_{n})$ converges.
+
+    Because $a_{n} \geq 0$ for all $n$, $(1+a_{n}) \geq 1$ and the sequence of partial products $(p_{m}) = \prod_{n=1}^{m} (1 + a_{n})$ is monotone
+    non-decreasing. If we can prove that it's bounded, then we can use to Monotone Convergence Theorem to conclude that it converges.
+
+    We use the inequality provided by the problem hint to get $\prod_{n=1}^{m} (1 + a_{n}) \leq \prod_{n=1}^{m} 3^{a_{n}} = 3^{\sum_{n=1}^{m} a_{n}}$. By the
+    hypothesis that $\sum a_{n}$ converges (hence bounded), $3^{\sum a_{n}}$ is bounded, so $\prod_{n=1}^{m} (1+a_{n})$ is bounded as well.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
