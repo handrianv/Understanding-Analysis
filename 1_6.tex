@@ -1,0 +1,69 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 1 - Section 1.6 - Cantor's Theorem}
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Show that $(0, 1)$ is uncountable if and only if $R$ is uncountable.
+\begin{solution}
+  First we prove the necessity: if $(0, 1)$ is uncountable then $R$ is uncountable. This follows immediately from the fact that $(0, 1)$ is a subset of $R$. A superset
+  of an uncountable set must be uncountable as well.
+
+  Now the sufficiency: if $R$ is uncountable then $(0, 1)$ is uncountable. I initially wanted to prove this by contrapositive: if $(0, 1)$ is countable then $R$ is
+  countable. But this is tricky. The fact that $(0, 1)$ is a subset of $R$ does not imply $R$ is countable. Then I tried using the fact that the union of (infinitely many)
+  countable sets is countable, by merging infinitely many intervals. But this requires proving that the intervals other than $(0, 1)$ are also countable.
+
+  The idea hit me to produce a bijection between $(0, 1)$ and $R$ instead, and indeed such a bijection is possible by Exercise 1.5.4. For example, the tangent function
+  maps $(\frac{-\pi}{2}, \frac{\pi}{2})$ to $R$. We need just need to map $(0, 1)$ to $(\frac{-\pi}{2}, \frac{\pi}{2})$ and compose it with $tan$. Find the line equation
+  joining $(0, 1)$ to $(\frac{-\pi}{2}, \frac{\pi}{2})$ and we get $\pi x - \frac{\pi}{2}$, therefore $f(x) = tan(\pi x - \frac{\pi}{2})$ is a bijection between $(0, 1)$
+  and $R$. This proves both necessity and sufficiency at once.
+\end{solution} 
+
+
+%------------------------- Problem 2 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Explain why the real number $x = .b_{1}b_{2}b_{3}...$ cannot be $f(1)$.
+  \item Now explain why $x \neq f(2)$, and in general why $x \neq f(n)$ for any $n \in N$.
+  \item Point out the contradiction that arises from these observations and conclude that $(0, 1)$ is uncountable.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Because $b_{1}$ is already different from $a_{11}$.
+    \item In general, $b_{n} \neq a_{nn}$, so the decimal expansion differs in at least one digit.
+    \item If $(0, 1)$ were countable, then $x = f(n)$ for an $n$, since $x$ is defined to be a real number $\in (0, 1)$.
+    But from part (b), $x \neq f(n)$ for all $n$, a contradiction. Therefore $(0, 1)$ must be uncountable.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion Supply rebuttals to the following complaints about the proof of Theorem 1.6.1 (the open interval $(0, 1)$ is uncountable).
+\begin{enumerate}[label=(\alph*)]
+  \item Every rational number has a decimal expansion, so we could apply the same argument to show that the set of rational numbers between 0 and 1 is
+  uncountable. However, because we know that every subset of $Q$ must be uncountable, the proof of Theorem 1.6.1 must be flawed.
+  
+  \item Some numbers have \textit{two} different decimal representations. Specifically, any decimal expansion that terminates can also be written with
+  repeating 9's. For instance, 1/2 can be written as 0.5 or as 0.49999.... Doesn't this cause some problems?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Every rational number has a decimal expansion, but the converse is not true; not every decimal expansion represents a rational number. In the proof
+    of Theorem 1.6.1, $x$ may be irrational, so it can't be used to conclude that $Q$ is uncountable.
+
+    \item First, it's worth noting that the \textit{only way} a number can have two different decimal expansion is the one the problem statement says; one expansion that
+    terminates, and another with repeating 9's. I claim this without proof, as the book also intentionally uses decimal representations without formal definitions.
+
+    The proof of Theorem 1.6.1 works fine because it uses only the digits 2 and 3, so the counterexample it constructs is a number with a unique decimal expansion. It cannot
+    be the case that $x$ is just another representation of the decimal expansion of a real number $f(n)$.
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
