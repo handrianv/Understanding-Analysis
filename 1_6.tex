@@ -65,5 +65,47 @@
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 4 -------------------------
+\miquestion Let $S$ be the set consisting of all sequences of 0's and 1's. Observe that $S$ is not a particular sequence, but rather a large set whose elements are sequences,
+namely,
+\[S = \{(a_{1}, a_{2}, a_{3}, ...): a_{n} = \text{0 or 1}\}.\]
+
+As an example, the sequence $(1, 0, 1, 0, 1, 0, ...)$ is an element of $S$, as is the sequence $(1, 1, 1, 1, 1, ...)$.
+Give a rigorous argument showing that $S$ is uncountable.
+
+\begin{solution}
+  The same diagonal argument works. We just replace the decimal digits 0-9 with 0 and 1. Consider the following table like in the book
+  \[
+    \begin{array}{c|l}
+    \mathbb{N} & (0,1) \\ \hline
+    1 & f(1)=\, .\, \mathbf{a_{11}}\, a_{12}\, a_{13}\, a_{14}\, a_{15}\, a_{16}\,\cdots \\
+    2 & f(2)=\, .\, a_{21}\, \mathbf{a_{22}}\, a_{23}\, a_{24}\, a_{25}\, a_{26}\,\cdots \\
+    3 & f(3)=\, .\, a_{31}\, a_{32}\, \mathbf{a_{33}}\, a_{34}\, a_{35}\, a_{36}\,\cdots \\
+    4 & f(4)=\, .\, a_{41}\, a_{42}\, a_{43}\, \mathbf{a_{44}}\, a_{45}\, a_{46}\,\cdots \\
+    5 & f(5)=\, .\, a_{51}\, a_{52}\, a_{53}\, a_{54}\, \mathbf{a_{55}}\, a_{56}\,\cdots \\
+    6 & f(6)=\, .\, a_{61}\, a_{62}\, a_{63}\, a_{64}\, a_{65}\, \mathbf{a_{66}}\,\cdots \\
+    \vdots & \vdots
+    \end{array}
+  \]
+  where $a_{mn} \in \{0, 1\}$. Construct a sequence $b$ from the diagonal such that $b_{n} = 1$ if $a_{nn} = 0$ else $b_{n} = 0$.
+  Exactly the same proof as Exercise 2 works here.
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Let $A = \{a, b, c\}$. List the eight elements of $P(A)$. (Do not forget that $\emptyset$ is considered a subset of every set).
+  \item If $A$ is finite with $n$ elements, show that $P(A)$ has $2^{n}$ elements.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item $\emptyset, \{a\}, \{b\}, \{c\}, \{a, b\}, \{a, c\}, \{b, c\}, \{a, b, c\}$.
+    \item For a particular subset, an element is either chosen or not chosen. So there are two choices for each of the $n$ elements, hence $2^{n}$.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+
 \end{questions}
 \end{document}
