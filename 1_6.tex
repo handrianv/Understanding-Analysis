@@ -106,6 +106,63 @@ Give a rigorous argument showing that $S$ is uncountable.
 \end{solution}
 
 %------------------------- Problem 6 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Using the particular set $A = \{a, b, c\}$, exhibit two different 1-1 mappings from $A$ to $P(A)$.
+  \item Letting $C = \{1, 2, 3, 4\}$, produce an example of a 1-1 map $g : C \rightarrow P(C)$.
+  \item Explain why in parts (a) and (b), it's impossible to construct mappings that are \textit{onto}.
+\end{enumerate}
+
+\begin{solution}
+  Note that the elements of $P(A)$ are \textit{sets}. So for example in part (a), $f(b) = b$ is not a valid mapping. It should instead be $f(b) = \{b\}$.
+  \begin{enumerate}[label=(\alph*)]
+    \item $f(a) = \{a\}, f(b) = \{b\}, f(c) = \{c\}$ or $f(a) = \{b\}, f(b) = \{c\}, f(c) = \{a\}$.
+    \item $g(1) = \{1\}, g(2) = \{2\}, g(3) = \{3\}, g(4) = \{4\}$.
+    \item Because $|P(A)| > |A|$, at least for any nonempty finite set $A$. It's also true for infinite sets,
+    but that's the next exercise. 
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 7 -------------------------
+\miquestion Return to the particular functions constructed in Exercise 1.6.6 and construct the subset $B$ that results using the preceding rule (see the book).
+In each case, note that $B$ is not in the range of the function used.
+
+\begin{solution}
+  We'll just do it for part (a) of Exercise 1.6.6. When the mapping is
+  \[f(a) = f(a) = \{a\}, f(b) = \{b\}, f(c) = \{c\}\]
+  then $B = \emptyset$, and this is outside the range of $f$.
+
+  When the mapping is
+  \[f(a) = \{b\}, f(b) = \{c\}, f(c) = \{a\}\]
+  then $B = \{a, b, c\}$, and this is again outside the range of $f$.
+
+  Also note that this is pretty much the diagonal argument. For a set $A = \{a_{1}, a_{2}, a_{3}, ...\}$ and say, $f(a_{1}) = \{a_{1}, a_{5}\}$, then draw the
+  table with $f(a_{1}) = \{a_{1}, a_{2}', a_{3}', a_{4}', a_{5}, a_{6}', ...\}$ where an accent means the element is not part of $f(a_{1})$, but we list it anyway
+  so the table stays rectangular. Now go through the diagonal and construct $B$ by taking accented elements.
+  
+  Too lazy to draw the table here. Just see the illustration in Wikipedia's page about Cantor's diagonal argument.
+\end{solution}
+
+%------------------------- Problem 8 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item First, show that the case $a' \in B$ leads to a contradiction.
+  \item Now, finish the argument by showing that the case $a' \notin B$ is equally unacceptable.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Our assumptions are $B = f(a')$ and $a' \in B$.
+    
+    From the second assumption, this must mean that $a' \notin f(a')$, because that's how we constructed $B$.
+    But if we have $a' \in B$ and $a' \notin f(a')$, then $B \neq f(a')$, contradicting our first assumption.
+
+    \item Our assumptions are $B = f(a')$ and $a' \notin B$.
+    
+    From the second assumption, this must mean that $a' \in f(a')$, because that's how we constructed $B$.
+    But if we have $a' \notin B$ and $a' \in f(a')$, then $B \neq f(a')$, contradicting our first assumption.
+  \end{enumerate}
+\end{solution}
 
 \end{questions}
 \end{document}
