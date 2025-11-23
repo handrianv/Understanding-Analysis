@@ -256,10 +256,22 @@ give a compelling argument showing that $P(N) \sim R$.
   will be mapped to itself, and by definition will not map to an element in either $C$ or $D$.\\
  ------------------------------------------------------------------
 
-  I'm such a fucking idiot. Of course this doesn't work. $f(c_{i})=f(d_{i})=d_{i}$. Bah.. I've been stuck on this problem for
-  way way too long. Maybe I'll finish this in the future. At least we have approach 1 for now.
-  \\
-  \\
+  I'm such a fucking idiot. Of course this doesn't work. $f(c_{i})=f(d_{i})=d_{i}$.
+
+  Instead, we'll use Schroder-Bernstein again. We need to produce injection between $A$ and $A \setminus C$ in both directions. The injection $A \setminus C \rightarrow A$
+  is trivial: just use the identity function.
+
+  For the other direction, first note that there is a bijection between $C$ and $D$, since they're both countable. Let $g: C \rightarrow D$ be the bijective function. Now, define
+  $f: A \rightarrow A \setminus C$:
+  \[f(x) = \begin{cases}
+  g(c_{i}) & x=c_{i} \in C \\
+  g'(d_{i}) & x=d_{i} \in D \\
+  x & \text{otherwise}
+  \end{cases}
+  \]
+  This is an injective function from $A$ to $A \setminus C$. Elements from $C$ and $D$ just use the existing bijection, so they're injective. As for
+  $x \notin C \cup D$, it maps to itself which means it's guaranteed not to coincide with either $C$ or $D$.
+
   {\large \textbf{Why half-open interval [0, 1)}}
 
   $P(N)$ includes the empty set and this maps to the binary $000...$. Including zero makes it easier to map to this binary.
