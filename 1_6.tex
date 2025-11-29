@@ -279,8 +279,48 @@ give a compelling argument showing that $P(N) \sim R$.
   $P(N)$ includes the empty set and this maps to the binary $000...$. Including zero makes it easier to map to this binary.
 
   If we include one, when constructing the mapping between $S$ and $[0, 1)$, should the binary $000...$ map to the real number $0.000..$ or $1.000...$?
-
 \end{solution}
+
+%------------------------- Problem 10 -------------------------
+\miquestion Answer each of the following by establishing a bijection with a set of known cardinality.
+\begin{enumerate}[label=(\alph*)]
+  \item Is the set of all functions from $\{0, 1\}$ to $N$ countable or uncountable?
+  \item Is the set of all functions from $N$ to $\{0, 1\}$ countable or uncountable?
+  \item Given a set $B$, a subset $A$ of $P(B)$ is called an \textit{antichain} if no element of $A$ is a subset of any other element of $A$. Does $P(N)$ contain an
+  uncountable antichain?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Countable. Each such function $f$ is uniquely described by its two outputs $f(0)=a$ and $f(1)=b$ for $a, b \in N$. The set of all such functions is the set of tuples $S = \{(a, b) : a, b \in N\}$
+    with cardinality $N \times N$.
+    
+    It remains to prove that $N \times N$ is countable. By Theorem 1.5.8, the union of countably many countable sets is countable. To apply this to $N \times N$, we first need to show 
+    that $N \times N$ can be written as such a union. Let $S_{a} = \{(a, b) : b \in N\}$ with $a$ fixed. Then $N \times N = \cup_{a=1}^{\infty} S_{a}$.
+  
+    \item Uncountable. Each such function $f$ maps a subset of $N$ to 1 and the rest to 0. There are two ways to see that this is uncountable. Let $F$ be the set of all such functions, then:
+    \begin{enumerate}
+      \item The cardinality of $F$ equals the number of ways to choose a subset of $N$ to be mapped to 1, which is $2^{N}$, so there is a bijection between $F$ and $P(N)$.
+      \item Each such $f$ can be modeled as a binary sequence $s$ where $s_{i}=1$ if $f(i)=1$. For example, if we have an $f$ such that $f(n)=1$ for $n \in \{1, 3, 7\}$
+      and $f(n) = 0$ otherwise, then $s=101000100000....$. There is then a bijection between $F$ and the set of infinite binary sequences, which has
+      been proved to be uncountable in Exercise 1.6.4.
+
+      \item Just to make it clear, since I misunderstood the problem for a long time... The problem is asking if there exists a \textit{single} antichain with an uncountable length, and \textit{not}
+      whether there exists uncountably many antichains. The latter is trivial to solve, as a singleton set $\{n\}$ is an antichain by itself, so there are already at least $2^{N}$ such antichains.
+
+      I got spoiled the solution but it's really cool (\href{https://math.stackexchange.com/a/2813824}{source}). The answer is yes, there's an uncountable antichain.
+      
+      Imagine an infinite rooted binary tree and label the vertices in BFS order.
+      An infinite path in the tree corresponds to a subset of $N$ by taking the label in the vertices. 
+      
+      Any two distinct paths must eventually diverge, and at that point each path contains a vertex not belonging to the other, therefore neither subset is contained in the other, so they form an antichain.
+      Then the set of all infinite paths form an antichain.
+
+      What is the cardinality of the set of all infinite paths? For a path, construct a binary sequence where we append 0 if we turn left or 1 otherwise. This creates a bijection between the set of all
+      paths and the set of infinite binary strings, which is uncountable.
+    \end{enumerate}
+  \end{enumerate}
+  \end{solution}
 
 \end{questions}
 \end{document}
