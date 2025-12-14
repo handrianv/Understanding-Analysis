@@ -21,7 +21,7 @@ converges.
 
 \begin{solution}
   \begin{enumerate}[label=(\alph*)]
-    \item Intuition: look back at the condition of the Alternating Series Test and visualize the graph of $s_n$.
+    \item Intuition: look back at the condition of the Alternating Series Test and visualize the graph of ($s_n$).
     
     It's a zigzag (from the alternating signs) where if we start from an index $i$, then the \textbf{absolute value} of all
     the suffix sum starting from $i$ is $\leq a_{i}$ (from the fact that ($a_n$) is non-decreasing and $a_n \geq 0$).
@@ -33,11 +33,25 @@ converges.
     **note that this applies regardless of the parity of $i$. I was initially confused by this. The important point is the \textbf{absolute value} sign.
 
     This means that to fulfill the Cauchy criterion, we only need to find $N$ such that for all $n \geq N$, $a_n < \epsilon$, because we know
-    the (absolute) suffix sum starting from $a_N$ will all be $\leq a_N$. In other words, set $i=N$ then $a_{i+1} \leq a_{i} < \epsilon$ implies $|s_j - s_{i}| \leq a_{i+1} < \epsilon$ for all $i < j$.
+    the (absolute) suffix sum starting from $a_N$ will all be $\leq a_N$. In other words, if we can find such an $N$, then we can set
+    $i=N$, then $a_{i+1} \leq a_{i} < \epsilon$ implies $|s_j - s_{i}| \leq a_{i+1} < \epsilon$ for all $i < j$.
 
-    Now we use condition (ii) of the Alternating Series Test: $(a_n) \implies 0$, so for any $\epsilon > 0$ there exist $N$ such that $n \geq N$, $|a_n| < \epsilon$.
+    To find such an $N$, we use condition (ii) of the Alternating Series Test: $(a_n) \implies 0$, so for any $\epsilon > 0$ there exist $N$ such that $n \geq N$, $|a_n| < \epsilon$.
   
-    \item TODO do the other two proofs.
+    \item TODO
+    
+    \item Like part (a), we can look at the zig-zag pattern of $(s_{n})$. Then we can prove that $(s_{2n+1})$ is monotone non-increasing and bounded below by 0, while $(s_{2n})$ is monotone
+    non-decreasing and bounded above by $a_{1}$. By MCT both sequences converge. It remains to prove that they converge to the same limit.
+
+    Let $L$ be the limit of $(s_{2n})$. Then there exists an $N_{1}$ such that for all $n \geq N_{1}$, $|s_{2n} - L| < \epsilon$.
+
+    To prove that $(s_{2n+1})$ also converges to $L$, look at the zig-zag pattern again. The idea is we want to pick $N$ such that, from the previous even $s_{2n}$, we don't
+    rise too far as to be outside the $\epsilon$-range of $L$. To do this, we know that $(a_{n}) \rightarrow 0$, so there exists $N_{2}$ such that for all $n \geq N_{2}$, $|a_{n}| < \frac{\epsilon}{2}$.
+    Let $N_{1}$ such that $|s_{2n} - L| < \frac{\epsilon}{2}$. Now pick $N=max(N_{1}, N_{2})$, then for any $\epsilon > 0$, we have 
+    \[|s_{2n+1} - L| = |s_{2n} - L + a_{2n+1}| \leq |s_{2n} - L| + |a_{2n+1}| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon \]
+
+    UPDATE: there's a much smarter solution. Let $(s_{2n})$ converge to $L$. Then to prove $(s_{2n+1})$ also converges to $L$
+    \[\lim s_{2n+1} = \lim (s_{2n} + a_{n+1}) = \lim (s_{2n}) + \lim a_{2n+1} = S + 0 = S\]
   \end{enumerate}
 \end{solution}
 
