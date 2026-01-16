@@ -1,0 +1,42 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 3 - Section 3.2 - Open and Closed Sets} %can l7ave out if no title per sheet
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Where in the proof of Theorem 3.2.3 part (ii) does the assumption that the collection of open sets be \textit{finite} get used?
+  \item Give an example of a countable collection of open sets $\{O_{1}, O_{2}, O_{3}, ...\}$ whose intersection $\cap_{n=1}^{\infty}O_{n}$ is closed, not empty, and
+  not all of $R$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item The part where we want to take the minimum \\
+    $\epsilon$-neighborhood $\epsilon = min\{\epsilon_{1}, \epsilon_{2}, ..., \epsilon_{n}\} > 0$. A minimum does not necessarily exist in an infinite set.
+
+    To be even more precise though, what we're lacking is a positive lower bound. Had there been a positive infimum (but not minimum), we could use that as $\epsilon$ (note
+    that the proof is still valid even if we replace minimum with infimum. It's just that taking minimum is simpler for a finite set). However, the infimum may
+    be zero, as can be seen in the next example.
+
+    \item Let $O_{n} = (-\frac{1}{n}, \frac{1}{n})$. Both endpoints converge to 0, so $\cap_{n=1}^{\infty}O_{n} = \{0\}$ which is closed, not empty, and not all of $R$, as required.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Let $A = \{(-1)^{n} + \frac{2}{n} : n = 1, 2, 3, ...\}$ and $B = \{x \in Q : 0 < x < 1\}$. Answer the following questions for each set:
+\begin{enumerate}[label=(\alph*)]
+  \item What are the limit points?
+  \item Is the set open? Closed?
+  \item Does the set contain any isolated points?
+  \item Find the closure of the set.
+\end{enumerate}
+
+\end{questions}
+\end{document}
