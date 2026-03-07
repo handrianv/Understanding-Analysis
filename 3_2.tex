@@ -38,5 +38,150 @@
   \item Find the closure of the set.
 \end{enumerate}
 
+%------------------------- Problem 3 -------------------------
+\miquestion Decide whether the following sets are open, closed, or neither. If a set is not open, find a point in the set for which there is $\epsilon$-neighborhood contained in
+the set. If a set is not closed, find a limit point that is not contained in the set.
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Q}.
+  \item \textbf{N}.
+  \item \{$x \in \textbf{R}$ : $x \neq 0$\}.
+  \item \{$1 + 1/4 + 1/9 + ... + 1/n^{2} : n \in \textbf{N}$\}.
+  \item \{$1 + 1/2 + 1/3 + ... + 1/n : n \in \textbf{N}$\}.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Neither. 
+    
+    To prove it's not open, take any rational $r$ and any interval $(r-\epsilon, r+\epsilon)$. If \textbf{Q} is open then every number in the interval must be in
+    \textbf{Q}. But between any two real numbers there is always an irrational.
+
+    To prove it's not closed, we use the sequence from Heron's method (Exercise 2.4.5). Let $x_{1} = 2$ and define the sequence $x_{n+1} = \frac{1}{2}(x_{n} + \frac{2}{x_{n}})$.
+    Then each $x_{n}$ is rational and $(x_{n})$ converges to $\sqrt{2}$ which is not in \textbf{Q}.
+  
+    \item It's not open. Take any $n \in \textbf{N}$, any interval $(n-\epsilon, n+\epsilon)$ must contain a non-integer.
+    
+    But it is closed. A convergent sequence must be bounded. If a sequence in \textbf{N} is bounded then the set of numbers in the sequence is finite.
+    But for it to be convergent, the only way is for a number $n \in \textbf{N}$ to eventually repeat* and be the limit. Since $n \in \textbf{N}$, $\textbf{N}$ is closed.
+
+    *a rigorous proof of this statement. If the sequence is convergent, then by Cauchy Criterion there exists $N \in \textbf{N}$ such that for all $m, n \geq N$, $|a_{n} - a_{m}| < \epsilon$
+    Take $\epsilon < 1$. Since the natural numbers are at least 1 apart from each other, the only way to satisfy the inequality is for $a_{n} = a_{m}$.
+  
+    \item Open (e.g. take $\epsilon = \frac{|x|}{2}$ for any $x \neq 0$), but not closed. The sequence $(\frac{1}{n^2})$ is in the set but its limit 0 is not.
+    
+    \item Not open. 
+    
+    (Not quite correct) Let $x_{n} = \sum_{k=1}^{n}\frac{1}{k^2}$. Given any $\epsilon > 0$, the neighborhood $(x_{n}-\epsilon, x_{n}+\epsilon)$ does not contain $\frac{x_{n} + x_{n+1}}{2}$.
+
+    The proof above is only valid if the midpoint is actually inside $(x_{n}-\epsilon, x_{n}+\epsilon)$. To prove not open, we need to produce, for \textit{any} $\epsilon$, a
+    point that's in the neighborhood but not in the set. If $\epsilon$ is small enough, the midpoint may not be in the neighborhood at all.
+
+    (Corrected proof). To ensure that the missing point is always in the neighborhood, we can instead take min($x_{n}+\frac{\epsilon}{2}$, $\frac{x_{n} + x_{n+1}}{2}$). We take
+    $\epsilon/2$ instead of $\epsilon$ because $x+\epsilon$ is outside the neighborhood (it's right on the boundary).
+    
+    Not closed either, as $\sum_{k=1}^{\infty}\frac{1}{k^2}$ converges to a limit $L \in \textbf{R}$ (as per Example 2.4.4), but $L$ is not in the set, because any element in the
+    set is equal a \textit{finite} partial sum.
+
+    \item Not open. Like the previous part, the point min($x_{n}+\frac{\epsilon}{2}$, $\frac{x_{n} + x_{n+1}}{2}$) is in the neighborhood but not in the set.
+    
+    Closed, for a similar reason as part (b): for a sequence in this set to converge, an element must eventually repeat. But proving it with Cauchy Criterion is tricky this time,
+    as the distance between the elements is not constant.
+
+    Instead, we can use subsequence convergence. Let $(x_{n})$ be a convergent sequence with elements from the set. $(x_{n})$ must only contain a finite number of distinct terms,
+    for otherwise $\sum_{k=1}^{\infty}\frac{1}{n}$, which diverges, would make $(x_{n})$ unbounded.
+    
+    Then an element $x_{k}$ must appear infinitely many times in $(x_{n})$. Take the
+    subsequence of all $x_{k}$'s. Since $(x_{n})$ converges, any of its subsequence must converge to the same limit. The subsequence $(x_{k})$ converges to $x_{k}$ which is in the set.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Let $A$ be nonempty and bounded above so that $s = \text{sup } A$ exists.
+the set. If a set is not closed, find a limit point that is not contained in the set.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $s \in \overline{A}$.
+  \item Can an open set contain its supremum?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We only need to show that $s$ is a limit point of $A$. Then by the definition of closure, $s \in \overline{A}$.
+    
+    $s$ being a limit point follows from the definition of supremum. We need to prove that there is a sequence in $A$ that converges to $s$ i.e. for all $\epsilon > 0$,
+    there is an $x \in A$ with $|s-x| < \epsilon$. Suppose for contradiction that such an $x$ doesn't exist, then $s-\epsilon$ is a lower bound of $A$ that's less
+    than the supremum, contradicting the fact that $s$ is the \textit{least} upper bound.
+
+    \item No. Take any $\epsilon$-neighborhood of the supremum, then by defintion of supremum the interval $(s, s+\epsilon)$ doesn't contain any element of $A$.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion Prove Theorem 3.2.8. A set $F \subseteq \textbf{R}$ is closed if and only if every Cauchy sequence contained in $F$ has a limit that is also an element of $F$.
+\begin{solution}
+  The only thing we need is Theorem 2.6.4 (Cauchy Criterion): A sequence converges if and only if it's Cauchy.
+
+  To prove the "only if" part, suppose $F$ is closed. Then $F$ contains its limit points. Then every convergent sequence in $F$ has a limit that's in $F$. Since every Cauchy sequence
+  is convergent, we're done. (It's also worth noting that the limit of the \textit{sequence} may be a limit \textit{point} of the \textit{set} or an isolated point but in either case, it's in $F$).
+
+  To prove the other direction, suppose every Cauchy sequence has a limit in $F$. Since every convergent sequence is Cauchy, then every convergent sequence also has a limit in $F$. Then
+  $F$ is closed by definition.
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion Decide whether the following statements are true or false. Supply proofs or counterexample.
+\begin{enumerate}[label=(\alph*)]
+  \item An open set that contains every rational number must necessarily be all of \textbf{R}.
+  \item The Nested Interval Property remains true if the term "closed interval" is replaced by "closed set".
+  \item Every nonempty open set contains a rational number.
+  \item Every bounded infinite closed set contains a rational number.
+  \item The Cantor Set is closed.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item False. Consider the set $\textbf{R} \setminus \{\sqrt{2}\}$. Any point $x$ has a neighborhood $(x-\epsilon, x+\epsilon)$ with $\epsilon = \frac{|x-\sqrt{2}|}{2}$, and
+    all numbers in the neighborhood are in the set.
+
+    \item False. Let $X_{1} \supseteq X_{2} \supseteq X_{3} \supseteq ...$ with $X_{n} = [n, \infty)$. The intersection is empty because
+    any number $x$ is not in $X_{\lceil x \rceil + 1}$.
+
+    As will be seen in the next section, for this to be true it requires compactness i.e. closed \textit{and} bounded.
+    
+    \item True. Take any point $x$ from the set. Since it's open, there is a neighborhood $(x-\epsilon, x+\epsilon)$ where all numbers are in the set. By density of the rationals,
+    this neighborhood must contain a rational number.
+
+    \item False. Consider the set $\{\sqrt{2}, \frac{\sqrt{2}}{1+1}, \frac{\sqrt{2}}{1+\frac{1}{2}}, \frac{\sqrt{2}}{1+\frac{1}{3}}, \frac{\sqrt{2}}{1+\frac{1}{4}}, ...\}$.
+    It's bounded by $\frac{\sqrt{2}}{2}$ and $\sqrt{2}$, infinite, and closed, but contains no rationals.
+
+    \item TODO.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 7 -------------------------
+\miquestion Given $A \subseteq \textbf{R}$, let $L$ be the set of all limit points of $A$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that the set $L$ is closed.
+  \item Argue that if $x$ is a limit point of $A \cup L$, then $x$ is a limit point of $A$. Use this observation to furnish a proof for Theorem 3.2.12 (for any $A \subseteq \textbf{R}$,
+  the closure $\overline{A}$ is a closed set and is the smallest set containing $A$).
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Suppose $X$ is a limit point of $L$. If $L$ is closed, then $X \in L$ is also a limit point of $A$. That gives an idea of the proof: there's a sequence in $A$ that converges to $X$.
+    
+    $X$ is a limit point, so there's a sequence $(l_{n})$ that converges to $X$. For any $\epsilon > 0$, there exists $N$ such that for all $n \geq N$, $|l_{n} - X| < \epsilon$. The idea
+    is that since each $l_{n}$ is a limit point of $A$, we can take an $a \in A$ arbitrarily close to $l_{n}$, which would make it close to $X$ as well.
+
+    Concretely, construct $(a_{n})$ such that $|a_{n} - l_{n}| < 1/n$. Now, there's an $N_{1}$ such that $n \geq N_{1} \implies |l_{n} - X| < \epsilon/2$. There's also an $N_{2}$
+    such that $n \geq N_{2} \implies |a_{n} - l_{n}| < \epsilon/2$. Then $|a_{n} - X| \leq |a_{n} - l_{n}| + |l_{n} - X| < \epsilon/2 + \epsilon/2 = \epsilon$.
+
+    \item To prove $x$ is a limit point of $A$, use a very similar argument as part (a). I'm not really in the mood for writing it down right now. Maybe some other day\dots
+    
+    Once that's done, we go back to the proof of Theorem 3.2.12 in the book. It's missing the part where we need to prove that $A \cup L$ does not contain any "new" limit points
+    outside of $L$. But we've proved that the limit points of $A \cup L$ are also limit points of $A$, all of which are in $L$.
+  \end{enumerate}
+
+\end{solution}
+
 \end{questions}
 \end{document}
