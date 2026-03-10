@@ -1,0 +1,159 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 3 - Section 3.3 - Compact Sets} %can l7ave out if no title per sheet
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Show that if $K$ is compact and nonempty, then sup $K$ and inf $K$ both exist and are elements of $K$.
+\begin{solution}
+  $K$ is a bounded subset of $\textbf{R}$, so sup $K$ and inf $K$ both exist by the Axiom of Completeness. They're both
+  elements of $K$ because $K$ is closed (see exercise 3.2.4).
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Decide which of the following sets are compact. For those that are not compact, show how Definition 3.3.1 breaks down. In other words, give an example
+of a sequence contained in the given set that does not possess a subsequence converging to a limit in the set.
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{N}.
+  \item $\textbf{Q} \cap [0, 1]$.
+  \item The Cantor set.
+  \item $\{1 + \frac{1}{2^2} +  \frac{1}{3^2} + ... + \frac{1}{n^2} : n \in \textbf{N}\}$.
+  \item $\{1, \frac{1}{2}, \frac{2}{3}, \frac{3}{4}, \frac{4}{5}, ...\}$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Not compact because it's not bounded. Example sequence: $(1, 2, 3, 4, 5, ...)$. Any subsequence diverges to infinity.
+    \item Not compact because it's not closed. Take an irrational $x \in [0, 1]$, say $x = \sqrt{2}/2$. There is a sequence of rationals bounded
+    by [0, 1] that converges to $x$ (by density of the rationals)*. Any subsequence also converges to $x$, but $x \notin \textbf{Q}$.
+
+    *or an explicit sequence by Heron's method (Exercise 2.4.5): let $x_{1} = \frac{1}{2}$ and $x_{n+1}=\frac{1}{2}(x_{n}+\frac{1}{2x_{n}})$.
+
+    \item TODO
+
+    \item Not compact because it's not closed (exercise 3.2.3 (d)). Example sequence: $(s_{n} = \sum_{i=1}^{n}\frac{1}{i^{2}})$. The sequence of partial sum
+    converges to a limit $L$ (example 2.4.4), so any subsequence converges $L$. But $L$ is not one of the partial sums, so no subsequence
+    converges to a point in the set.
+
+    \item Compact. Instead of proving it's closed and bounded, let's use the (equivalent) Definition 3.3.1. Take any (not necessarily convergent) sequence $(x_{n})$
+    from the set. We need to prove that $(x_{n})$ contains a subsequence that converges to a limit that's an element of the set.
+
+    If $(x_{n})$ contains an element that appears infinitely many times then it's trivial. Pick that element as a subsequence.
+    
+    Otherwise, $(x_{n})$ contains infinitely many distinct values. These distinct values must include fractions $\frac{m}{m+1}$ with arbitrarily large $m$.
+    Choose them with increasing $m$, giving a subsequence converging to 1, and 1 is in the set.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion Prove the converse of Theorem 3.3.4 by showing that if a set $K \subseteq \textbf{R}$ is closed and bounded, then it is compact (every sequence has a convergent
+subsequence with a limit in $K$).
+
+\begin{solution}
+  Take any sequence in $K$ (not necessarily convergent). Since $K$ is bounded, this sequence is also bounded. Every sequence has a monotone subsequence
+  (Exercise 2.5.8) and this subsequence is also bounded. By Monotone Convergence, it converges and since $K$ is closed, the limit is in $K$.
+
+  *later improvement: once we establish that the sequence is bounded, invoke Bolzano-Weierstrass directly to conclude the existence of a convergent subsequence.
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Skip.
+
+%------------------------- Problem 5 -------------------------
+\miquestion Short proof if true, counterexample if false.
+\begin{enumerate}[label=(\alph*)]
+  \item The arbitrary intersection of compact sets is compact.
+  \item The arbitrary union of compact sets is compact.
+  \item Let $A$ be arbitrary and let $K$ be compact. Then the intersection $A \cap K$ is compact.
+  \item If $F_{1} \supseteq F_{2} \supseteq F_{3} \supseteq ...$ is a nested sequence of nonempty closed sets, then the intersection $\bigcap_{n=1}^{\infty} F = \emptyset$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item True. A set is compact if and only if it's closed and bounded. The intersection of an arbitrary collection of closed sets is closed (Theorem 3.2.14 (ii)). The intersection
+    of an arbitrary collection of bounded sets is bounded.
+
+    \item False. Cover the positive real line with $\{[0, 1] \cup [1, 2] \cup [2, 3] \cup ...\}$. A closed interval is compact, so this is a union of compact sets. But the resulting
+    union is unbounded.
+
+    What would be true is that \textit{finite} union of compact sets is compact.
+
+    \item False. Let $A = (0, 1)$ and $K = [0, 1]$. The intersection $(0, 1)$ is not closed. (note: it's not enough to claim (0, 1) is open, as a set can be both open and closed).
+    
+    \item False. This is the same as Exercise 3.2.6(b), asking whether the Nested Interval Property is true for closed sets. 
+    
+    Counterexample: let $F_{n} = [n, \infty)$. The intersection is empty because
+    any number $x$ is not in $F_{\lceil x \rceil + 1}$.
+
+    As per Theorem 3.3.5, what is needed for this to be true is for each set to be \textit{compact}, not just closed.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion This exercise is meant to illustrate the point made in the opening paragraph in Section 3.3. Verify that the following three statements are true if
+every blank is filled in with the word "finite". Which are true if every blank is filled in with "compact". Which are true if filled in with "closed".
+
+To quote the opening paragraph: "\textit{The central challenge in analysis is to exploit the power of the mathematical
+infinite—via limits, series, derivatives, integrals, etc.—without falling victim to
+erroneous logic or faulty intuition. A major tool for maintaining a rigorous
+footing in this endeavor is the concept of compact sets. In ways that will become
+clear, especially in our upcoming study of continuous functions, employing
+compact sets in a proof often has the effect of bringing a finite quality to the
+argument, thereby making it much more tractable.}"
+
+\begin{enumerate}[label=(\alph*)]
+  \item Every \underline{\phantom{blank}} set has a maximum.
+  \item If $A$ and $B$ are \underline{\phantom{blank}}, then $A + B = \{a + b: a \in A, b \in B\}$ is also \underline{\phantom{blank}}.
+  \item If $\{A_{n} : n \in \textbf{N}\}$ is a collection of \underline{\phantom{blank}} sets with the property that every finite subcollection has a nonempty intersection, then
+  $\bigcap_{n=1}^{\infty} A_{n}$ is nonempty as well.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item That finite sets have a maximum is obvious.
+    
+    It's also true for compact sets. This is basically Exercise 3.3.1: the supremum of a compact set is an element of the set.
+    If a supremum is part of a set, it must also be the maximum.
+
+    It's \textit{not} necessarily true for closed sets, as closed sets can be unbounded e.g $[1, \infty)$.
+
+    \item Obvious for finite sets.
+    
+    True for compact sets. I got help online for this and I'm annoyed. But anyway, here's what a plausible thought process could look like.
+
+    It looks true intuitively, so let's try to prove it. If it doesn't work, the blocker may suggest how to prove it wrong.
+
+    We need to prove that for any convergent sequence $(a_{n}+b_{n}) \in A+B$, the limit $L$ is in $A+B$. Now, we'll definitely need to invoke
+    $A$ and $B$'s compactness i.e. produce a convergent sequence for each. But it can't just be any random sequence; it needs to come from (i.e.
+    be a subsequence of) $(a_{n}+b_{n})$. But before we produce such a subsequence, let's verify whether it'd actually help. The answer is yes,
+    because if we have a subsequence $(a_{n_{k}} + b_{n_{k}})$ such that $(a_{n_{k}})$ converges to $L_{a}$ and $(b_{n_{k}})$ to $L_{b}$, then by
+    the Algebraic Limit Theorem $L_{a} + L_{b} = L$ and since $A$ and $B$ are closed, this implies $L_{a} \in A$, $L_{b} \in B$, hence $L = L_{a}+L_{b} \in A+B$,
+    finishing the proof.  
+
+    Now to produce the subsequence. It's easy to create a subsequence $(a_{n_{k}})$ that converges. Since $A$ is compact, any sequence in it has a
+    convergent subsequence, so just take it out of $(a_{n}+b_{n})$. Likewise, we can create a separate subsequence $(b_{n_{j}})$ that converges. But
+    the blocker here is that they have different indices! E.g. if the convergent subsequence for $A$ contains $a_{3}$ but not $a_{5}$, whereas the one for
+    $B$ contains $b_{5}$ but not $b_{3}$, we can't create a \textit{single} subsequence that includes both $a_{3}+b_{3}$ and $a_{5}+b_{5}$, because then
+    one might not converge.
+
+    And here's the trick that I failed to come up with. Instead of creating a separate subsequence out of the single sequence $(a_{n}+b_{n})$, we can instead
+    first take the subsequence $(a_{n_{k}}+b_{n_{k}})$ for $A$, then \textit{reuse this} to create the subsequence for $B$! So out of $(a_{n_{k}}+b_{n_{k}})$,
+    pick a subsequence $(a_{n_{k_{j}}} + b_{n_{k_{j}}})$ such that $B$ converges.
+
+    The remaining important question is: how to come up with this trick if we missed it the first time? I don't know the answer. I was too stubborn on trying
+    to create both subsequences out of a single sequence. Maybe the lesson here is that whenever we're given a problem about satisfying
+    multiple constraints (not necessarily convergence, but just constraints in general), instead of trying to satisfy all constraints simultaneously, try to 
+    satisfy them by incrementally restricting the solution step by step. Are there other problems outside Real Analysis with this sort of trick?
+    
+    Or maybe this is one of those tricks that's easy to miss the first time, but will come up over and over again
+    until it doesn't seem magic anymore.
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
