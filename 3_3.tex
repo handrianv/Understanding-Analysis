@@ -34,7 +34,7 @@ of a sequence contained in the given set that does not possess a subsequence con
 
     *or an explicit sequence by Heron's method (Exercise 2.4.5): let $x_{1} = \frac{1}{2}$ and $x_{n+1}=\frac{1}{2}(x_{n}+\frac{1}{2x_{n}})$.
 
-    \item TODO
+    \item Compact. The Cantor set is clearly bounded by 0 and 1. By exercise 3.2.6(e), it's closed.
 
     \item Not compact because it's not closed (exercise 3.2.3 (d)). Example sequence: $(s_{n} = \sum_{i=1}^{n}\frac{1}{i^{2}})$. The sequence of partial sum
     converges to a limit $L$ (example 2.4.4), so any subsequence converges $L$. But $L$ is not one of the partial sums, so no subsequence
@@ -152,7 +152,75 @@ argument, thereby making it much more tractable.}"
     
     Or maybe this is one of those tricks that's easy to miss the first time, but will come up over and over again
     until it doesn't seem magic anymore.
+
+    False for closed sets. Counterexample: $A = \{1 + \frac{1}{2}, 2 + \frac{1}{3}, 3 + \frac{1}{4}, ...\}$ and $B = \{-1, -2, -3, ...\}$. Then $A+B$ contains the
+    sequence $(1/n)$ that converges to 0 but $0 \notin A+B$. 
+
+    \item TODO.
   \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 7 -------------------------
+\miquestion As some more evidence of the surprising nature of the Cantor set, follow these steps to show that the sum $C + C = \{x+y: x, y \in C\}$
+is equal to the closed interval $[0, 2]$. (Keep in mind that $C$ has zero length and contains no intervals).
+
+Because $C \subseteq [0, 1]$, $C + C \subseteq [0, 2]$, so we only need to prove the reverse inclusion $[0, 2] \subseteq \{x+y: x, y \in C\}$. Thus,
+given $s \in [0, 2]$, we must find two elements $x, y$ satisfying $x + y = s$.
+
+\begin{enumerate}[label=(\alph*)]
+  \item Show that there exist $x_{1}, y_{1} \in C_{1}$ for which $x_{1} + y_{1} = s$. Show in general that, for an arbitrary $n \in \textbf{N}$, we can
+  always find $x_{n}, y_{n} \in C_{n}$ for which $x_{n}+y_{n}=s$.
+  \item Keeping in mind that the sequences $(x_{n})$ and $(y_{n})$ do not necessarily converge, show how they can nevertheless be used to produce the desired
+  $x$ and $y$ in $C$ satisfying $x+y=s$.
+\end{enumerate}
+
+\begin{solution}
+  Let's first really appreciate why this is such a surprising result. As the book says, the Cantor set is really a "Cantor dust"; just a set of points,
+  \textit{without any intervals}, zero length and is very sparse. How does summing two such sets result in a \textit{solid interval}, without gaps! Just as good as summing up
+  the two solid intervals $[0, 1] + [0, 1]$. It's visually highly unintuitive.
+
+  \begin{enumerate}[label=(\alph*)]
+    \item There are much more elegant proofs at the internet. But here's my own ugly attempt.
+    
+    The way the problem is phrased hints at induction. The base case is easy: $C_{0} = [0, 1]$ and clearly $C_{0} + C_{0} = [0, 2]$. Now, let's see
+    how to solve the problem for $C_{1}$ first, and then generalize later.
+
+    Suppose we have $x, y$ both in $[0, 1]$ such that $x+y=s$. Can we reuse this $x, y$ for $C_{1}$? Well, the only problem is if one or both of $x, y$ lies
+    in the newly created gap $(\frac{1}{3}, \frac{2}{3})$. But it should not be too difficult to intuitively see that we just need to shift $x$ and $y$ to be
+    inside the two intervals in $C_{1}$ and this is always possible.
+    
+    More formally, wlog $x \leq y$:
+    \begin{enumerate}
+      \item If $x, y \in ([0, \frac{1}{3}] \cup [\frac{2}{3}, 1])$, then all good.
+      \item If \textit{both} $x, y$ lie inside the gap $(\frac{1}{3}, \frac{2}{3})$, shift them to $x'=x-\frac{1}{3}$ and $y'=y+\frac{1}{3}$. Since the length
+      of the gap is less than $\frac{1}{3}$, both $x', y'$ must now lie outside the gap and since $x, y$ being outside the gap implies $x > \frac{1}{3}$ and
+      $y < \frac{2}{3}$, then $x' = x-\frac{1}{3} > \frac{1}{3}-\frac{1}{3} = 0$ and similarly $y' < 1$. We also have $x'+y' = s$. 
+      
+      But really, the visualization is much easier than the formal proof.
+
+      \item If only one of $x, y$ lies inside the gap, wlog $y$ is in the gap (the other case of $x$ in the gap can be handled similarly). 
+      
+      First, shift to $x'= x-x = 0$ and $y'= y + x$. Since $y$ was in the gap and $x \leq \frac{1}{3}$, $y' < \frac{2}{3}+\frac{1}{3} = 1$, so $y'$ is still
+      in $C_{1}$. If $y'$ is now inside the interval $[\frac{2}{3}, 1]$, then done.
+     
+      Otherwise, $y'$ is still in the gap. Since $x'=0$ and $y' < \frac{2}{3}$, their midpoint $m$ must be less than $\frac{1}{3}$. Shift both the $m$,
+      and they're now both outside the gap.
+    \end{enumerate}
+
+    All this casework proves that $C_{1}+C_{1} = [0, 2]$, by reusing all the $x,y$ from $C_{0}$ and shifting them as needed. Now, the general case.
+
+    Suppose $C_{n-1}+C_{n-1}=[0, 2]$. For the inductive case, we need to prove that $C_{n}+C_{n}=[0, 2]$. Given $s \in [0, 2]$, let $x, y \in C_{n-1}$ such
+    that $x+y=s$. Note that for $n > 1$, the length of the gaps in $C_{n}$ are not all the same e.g. in $C_{2}$ there are gaps with length $\frac{1}{9}$
+    and the middle gap with length $\frac{1}{3}$. In general, the smallest gap is the same length as the length of an interval in $C_{n}$ which is $\frac{1}{3^{n}}$.
+    But since $x, y \in C_{n-1}$, if they lay inside a gap in $C_{n}$, it must be in the smallest gap of length $\frac{1}{3^{n}}$, because $C_{n-1}$ itself doesn't
+    contain any element in the bigger gap (see the visualization in page 86, and note how $C_{2}$ doesn't contain any element in the big gap, so if any elements
+    from $C_{2}$ ends up in a gap in $C_{3}$, it must be in the small gap).
+
+    Anyway, just shift them like above, but this time shift with length $\frac{1}{3^{n}}$ It's just tedious technicality, I'm not in the mood to write it all out.
+  
+    \item TODO.
+  \end{enumerate}
+
 \end{solution}
 
 \end{questions}
