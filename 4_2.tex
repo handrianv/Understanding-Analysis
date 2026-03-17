@@ -1,0 +1,116 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 4 - Section 4.2 - Functional Limits} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Supply the details of how Corollary 4.2.4 part (ii) follows from the Sequential Criterion for Functional Limits in Theorem 4.2.3 and the Algebraic Limit Theorem
+  for sequences proved in Chapter 2.
+  \item Now, write another proof of Corollary 4.2.4 part (ii) directly from Definition 4.2.1 without using the sequential criterion.
+  \item Repeat (a) and (b) for Corollary 4.2.4 part (iii)
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We need to prove that $\lim_{x \to c} [f(x) + g(x)] = L + M$ given that the Sequential Criterion holds for $f$ and $g$.
+    
+    By the Criterion, given any $(x_{n}) \to c$, we have $f(x_{n}) \to L$ and $g(x_{n}) \to M$, so by the Algebraic Limit Theorem
+    $f(x_{n}) + g(x_{n}) \to L + M$. This shows that $f+g$ satisfies the Sequential Criterion. (By the way, just a reminder about the possibly ambiguous notation: $f(x_{n})$ is the sequence
+    $f(x_{1}), f(x_{2}), f(x_{3}), ...$ and \textit{not} $f(x_{1}, x_{2}, x_{3}, ...)$.
+
+    By Theorem 4.2.3, if $f + g$ satisfies the Sequential Criterion, it also satisfies $\lim_{x \to c} [f(x) + g(x)] = L + M$.
+
+    \item There exists $\delta_{f} > 0$ such that $|x-c| < \delta_{f} \implies |f(x)-L| < \frac{\epsilon}{2}$. Similarly choose $\delta_{g}$
+    such that $|x-c| < \delta_{g} \implies |g(x) - M| < \frac{\epsilon}{2}$. Now let $\delta = \min(\delta_{f}, \delta_{g})$, then
+    $|x-c| < \delta \implies |f(x)+g(x) - (L+M)| \leq |f(x)-L| + |g(x)-M| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
+  
+    \item Part (a).
+    
+    Same thing. By the Algebraic Limit Theorem $f(x_{n})g(x_{n}) \to LM$ so $(fg)(x_{n})$ satisfies the Sequential Criterion. Then by Theorem 4.2.3
+    $\lim_{x \to c}[f(x)g(x)] = LM$.
+
+    Part (b).
+
+    We need to prove that for any $\epsilon > 0$, there exists $\delta$ such that $|x-c| < \delta \implies |f(x)g(x) - LM| < \epsilon$.
+    
+    We know we'll need $|f(x) - L|$ and $|g(x) - M|$ to appear. Let's start with $|f(x) - L|$, what do we need to add to
+    $f(x)g(x)$ to be able to factor out $f(x)-L$? We need to add $g(x)L$, which would get us:
+    
+    \begin{align*}
+      |f(x)g(x) - LM| 
+      & = |f(x)g(x) - g(x)L + g(x)L - LM| \\
+      & = |g(x)(f(x)-L) + L(g(x)-M)| \\
+      & \leq |g(x)||f(x)-L| + |L||g(x)-M|
+    \end{align*}
+
+    It turns out that we were lucky; the $g(x)L$ factor also happens to factor out nicely with $- LM$ to create the $|g(x)-M|$ we need.
+
+    Now the problem is how to bound $|g(x)|$. We can pick $\delta_{g}$ to bound $|g(x)-M| < \frac{\epsilon}{2|L|}$,
+    which will bound $|g(x)| < |M| + \frac{\epsilon}{2|L|}$. Pick $\delta_{f}$ such that $|f(x)-L| < \frac{\epsilon}{2(|M| + \frac{\epsilon}{2|L|})}$.
+    Finally, pick $\delta = \min(\delta_{f}, \delta_{g})$, then:
+
+    \begin{align*}
+      |f(x)g(x) - LM|
+      & \leq |g(x)||f(x)-L| + |L||g(x)-M| \\
+      & < \left(|M| + \frac{\epsilon}{2|L|}\right) \frac{\epsilon}{2(|M| + \frac{\epsilon}{2|L|})} + |L|\frac{\epsilon}{2|L|} \\
+      & = \epsilon
+    \end{align*}
+  \end{enumerate}
+
+  But note that this fails for the case $L = 0$, because there'll be division by zero. We could treat this case separately, or we can choose a smarter bound that forces the
+  denominators to be nonzero.
+
+  Bound $|g(x)-M| < \frac{\epsilon}{2|L|+1}$. This clearly works, since the denominator is even bigger than before, and now it can't be zero. The bound for
+  $g(x)$ and $|f(x)-L|$ changes accordingly, and we'll have:
+
+  \begin{align*}
+    |f(x)g(x) - LM|
+    & \leq |g(x)||f(x)-L| + |L||g(x)-M| \\
+    & < \left(|M| + \frac{\epsilon}{2|L|+1}\right) \frac{\epsilon}{2\left(|M| + \frac{\epsilon}{2|L|+1}\right)} + |L|\frac{\epsilon}{2|L|+1} \\
+    & < \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+    & = \epsilon
+  \end{align*}
+\end{solution}
+
+
+%------------------------- Problem 2 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 3 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 4 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 5 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 6 -------------------------
+\miquestion True or false with short justifications.
+\begin{enumerate}[label=(\alph*)]
+  \item If a particular $\delta$ has been constructed as a suitable response to a particular $\epsilon$ challenge, then any smaller positive $\delta$ will also suffice.
+  \item If $\lim_{x \to a}f(x) = L$ and $a$ happens to be in the domain of $f$, then $L = f(a)$.
+  \item If $\lim_{x \to a}f(x) = L$, then $\lim_{x \to a}3[f(x)-2]^{2} = 3(L-2)^{2}$
+  \item If $\lim_{x \to a}f(x) = 0$, then $\lim_{x \to a}f(x)g(x) = 0$ for any function $g$ (with domain equal to the domain of $f$).
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item True. If $\delta_{1}$ is a suitable response it means $0 < |x-a| < \delta_{1} \implies |f(x)-L| < \epsilon$. Given $0 < \delta_{2} < \delta_{1}$, then
+    $0 < |x-a| < \delta_{2} < \delta_{1}$.
+    \item False. Let $\textbf{R}$ be the domain of $f$. Let $f(0) = 5$ and $f(x) = 0$ for $x \neq 0$. Then $\lim_{x \to 0} f(x) = 0$ but $f(0) = 5$.
+    \item True. All the terms converge, including $(f(x)-2)$ that converges to $(L-2)$, so we can apply the Algebraic Limit Theorem.
+    \item False. Let $\textbf{R} \setminus 0$ be the domain. Let $f(x) = x$ and $a=0$, then $\lim_{x \to 0}f(x) = 0$ as required. Let $g(x) = \frac{1}{x}$. 
+    Then $f(x)g(x) = 1$ everywhere in the domain, but $\lim_{x \to 0}f(x)g(x) = 1$.
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
