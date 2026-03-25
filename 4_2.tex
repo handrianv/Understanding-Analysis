@@ -241,5 +241,33 @@ follows that $f(x) > M$.
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 10 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Give a proper definition in the style of Definition 4.2.1 for the right-hand and left-hand limit statements: $\lim_{x \to a^{+}}f(x) = L$ and
+  $\lim_{x \to a^{-}}f(x) = M$.
+  \item Prove that $\lim_{x \to a}f(x)=L$ if and only if both the right and left-hand limits equal $L$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Right limit: For all $\epsilon > 0$, there exists $\delta > 0$ such that $0 < x-a < \delta \implies |f(x)-L| < \epsilon$.\\
+    Left limit: For all $\epsilon > 0$, there exists $\delta > 0$ such that $0 < a-x < \delta \implies |f(x)-L| < \epsilon$.\\
+  
+    \item We prove the sufficiency first: $\lim_{x \to a} f(x) = L \implies \\ \lim_{x \to a^{+}}f(x) = \lim_{x \to a^{-}}f(x) = L$.
+    
+    Pick $\delta$ such that $0 < |x-a| < \delta \implies |f(x)-L| < \epsilon$. For the left limit, we have $0 < a-x < \delta$ implies
+    $0 < |x-a| < \delta$ which in turn implies $|f(x) - L| < \epsilon$. Similary for the right limit.
+
+    For the other direction, we need to prove that $\lim_{x \to a^{+}}f(x) = \lim_{x \to a^{-}}f(x) = L \implies \lim_{x \to a} f(x) = L$.
+
+    There exists $\delta_{L}$ such that $0 < a-x < \delta_{L} \implies |f(x) - L| < \epsilon$. Similarly, there exists $\delta_{R}$ such that
+    $0 < x-a < \delta_{R} \implies |f(x) - L| < \epsilon$.
+
+    Pick $\delta = \min(\delta_{L}, \delta_{R})$. Then $0 < |x-a| < \delta$ implies either $0 < a-x < \delta$ or $0 < x-a < \delta$, both of which
+    imply $|f(x) - L| < \epsilon$.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
