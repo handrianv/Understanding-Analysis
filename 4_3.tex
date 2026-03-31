@@ -1,0 +1,64 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition: Stephen Abbott}
+\sheettitle{Chapter 4 - Section 4.3 - Continuous Functions} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Let $g(x) = \sqrt[3]{x}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that $g$ is continuous at $c = 0$.
+  \item Prove that $g$ is continuous at a point $c \neq 0$. (The identity $a^3-b^3=(a-b)(a^2+ab+b^2)$ will be helpful.)
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Pick $\delta = \epsilon^3$ then $|x| < \delta \implies |\sqrt[3]{x} - 0| < \sqrt[3]{\epsilon^3} = \epsilon$.
+    \item TODO.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion In all of these, let $f$ be a function defined on all of $\textbf{R}$.
+\begin{enumerate}[label=(\alph*)]
+  \item Let's say that $f$ is \textit{onetinuous} at $c$ if for all $\epsilon > 0$ we can choose $\delta = 1$ and it follows that $|f(x)-f(c)| < \epsilon$
+  whenever $|x-c| < \delta$. Find an example of a function that is onetinuous on all of $\textbf{R}$.
+  \item Let's say that $f$ is \textit{equaltinuous} at $c$ if for all $\epsilon > 0$ we can choose $\delta = \epsilon$ and it follows that $|f(x)-f(c)| < \epsilon$
+  whenever $|x-c| < \delta$. Find an example of a function that is equaltinuous on \textbf{R} that is nowhere onetinuous, or explain why there is no such function.
+  \item Let's say that $f$ is \textit{lesstinuous} at $c$ if for all $\epsilon > 0$ we can choose $0 < \delta < \epsilon$ and it follows that $|f(x)-f(c)| < \epsilon$
+  whenever $|x-c| < \delta$. Find an example of a function that is lesstinuous on \textbf{R} that is nowhere equaltinuous, or explain why there is no such function.
+  \item Is every lesstinuous function continuous? Is every continuous function lesstinuous? Explain.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item The function $f(x) = k$ for a fixed constant $k$ is onetinuous.
+    \item $f(x) = x$. It's equaltinuous but not onetinuous as given $\epsilon < 1$, $\delta = 1$ doesn't work. For example, let $\epsilon=\frac{1}{2}$ and
+    $x = c+\frac{1}{2}$, then $|x-c| < 1$ but $|f(x)-f(c)| = \frac{1}{2}$ is not less than $\epsilon$.
+    \item Intuitively, for $\delta < \epsilon$ to work, we need a function that grows faster than $f(x)=x$. 
+    
+    $f(x) = 3x$ works. Solve the $\epsilon-\delta$ to get $\delta < \frac{\epsilon}{3}$. Since $\delta < \frac{\epsilon}{3} < \epsilon$, the function is lesstinuous.
+
+    It's nowehere equaltinuous. Let $x = c+\frac{\epsilon}{2}$. If $\delta=\epsilon$ then $(|x-c| = \frac{\epsilon}{2}) < \delta$, but $|f(x)-f(c)| = \frac{3\epsilon}{2} > \epsilon$.
+  
+    $f(x)=x^2$ also works. It's lesstinuous everywhere (too lazy to type the $\epsilon-\delta$ derivation). But it's not nowhere equaltinuous. Again choose
+    $x=c+\frac{\epsilon}{2}$. Then $|f(x)-f(c)| = \epsilon|c| + \frac{\epsilon^2}{4}$. If this were equaltinuous, then for \textit{all} $\epsilon > 0$
+    we need $|f(x)-f(c)| < \epsilon$. But for any $\epsilon > 4$ this is false.
+
+    \item Yes to both.
+    
+    Every lesstinuous function is continuous. For all $\epsilon > 0$ there's a $\delta$ that works, and that's enough for continuity. It doesn't matter what the bound on $\delta$
+    is, whether is lesstinuous or equaltinuous or whatever.
+
+    Every continuous function is lesstinuous. By definition of continuity, for all $\epsilon > 0$ there's a $\delta$ such that $|x-c| < \delta \implies |f(x)-f(c)| < \epsilon$.
+    If $\delta \geq \epsilon$, then a $\delta_{2} < \epsilon$ must also work, as it satisfies $|x-c| < \delta_{2} < \epsilon \leq \delta$.
+  \end{enumerate}
+\end{solution}
+
+
+\end{questions}
+\end{document}
