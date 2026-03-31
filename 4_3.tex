@@ -18,7 +18,17 @@
 \begin{solution}
   \begin{enumerate}[label=(\alph*)]
     \item Pick $\delta = \epsilon^3$ then $|x| < \delta \implies |\sqrt[3]{x} - 0| < \sqrt[3]{\epsilon^3} = \epsilon$.
-    \item TODO.
+    \item $|\sqrt[3]{x} - \sqrt[3]{c}| = \frac{|x-c|}{|\sqrt[3]{x^2} + \sqrt[3]{xc} + \sqrt[3]{c^2}|}$. Since the denom must be positive, then
+    \[\frac{|x-c|}{|\sqrt[3]{x^2} + \sqrt[3]{xc} + \sqrt[3]{c^2}|} \leq |x-c|\] Pick $\delta = \epsilon$.
+
+    ...wait no. If the denom is less than 1, then the nume will get bigger. 
+    
+    Instead, since $c > 0$, we can always choose $\delta$ small enough so that $x$ and $c$ has the same sign (say, $\frac{|c|}{2}$), which would make all of the terms in the denom positive. Then:
+    \[\frac{|x-c|}{|\sqrt[3]{x^2} + \sqrt[3]{xc} + \sqrt[3]{c^2}|} = \frac{|x-c|}{\sqrt[3]{x^2} + \sqrt[3]{xc} + \sqrt[3]{c^2}} \leq \frac{|x-c|}{\sqrt[3]{c^2}}\]
+    Pick $\delta = \min(\frac{|c|}{2}, \epsilon\sqrt[3]{c^2})$.
+
+    Another way is to note that $\sqrt[3]{x^2} + \sqrt[3]{xc} + \sqrt[3]{c^2}$ is a quadratic that's always positive with minimum at $\frac{3}{4}\sqrt[3]{c^2}$.
+    Pick $\delta=\frac{3}{4}\epsilon\sqrt[3]{c^2}$.
   \end{enumerate}
 \end{solution}
 
