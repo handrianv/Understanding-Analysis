@@ -69,6 +69,36 @@
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 3 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Supply a proof for Theorem 4.3.9 using the $\epsilon-\delta$ characterization of continuity.
+  \item Give another proof using the sequential characterization of continuity (from Theorem 4.3.2 (iii)).
+\end{enumerate}
+
+\begin{solution}
+  To restate the (abridged) Theorem: we're given $f$ continuous at $c$ and $g$ continuous at $f(c)$ and we need to prove $g(f(x))$ is continuous at $c$.
+  \begin{enumerate}[label=(\alph*)]
+    \item To prove $g(f(x))$ continuous at $c$, then we need to prove that for all $\epsilon > 0$ there exists $\delta$ such that $|x-c| < \delta \implies |g(f(x)) - g(f(c))| < \epsilon$.
+    
+    From continuity of $f$ at $c$, then for all $\epsilon_{f} > 0$ there exists $\delta_{f}$ such that $|x-c| < \delta_{f} \implies |f(x)-f(c)| < \epsilon_{f}$.
+
+    From continuity of $g$ at $f(c)$, then for all $\epsilon > 0$ there exists $\delta_{g}$ such that $|y-f(c)| < \delta_{g} \implies |g(y)-g(f(c))| < \epsilon$.
+
+    Set $\epsilon_{f} = \delta_{g}$. Plug $f(x)$ as $y$, we have $|x-c| < \delta_{f} \implies |f(x)-f(c)| < \delta_{g} \implies |g(f(x))-g(f(c))| < \epsilon$, as required.
+
+    Just don't get confused by the interchange between $y$ and $f(x)$. $y$ is just a placeholder name that stands for any input of $g$, of which the values of $f(x)$ is a part of.
+ 
+    \item We need to prove that $(x_{n}) \to c \implies g(f(x_{n})) \to g(f(c))$.
+    
+    From continuity of $f$ at $c$, we have $(x_{n}) \to c \implies f(x_{n}) \to f(c)$.
+
+    From continuity of $g$ at $f(c)$, we have $(y_{n}) \to f(c) \implies g(y_{n}) \to g(f(c))$.
+
+    Plug $f(x_{n})$ as $(y_{n})$, then we have $(x_{n}) \to c \implies f(x_{n}) \to f(c) \implies g(f(x_{n})) \to g(f(c))$, as required.
+  \end{enumerate}
+\end{solution}
+
 
 \end{questions}
 \end{document}
