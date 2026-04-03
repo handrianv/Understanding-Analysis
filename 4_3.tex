@@ -99,6 +99,79 @@
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 4 -------------------------
+\miquestion Assume $f$ and $g$ are defined on all of \textbf{R} and that $\lim_{x \to p}f(x)=q$ and $\lim_{x \to q}g(x)=r$.
+\begin{enumerate}[label=(\alph*)]
+  \item Give an example to show that it may not be true that
+  \[\lim_{x \to p}g(f(x)) = r.\]
+  \item Show that the result in (a) does follow if we assume $f$ and $g$ are continuous.
+  \item Does the result in (a) hold if we only assume $f$ is continuous? How about if we only assume that $g$ is continuous?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+      \item Let $f(x) = 0$ everywhere and
+      \[g(x) = 
+        \begin{cases}
+        0 & \text{if } x \ne 0 \\
+        5 & \text{if } x = 0
+        \end{cases}
+      \]
+      
+      Set $p=0$. We have $\lim_{x \to 0}f(x) = 0$ and $\lim_{x \to 0}g(x) = 0$, but $\lim_{x \to 0}g(f(x))=g(0)=5$.
+    \item See the next part. Continuity on $g$ is enough.
+    \item Continuity only on $f$ is not enough. The counterexample in part (a) has $f$ continuous.
+    
+    Continuity on $g$ \textit{is} enough. If $g$ is continuous at $q$ then $\lim_{x \to q}g(x)=g(q)$.
+    Then $\lim_{x \to q}g(x)=g(q)=\lim_{x \to p}g(f(x))$.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion Show using Definition 4.3.1 that if $c$ is an isolated point of $A \subseteq \textbf{R}$ then $f: A \to \textbf{R}$ is continuous at $c$.
+\begin{solution}
+  This is vacuously true. By definition of isolated point, there's a neighborhood $V_{\delta}(c)$ such that the only point in it is $c$.
+
+  Choose such a $\delta$, then $|x-c| < \delta \implies |f(x)-f(c)| < \epsilon$ is true because the only point in the interval is $x=c$ so
+  $|f(x)-f(c)| = 0 < \epsilon$.
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion Provide an example of each or explain why the request is impossible.
+\begin{enumerate}[label=(\alph*)]
+  \item Two functions $f$ and $g$, neither of which is continuous at 0 but such that $f(x)g(x)$ and $f(x)+g(x)$ are continuous at 0.
+  \item A function $f(x)$ continuous at 0 and $g(x)$ not continuous at 0 such that $f(x)+g(x)$ is continuous at 0.
+  \item A function $f(x)$ continuous at 0 and $g(x)$ not continuous at 0 such that $f(x)g(x)$ is continuous at 0.
+  \item A function $f(x)$ not continuous at 0 such that $f(x)+\frac{1}{f(x)}$ is continuous at 0.
+  \item A function $f(x)$ not continuous at 0 such that $[f(x)]^{3}$ is continuous at 0.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item \[f(x) = 
+        \begin{cases}
+        0 & \text{if } x \ne 0 \\
+        1 & \text{if } x = 0
+        \end{cases}
+      \]
+      \[g(x) = 
+        \begin{cases}
+        1 & \text{if } x \ne 0 \\
+        0 & \text{if } x = 0
+        \end{cases}
+      \]
+    Both functions are not continuous at 0. But $f(x)+g(x)=1$ everywhere and $f(x)g(x)=0$ everywhere, both of which continuous everywhere (including at 0).
+  
+    \item Impossible. By the Theorem 4.3.4 (Algebraic Continuity Theorem), $-f(x)$ is continuous at 0 and $f(x)+g(x) -f(x) = g(x)$ is continuous at 0.
+    \item $f(x)=0$ everywhere and $g(x)$ any function discontinuous at $0$ e.g. the example from part (a). Then $f(x)g(x)=0$ everywhere is continuous at 0.
+    \item TODO.
+    \item Impossible. Exercise 4.3.1 has proved that $g(x)=\sqrt[3]{x}$ is continuous everywhere. Then by Theorem 4.3.9 (Composition of Continuous Functions),
+    if $[f(x)]^3$ continuous, $g(f(x)^3)=f(x)$ must be continuous as well.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 7 -------------------------
+
 
 \end{questions}
 \end{document}
