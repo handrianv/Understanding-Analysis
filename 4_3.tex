@@ -216,7 +216,68 @@
 \end{solution}
 
 %------------------------- Problem 10 -------------------------
-\miquestion TODO
+\miquestion Observe that if $a$ and $b$ are real numbers, then
+\[\text{max}\{a, b\} = \frac{1}{2}[(a+b) + |a-b|]\]
+\begin{enumerate}[label=(\alph*)]
+  \item Show that if $f_{1}, f_{2}, ..., f_{n}$ are continuous functions, then
+  \[g(x) = \text{max}\{f_{1}(x), f_{2}(x), f_{3}(x), ..., f_{n}(x)\}\]
+  is a continuous function.
+  \item Let's explore whether the result in (a) extends to the infinite case. For each $n \in \textbf{N}$, define $f_{n}$ on $\textbf{R}$ by
+  \[
+    f_{n}(x) = \begin{cases} 
+    1 & \text{if } |x| \geq 1/n \\
+    n|x| & \text{if } |x| < 1/n
+    \end{cases}
+  \]
+  Now explicitly compute $h(x) = \text{sup}\{f_{1}(x), f_{2}(x), f_{3}(x), ...\}$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We first prove that $m(x) = \text{max}(a(x),b(x))$ is continuous for any continuous functions $a, b$. 
+    
+    --- INCORRECT --
+
+    Once we've proved this, then we note that $g(x)$ is simply a composition of $m(x)$'s. Explicitly, define $m_{n}(x)=\text{max}(f_{n}(x), f_{n+1}(x))$. Then $g(x)=m_{n-1}(m_{n-2}(...(m_{1}(x))))$.
+    By Theorem 4.3.9, composition of continous functions is continuous, so $g$ is continous.
+
+    -- INCORRECT --
+
+    -- CORRECTED -- 
+  
+    The above is not correct. For example, if $n=3$
+    \[g(x) = m_{2}(m_{1}(x)) = \text{max}\{f_{2}(m_{1}(x)), f_{3}(m_{1}(x))\}\]
+    whereas the correct one should be
+    \[g(x) = m_{2}(x)=\text{max}\{m_{1}(x), f_{3}(x)\}\]
+
+    What we need is recursion, not composition. Define $m_{1}(x)=\text{max}\{f_{1}(x), f_{2}(x)\}$ and
+    \[m_{n}(x) = \text{max}\{m_{n-1}(x), f_{n+1}(x)\}\]
+    Then $g(x)=m_{n}(x)$ is continuous by induction once we've proved that $m$ is continuous.
+
+    -- CORRECTED -- 
+
+    Now to prove continuity of $m$ at any $c \in \textbf{R}$. We need to prove that there exists $\delta$ such that $|x-c| < \delta \implies |\text{max}\{a(x), b(x)\} - \text{max}\{a(c), b(c)\}| < \epsilon$.
+    
+    Since $a$ and $b$ are continuous, there exists $\delta$ such that $a(x) \in V_{\epsilon}\{a(c)\}$ and $b_{x} \in V_{\epsilon}\{b(c)\}$. WLOG $b(c) \geq a(c)$.
+    
+    Since $b(x) < b(c) + \epsilon$, then $\text{max}\{a(x), b(x)\} < b(c) + \epsilon$
+
+    Since $b(x) > b(c) - \epsilon$ and $\text{max}\{a(x), b(x)\} \geq b(x)$, then $\text{max}\{a(x), b(x)\} > b(c) - \epsilon$
+
+    Combining them gives $b(c)-\epsilon < \text{max}\{a(x), b(x)\} < b(c)+\epsilon$. By assumption $\text{max}\{a(c), b(c)\} = b(c)$. Then $|\text{max}\{a(x), b(x)\} - \text{max}\{a(c), b(c)\}| < \epsilon$.
+    
+    Alternatively, use the given identity. By the Algebraic Continuity Theorem, $(a+b), (a-b)$ and $|a-b|$ are all continuous, so the $max$ function is continuous.
+
+    --- Extra note ---
+
+    I used the $\epsilon-\delta$ proof because I feel unsatisfied using the identity. Had it not been given, I wouldn't have come up with it. I wouldn't think to associate a $max$ function with an algebraic formula.
+
+    But this formula actually has a simple geometric interpretation. To get the max between two numbers, start from their midpoint, then add half their distance. Likewise, to get the min, subtract half their distance.
+    It wasn't immediately obvious because the way it's written in the problem statement, the $\frac{1}{2}$ was factored out.
+  \end{enumerate}
+\end{solution}
+
+
 %------------------------- Problem 11 -------------------------
 \miquestion TODO
 %------------------------- Problem 12 -------------------------
@@ -277,7 +338,7 @@ $g(x) \neq 0$ for all $x \notin F$.
 
     To prove $f(x)=f(1)x$ for all $x \in \textbf{R}$, we make use of the fact that for any real number $x$ there exists a sequence of rationals $(r_{n})$ that converges to $x$.
     Then $f(x) = \lim_{n \to \infty}f(r_{n})$ by continuity. Since $f(r_{n})$ is by definition $f(r_{1}), f(r_{2}), f(r_{3}), ...$, then
-    \[f(x) = \lim_{n \to \infty} f(r_{1}), f(r_{2}), ... = \lim_{n \to \infty} r_{1}f(1), r_{2}f(1), ... = \lim_{n \to \infty} f(1)(r_{n})=f(1)x\].
+    \[f(x) = \lim_{n \to \infty} f(r_{1}), f(r_{2}), ... = \lim_{n \to \infty} r_{1}f(1), r_{2}f(1), ... = \lim_{n \to \infty} f(1)(r_{n})=f(1)x\]
   \end{enumerate}
 \end{solution}
 
