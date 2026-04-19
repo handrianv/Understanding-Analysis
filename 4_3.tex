@@ -274,6 +274,17 @@
 
     But this formula actually has a simple geometric interpretation. To get the max between two numbers, start from their midpoint, then add half their distance. Likewise, to get the min, subtract half their distance.
     It wasn't immediately obvious because the way it's written in the problem statement, the $\frac{1}{2}$ was factored out.
+  
+    \item The point of this strange function is to show that part (a) actually does *not* extend to the infinite case.
+    
+    For $x=0$, $f_{n}(x)=0$ for all $n$, so $h(0)=0$.
+    
+    Now consider $x \neq 0$. There exists a rational $\frac{1}{n} \leq |x|$ for any $x \neq 0$. This means there's always an $n$ such that $f_{n}(x)=1$, which in turn means $h(x)=1$ for all $x \neq 0$.
+
+    So $h(x)=1$ everywhere except $h(0)=0$, so $h$ is not continuous everywhere.
+
+    Let's also see that the same argument doesn't work for the finite case. Suppose $h(x)=\text{max}\{f_{1}(x), f_{2}(x), ..., f_{n}(x)\}$. For $|x| \geq 1/n$, $h(x)=1$. For $x < 1/n$,
+    we have $f_{n}(x)=n|x|$ the largest among $f_{1}(x), f_{2}(x), ..., f_{n}(x)$. So $h(x)$ is really equal $f_{n}(x)$, which is continuous everywhere.
   \end{enumerate}
 \end{solution}
 
