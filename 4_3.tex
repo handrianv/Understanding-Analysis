@@ -212,7 +212,11 @@
 %------------------------- Problem 9 -------------------------
 \miquestion Assume $h : \textbf{R} \to \textbf{R}$ is continuous on \textbf{R} and let $K = \{x : h(x)=0\}$. Show that $K$ is a closed set.
 \begin{solution}
-  TODO.
+  Let $(x_{n})$ be a sequence in $K$ such that $(x_{n}) \to L$. Showing $K$ is closed amounts to showing $L \in K$.
+  
+  By continuity, $(x_{n}) \to L \implies h(x_{n}) \to h(L)$. Since $K$ is defined such that $h(x)=0$ for all $x \in K$, then $h(x_{n}) \to 0$ i.e. $h(L)=0$ so by definition $L \in K$.
+
+  Note that there's nothing special about 0 here. The proof works just as well if we replace 0 with any other constant $c$.
 \end{solution}
 
 %------------------------- Problem 10 -------------------------
