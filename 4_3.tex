@@ -336,10 +336,23 @@ for all $x, y \in \textbf{R}$.
     We can bound the geometric terms as small as we want by choosing big enough $N$. To prove it, we first bound it by an infinite geometric "tail":
     \[(c^{n}+...+c^{m}) \leq (c^{n} + c^{n+1} + ...)\]
     (I shifted the original index $n-1$ to $n$ for simplicity).
-    
+
     Since $|c| < 1$, by the geometric series formula, $\sum_{k=n}^{\infty}c^{k}=\frac{c^{n}}{1-c}$. Now, as we pick larger $N$, then $\lim_{n \to \infty}\frac{c^{n}}{1-c}=0$
     because $c^{n} \to 0$. Basically, geometric tail gets smaller as we choose farther starting point.
+ 
+    \item From part (a) and definition of sequential continuity, we have $y_{n} \to y \implies f(y_{n}) \to f(y)$.
+    
+    From part (b), reusing the definition of $(y_{n})$, we have $(y_{n}) \to y$. Shifting a sequence does not change its limit, so let's shift by one. Then $(y_{n+1}) \to y$ as well.
+    But $(y_{n+1})=f(y_{n})$, so $f(y_{n}) \to y$.
+
+    Combining both results, we have $f(y_{n}) \to y$ and $f(y_{n}) \to f(y)$, so $y=f(y)$.
+
+    For uniqueness, we prove by contradiction. Suppose we have $x \neq y$ and $f(x)=x$. This violates the inequality assumption: $|f(x)-f(y)|=|x-y|$ is not $\leq c|x-y|$ because $c < 1$.
+
+    \item Define the sequence $(x_{n})$ like part(b) reuse the proof of (b) and (c) to conclude $(x_{n}) \to z$ and $f(z)=z$ for a limit $z$. But since there's only one fixed point, $z=y$.
   \end{enumerate}
+
+  One line summary: contraction $\implies$ unique fixed point + iteration converges to it.
 \end{solution}
 
 %------------------------- Problem 12 -------------------------
