@@ -1,0 +1,38 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition, Stephen Abbott}
+\sheettitle{Chapter 4 - Section 4.4 - Continuous Functions on Compact satisfies} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion 
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $f(x)=x^3$ is continuous on all of \textbf{R}.
+  \item Argue, using Theorem 4.4.5, that $f$ is not uniformly continuous on \textbf{R}.
+  \item Show that $f$ is uniformly continuous on any bounded subset of \textbf{R}.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item $f(x)=x$ is continuous on all of \textbf{R}. Product of continuous functions is continuous, so $f(x)=x^3$ is continuous as well.
+    \item As per the Theorem, we need a sequence $(x_{n})$, $(y_{n})$ such that $|x_{n}-y_{n}| \to 0$ but $|f(x_{n})-f(y_{n})| \geq \epsilon$ for a choice of $\epsilon$.
+    We'll choose $\epsilon=1$. Intuitively, as $x$ and $y$ gets closer we place them farther and farther out where $x^3$ becomes extremely steep.
+
+    We'll construct a sequence such that $|x_{n}-y_{n}| = \frac{1}{n}$ for all $n$. We have $|f(x)-f(y)|=|x^3-y^3|=|x-y||x^2+xy+y^2|$.
+    Since $|x-y| = \frac{1}{n}$, to make the expression $\geq 1$ we need $|x^2+xy+y^2| \geq n$. Simply choose $x, y \geq n$ for each $n$,
+    then $|x^2+xy+y^2| > n^2 > n$, as required. One possible sequence is $(x_{n})=n$ and $(y_{n})=n+\frac{1}{n}$.
+
+    \item Since the subset is bounded, there exists an $M > 0$ such $|x| \leq M$ for all $x$. The idea is that the delta for $M$ works for all other $|x| < M$ as well, 
+    because $x^3$ gets steeper farther out from zero and requires smaller and smaller $\delta$.
+
+    More formally, do the usual $\epsilon-\delta$ proof to get $|x-y||x^2+xy+y^2|$. We have $|x|, |y| \leq M$ so $|x-y||x^2+xy+y^2| \leq 3M^2|x-y|$. Pick $\delta=\frac{\epsilon}{3M^2}$.
+    For an $\epsilon > 0$, this single $\delta$ works for all $x$.
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
