@@ -34,5 +34,55 @@
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 2 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Is $f(x)=1/x$ uniformly continuous on $(0, 1)$?
+  \item Is $g(x)=\sqrt{x^2+1}$ uniformly continuous on $(0, 1)$?
+  \item Is $h(x)=x \sin(1/x)$ uniformly continuous on $(0, 1)$?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item No, as it gets infinitely steeper closer to zero. We'll prove it like problem 1 part (b) and construct $(x_{n})$, $(y_{n})$ such that
+    $|x_{n}-y_{n}| \to 0$ but $|f(x_{n})-f(y_{n})| \geq 1$.
+
+    Construct the sequences such that $|x_{n}-y_{n}|=\frac{1}{n}$ for all $n$. We have $|f(x)-f(y)|=|x-y|\frac{1}{|xy|}$. To make this greater than one, we need
+    $\frac{1}{|xy|} \geq n \implies |xy| \leq \frac{1}{n}$. One such sequence is $(x_{n})=\frac{1}{n}$ and $y_{n}=\frac{2}{n}$, starting from $n = 3$ so that it
+    satisfies the requirement that the domain is $(0, 1)$.
+
+    \item Yes. Do the usual $\epsilon-\delta$ to get
+    \begin{align*}
+       |\sqrt{x^2+1}-\sqrt{y^2+1}| &= \frac{|x^2-y^2|}{\sqrt{x^2+1}+\sqrt{y^2+1}}\\
+       &= |x-y| \frac{|x+y|}{\sqrt{x^2+1}+\sqrt{y^2+1}}
+    \end{align*}
+
+    We need to produce a $\delta$ so that the above is less than $\epsilon$. Since $x$ and $y$ are bounded by $(0, 1)$, the $\frac{|x+y|}{\sqrt{x^2+1}+\sqrt{y^2+1}}$ term
+    is bounded by some constant $c$ that we don't need to bother computing; the important thing is that it's a constant. Set $\delta=\frac{\epsilon}{c}$, then
+    \[|x-y| \frac{|x+y|}{\sqrt{x^2+1}+\sqrt{y^2+1}} < \frac{\epsilon}{c} \cdot c = \epsilon\]
+    This delta works for all $y$ for a choice of $\epsilon$.
+
+    Or if we want to compute the actual bound. We have $x, y < 1$ so $|x+y| < 2$. Also, $x, y > 0$ so $\sqrt{x^2+1}+\sqrt{y^2+1} > 2$. Then $\frac{|x+y|}{\sqrt{x^2+1}+\sqrt{y^2+1}} < 1$,
+    so we can set $\delta=\epsilon$. Then
+    \[|x-y| \frac{|x+y|}{\sqrt{x^2+1}+\sqrt{y^2+1}} < |x-y| < \epsilon\]
+
+    \item Looking at the graph, the answer could possibly be yes. It has a similar problem as $\sin(1/x)$ in that it oscillates wildly closer to zero, but otoh the amplitude gets compressed, so
+    each oscillation covers smaller range of values.
+
+    Let's try to prove it's possible and see where it goes. Consider $|x \sin(1/x) - y \sin(1/y)|$. By triangle inequality and the fact that $\sin(1/x) \in [-1, 1]$ for $x \in (0, 1)$, we have
+    \[|x \sin(1/x) - y \sin(1/y)| \leq |x \sin(1/x)| + |y \sin(1/y)| \leq x + y\]
+    This bound is only useful if we limit $x, y$ to be small enough. Say, one of $x, y < \epsilon/4$ and $|x-y| < \epsilon/4$, which ensures $x+y < \epsilon/4 + \epsilon/2 < \epsilon$.
+
+    What if $x, y \in [\epsilon/4, 1)$? Well, $x \sin(1/x)$ is continuous on $[\epsilon/4, 1]$ (note the closed interval). By Theorem 4.4.7, it's uniformly continuous on $[\epsilon/4, 1]$ and since
+    $[\epsilon/4, 1) \subset [\epsilon/4, 1]$, it's uniformly continuous on $[\epsilon/4, 1)$ as well. Hence there's a single $\delta_{1}$ that works for this region.
+
+    All in all, choose $\delta = \min(\delta_{1}, \epsilon/4)$.
+    
+    --- Much more elegant proof by chatgpt ---\\
+    Extend $h(x) = x \sin(1/x)$ to 0 by defining $h(0)=0$. Now $h(x)$ is continuous on [0, 1], hence uniformly continuous on [0, 1], hence uniformly continuous on (0, 1). This is in fact using the result
+    of Exercise 4.4.13 (Continuous Extension Theorem).
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
