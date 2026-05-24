@@ -85,7 +85,17 @@
 \end{solution}
 
 %------------------------- Problem 3 -------------------------
-\miquestion TODO
+\miquestion Show that $f(x)=1/x^2$ is uniformly continuous on the set $[1, \infty)$ but not on the set $(0, 1]$.
+\begin{solution}
+  First we prove uniform continuity on $[1, \infty)$. $|f(x)-f(y)| = \frac{|x-y||x+y|}{|xy|^2}$. The trick is to handle the $\frac{x+y}{(xy)^2}$ together:
+  \[\frac{|x-y||x+y|}{|xy|^2} = |x-y|\frac{x+y}{(xy)^2} = |x-y|\left(\frac{1}{xy^2} + \frac{1}{x^2y}\right)\]
+  Since $x, y \geq 1$, the terms in parentheses is upper-bounded by 2, so we can choose $\delta=\epsilon/2$.
+
+  It's not uniformly continuous on $(0, 1]$ for the same reason $1/x$ is not uniformly continuous on $(0, 1]$ (Problem 4.4.2(a)). The exact same argument works, since $1/x^2$ is even steeper.
+
+  Let $(x_{n}) = \frac{1}{n}$ and $(y_{n}) = \frac{2}{n}$. Pick $\epsilon=1$. Then $|x_{n} - y_{n}| \to 0$ but $|f(x_{n})-f(y_{n})| = \frac{3n^2}{4} \geq 1$ for $n \geq 2$.
+\end{solution}
+
 %------------------------- Problem 4 -------------------------
 \miquestion TODO
 %------------------------- Problem 5 -------------------------
