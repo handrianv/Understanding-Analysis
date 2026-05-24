@@ -84,5 +84,53 @@
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 3 -------------------------
+\miquestion TODO
+%------------------------- Problem 4 -------------------------
+\miquestion TODO
+%------------------------- Problem 5 -------------------------
+\miquestion TODO
+%------------------------- Problem 6 -------------------------
+\miquestion TODO
+%------------------------- Problem 7 -------------------------
+\miquestion TODO
+%------------------------- Problem 8 -------------------------
+\miquestion Example or short argument why impossible.
+\begin{enumerate}[label=(\alph*)]
+  \item A continuous function defined on [0, 1] with range (0, 1).
+  \item A continuous function defined on (0, 1) with range [0, 1].
+  \item A continuous function defined on (0, 1] with range (0, 1).
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Impossible. By Theorem 4.4.1, if a function is continuous on a compact set, then its range must be compact as well.
+    \item $|\sin(1/x)|$. It's continuous in $(0, 1)$ because the absolute value function is continuous everywhere, $\sin(1/x)$ is continuous everywhere except 0, and function composition
+    preserves continuity. Alternatively, $\sin^2(1/x)$ or $\cos^2(1/x)$.
+    \item \textbf{(Wrong solution)} Impossible. If the function is continuous on (0, 1] then it's also continuous on the compact subset [1/2, 1]. By Theorem 4.4.1, its range must be compact on [1/2, 1] as well.
+    
+    The argument above is wrong because Theorem 4.4.1 only guarantees that $f([1/2, 1])$ is compact but it doesn't say that the range must contain [1/2, 1] as well. For example, it could be that $f([1/2, 1]) = [1/2, 3/4]$.
+
+    \textbf{(Correct solution)} TODO.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 9 -------------------------
+\miquestion \textbf{(Lipschitz Functions).} A function $f : A \to \textbf{R}$ is called \textit{Lipschitz} if there exists a bound $M > 0$ such that
+\[\left\lvert \frac{f(x) - f(y)}{x-y} \right\rvert \leq M\]
+for all $x \neq y \in A$. Geometrically speaking, a function $f$ is Lipschitz if there is a uniform bound on the magnitude of the slopes of lines drawn through any two points on the
+graph of $f$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that if $f: A \to \textbf{R}$ is Lipschitz, then it's uniformly continuous on $A$.
+  \item Is the converse statement true? Are all uniformly continuous functions necessarily Lipschitz?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Pick $\delta = \frac{\epsilon}{M}$. Then $|f(x)-f(y)| \leq M|x-y| < M\frac{\epsilon}{M} = \epsilon$.
+    \item TODO.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
