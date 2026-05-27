@@ -97,7 +97,26 @@
 \end{solution}
 
 %------------------------- Problem 4 -------------------------
-\miquestion TODO
+\miquestion True or false.
+\begin{enumerate}[label=(\alph*)]
+  \item If $f$ is continuous on $[a, b]$ with $f(x) > 0$ for all $a \leq x \leq b$, then $1/f$ us bounded on $[a, b]$ (meaning $1/f$ has a bounded range).
+  \item If $f$ is uniformly continuous on a bounded set $A$, then $f(A)$ is bounded.
+  \item If $f$ is defined on \textbf{R} and $f(K)$ is compact whenever $K$ is compact, then $f$ is continuous on \textbf{R}.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item True. By Theorem 4.4.7, $f$ is continuous on $[a, b]$ implies $f([a, b])$ is compact, hence bounded. Since $f([a, b]) > 0$, $1/f$ is defined and bounded on $a \leq x \leq b$.
+    
+    -- Correction by Chatgpt -- \\
+    I wrote "hence bounded" above, but actually boundedness alone is not enough, we need compactness. If $f[a, b] = (0, 1]$ then it's bounded but $1/f$ is unbounded. But since $f[a, b]$ is compact
+    and $f([a, b]) > 0$, then it cannot have 0 as its limit point.
+
+    -- Better proof by Chatgpt -- \\
+    By the Extreme Value Theorem, $f$ attains a minimum $m$ in $[a, b]$. Since $f([a, b]) > 0$, then $m > 0$ so $\frac{1}{f} \leq \frac{1}{m}$.
+  \end{enumerate}
+\end{solution}
+
 %------------------------- Problem 5 -------------------------
 \miquestion TODO
 %------------------------- Problem 6 -------------------------
