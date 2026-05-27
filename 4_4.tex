@@ -114,13 +114,50 @@
 
     -- Better proof by Chatgpt -- \\
     By the Extreme Value Theorem, $f$ attains a minimum $m$ in $[a, b]$. Since $f([a, b]) > 0$, then $m > 0$ so $\frac{1}{f} \leq \frac{1}{m}$.
+    
+    \item TODO
+    \item False. Continuity preserves compactness (Theorem 4.4.1), but preservation of compactness does not imply continuity. Counterexample: let $f(x) = 0$ for $x \neq 1$ and $f(1)=1$. We have $f(S)$ compact
+    for any set $S$ since $f(S)$ is either $\{0\}$, $\{1\}$, or $\{0, 1\}$. But $f$ is discontinuous at 1.
   \end{enumerate}
 \end{solution}
 
 %------------------------- Problem 5 -------------------------
-\miquestion TODO
+\miquestion Assume that $g$ is defined on an open interval $(a, c)$ and is uniformly continuous on $(a, b]$ and $[b, c)$ where $a < b < c$. Prove that $g$ is uniformly continuous on $(a, c)$.
+\begin{solution}
+  Let $\epsilon > 0$. By uniform continuity on $(a, b]$, there exists $\delta_{1} > 0$ such that for all $a < x < y \leq b$, $|x-y| < \delta_{1} \implies |f(x)-f(y)| < \frac{\epsilon}{2}$. Similarly, there exists
+  $\delta_{2} > 0$ such that for all $b \leq x < y < c$, $|x-y| < \delta_{2} \implies |f(x)-f(y)| < \frac{\epsilon}{2}$.
+  
+  Let $\delta = \text{min}(\delta_{1}, \delta_{2})$. Then even if $x \in (a, b]$ and $y \in [b, c)$, the distances $|a-b|$ and $|b-c|$ are both within $\delta$, so uniform continuity on both intervals
+  ensure the sum is within $\epsilon$. More formally, there are three cases:
+  \begin{enumerate}
+    \item $a < x < y \leq b$. Then $|x-y| < \delta \leq \delta_{1} \implies |f(x)-f(y)| < \frac{\epsilon}{2} < \epsilon$.
+    \item $b \leq x < y < c$. Then $|x-y| < \delta \leq \delta_{2} \implies |f(x)-f(y)| < \frac{\epsilon}{2} < \epsilon$.
+    \item $a < x < b < y < c$. We have $|x-y| = |x-b| + |b-y|$. Then $|x-b| < \delta  \leq \delta_{1}$ and $|b-y| < \delta \leq \delta_{2}$
+    so $|f(x)-f(y)| \leq |f(x)-f(b)| + |f(b)-f(y)| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
+  \end{enumerate}
+\end{solution}
+
 %------------------------- Problem 6 -------------------------
-\miquestion TODO
+\miquestion Example or impossible with a short explanation.
+\begin{enumerate}[label=(\alph*)]
+  \item A continuous function $f: (0, 1) \to \textbf{R}$ and a Cauchy sequence $(x_{n})$ such that $f(x_{n})$ is not a Cauchy sequence.
+  \item A uniformly continuous function $f: (0, 1) \to \textbf{R}$ and a Cauchy sequence $(x_{n})$ such that $f(x_{n})$ is not a Cauchy sequence.
+  \item A continuous function $f: [0, \infty) \to \textbf{R}$ and a Cauchy sequence $(x_{n})$ such that $f(x_{n})$ is not a Cauchy sequence.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item TODO
+    \item Impossible. We'll prove that $f(x_{n})$ must be Cauchy. Given $\epsilon > 0$, we need to produce an $N$ such that for all $n, m > N$, $|f(x_{n})-f(x_{m})| < \epsilon$.
+    
+    By uniform continuity, there exists a $\delta$ such that $|x_{n}-x_{m}| < \delta \implies |f(x_{n})-f(x_{m})| < \epsilon$.
+
+    Since $(x_{n})$ is Cauchy, there exists an $N$ such that for all $n, m > N$, $|x_{n}-x_{m}| < \delta$.
+
+    So the final chain of logic is: $(x_{n})$ Cauchy $\implies$ pick an $N$ such that $|x_{n}-x_{m}| < \delta \implies$ $|f(x_{n})-f(x_{m})| < \epsilon$ by uniformy continuity.
+  \end{enumerate}
+\end{solution}
+
 %------------------------- Problem 7 -------------------------
 \miquestion TODO
 %------------------------- Problem 8 -------------------------
