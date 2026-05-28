@@ -115,7 +115,14 @@
     -- Better proof by Chatgpt -- \\
     By the Extreme Value Theorem, $f$ attains a minimum $m$ in $[a, b]$. Since $f([a, b]) > 0$, then $m > 0$ so $\frac{1}{f} \leq \frac{1}{m}$.
     
-    \item TODO
+    \item True. The intuition is that if $f(A)$ were unbounded, since $A$ is bounded then $f(A)$ must contain an infinite slope and that breaks uniform continuity.
+    
+    Formally, we'll prove the contrapositive: if $f(A)$ is unbounded then $f$ is not uniformly continuous. Choose $x_{n} \in A$ such that $|f(x_{n})| > n$. Since $A$ is bounded, by BWT $(x_{n})$
+    contains a Cauchy subsequence $(y_{n})$ such that $f(y_{n})$ is also unbounded.
+
+    Now suppose $f$ were uniformly continuous. Then for an $\epsilon$ there exists a $\delta$ that works. Since $(y_{n})$ is Cauchy, there exists an $N$ such that $i, j > N \implies |y_{i}-y_{j}| < \delta$. But this results
+    in a contradiction. By uniformy continuity $|f(y_{i})-f(y_{j})| < \epsilon$, which contradicts the fact that $f(y_{n})$ is unbounded. Hence $f$ cannot be uniformly continuous.
+    
     \item False. Continuity preserves compactness (Theorem 4.4.1), but preservation of compactness does not imply continuity. Counterexample: let $f(x) = 0$ for $x \neq 1$ and $f(1)=1$. We have $f(S)$ compact
     for any set $S$ since $f(S)$ is either $\{0\}$, $\{1\}$, or $\{0, 1\}$. But $f$ is discontinuous at 1.
   \end{enumerate}
@@ -147,7 +154,8 @@
 
 \begin{solution}
   \begin{enumerate}[label=(\alph*)]
-    \item TODO
+    \item Impossible. The issue here is that $(x_{n})$ may converge to 0 which is outside the domain, so continuity doesn't help and $f(x_{n})$ may be unbounded towards zero.
+    Counterexample: $(x_{n})=1/n$. We have $(x_{n}) \to 0$ but $f(x_{n})$ diverges.
     \item Impossible. We'll prove that $f(x_{n})$ must be Cauchy. Given $\epsilon > 0$, we need to produce an $N$ such that for all $n, m > N$, $|f(x_{n})-f(x_{m})| < \epsilon$.
     
     By uniform continuity, there exists a $\delta$ such that $|x_{n}-x_{m}| < \delta \implies |f(x_{n})-f(x_{m})| < \epsilon$.
@@ -155,6 +163,8 @@
     Since $(x_{n})$ is Cauchy, there exists an $N$ such that for all $n, m > N$, $|x_{n}-x_{m}| < \delta$.
 
     So the final chain of logic is: $(x_{n})$ Cauchy $\implies$ pick an $N$ such that $|x_{n}-x_{m}| < \delta \implies$ $|f(x_{n})-f(x_{m})| < \epsilon$ by uniformy continuity.
+ 
+    \item True. Let $(x_{n}) \to L$. We have $L \in [0, \infty)$ and $f$ continuous. By definition of continuity, $(x_{n}) \to L \implies f(x_{n}) \to f(L)$ so $f(x_{n})$ is Cauchy.
   \end{enumerate}
 \end{solution}
 
