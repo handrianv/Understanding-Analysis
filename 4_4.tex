@@ -169,7 +169,19 @@
 \end{solution}
 
 %------------------------- Problem 7 -------------------------
-\miquestion TODO
+\miquestion Prove that $f(x) = \sqrt{x}$ is uniformly continuous on $[0, \infty)$.
+\begin{solution}
+  We have
+  \begin{align*}
+    |\sqrt{x}-\sqrt{y}| &= \sqrt{|\sqrt{x}-\sqrt{y}|^2} \\
+    &=\sqrt{x+y-2\sqrt{xy}}
+  \end{align*}
+
+  Where we get rid of the absolute value because a square is non-negative. Now wlog $x \geq y$, then $2\sqrt{xy} \geq 2y$ and $y-2\sqrt{xy} \leq y-2y = -y$, so:
+  \[\sqrt{x+y-2\sqrt{xy}} \leq \sqrt{x-y}\]
+  We can pick $\delta=\epsilon^{2}$.
+\end{solution}
+
 %------------------------- Problem 8 -------------------------
 \miquestion Example or short argument why impossible.
 \begin{enumerate}[label=(\alph*)]
