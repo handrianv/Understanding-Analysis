@@ -220,5 +220,21 @@ graph of $f$.
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 10 -------------------------
+\miquestion Assume that $f$ and $g$ are uniformly continuous functions defined on a common domain $A$. Which of the following combinations are necessarily uniformly continuous on $A$:
+$f(x)+g(x), f(x)g(x), \frac{f(x)}{g(x)}, f(g(x))$. Assume that the quotient and the composition are properly defined and thus at least continuous.
+
+\begin{solution}
+  $f(x) + g(x)$ is uniformly continuous. Given an $\epsilon > 0$, there exists a $\delta_{f}$ such that $|x-y| < \delta_{f} \implies |f(x)-f(y)| < \frac{\epsilon}{2}$. Similarly for $\delta_{g}$.
+  Pick $\delta = \text{min}(\delta_{f}, \delta_{g})$, then $|x-y| < \delta \implies |f(x)-f(y) + g(x)-g(y)| \leq |f(x)-f(y)| + |g(x)-g(y)| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
+
+  $f(g(x))$ is uniformly continuous.  Given an $\epsilon > 0$, there exists a $\delta_{f}$ such that $|x-y| < \delta_{f} \implies |f(x)-f(y)| < \epsilon$. There also exists a $\delta_{g}$ such that
+  $|x-y| < \delta_{g} \implies |g(x)-g(y)| < \delta_{f}$. Pick $\delta=\delta_{g}$.
+  
+  $f(x)g(x)$ is not necessarily uniformly continuous. Counterexample: $f(x) = g(x) = x$, then $f(x)g(x) = x^2$ is not uniformly continuous on \textbf{R}.
+  
+  $\frac{f(x)}{g(x)}$ is not necessarily uniformly continuous. Counterexample: $f(x) = 1$ and $g(x) = x$, then $\frac{f(x)}{g(x)} = \frac{1}{x}$ is not uniformly continuous on $(0, 1)$.
+\end{solution}
+
 \end{questions}
 \end{document}
