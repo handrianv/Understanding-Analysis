@@ -1,0 +1,114 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition}
+\sheettitle{Chapter 4 - Section 4.5 - The Intermediate Value Theorem} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Show how the IVT follows as a corollary to Theorem 4.5.2.
+\begin{solution}
+  Theorem 4.5.2: continuous function preserves connected sets.
+
+  Definition of connected sets: A set $E \subseteq \textbf{R}$ is connected iff whenever $a < c < b$ with $a, b \in E$, then $c \in E$ as well.
+
+  In \textbf{R}, connected sets coincide precisely with the collection of intervals (page 104).
+  
+  Then IVT follows pretty much by definition. A closed interval $[a, b]$ is connected. Let $f$ be continuous, then $f([a, b])$ is connected. By definition of connectedness,
+  $f$ contains everything in $[f(a), f(b)]$.
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Example or prove impossible.
+\begin{enumerate}[label=(\alph*)]
+  \item A continuous function defined on an open interval with range equal to a closed interval.
+  \item A continuous function defined on a closed interval with range equal to an open interval.
+  \item A continuous function defined on an open interval with range equal to an unbounded closed set different from \textbf{R}.
+  \item A continuous function defined on all of \textbf{R} with range equal to \textbf{Q}.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item $\sin(1/x)$ is continuous on $(0, 1)$ with range $[-1, 1]$.
+    \item For unbounded interval, yes. $f(x)=x$ is continuous on \textbf{R} and its range is also \textbf{R} (recall that \textbf{R} is both open and closed).
+    
+    For unbounded interval, impossible. A closed bounded interval is compact and continuous functions preserve compactness (Theorem 4.4.1).
+    \item With unbounded interval: $x^2$ is continuous on \textbf{R} with range $[0, \infty)$.
+    
+    With bounded interval: $\tan^2{x}$ is continuous on $(\frac{\pi}{2}, \frac{\pi}{2})$ with range $[0, \infty)$.
+
+    \item Impossible. We'll prove it by contradiction. Suppose there exists such a function. Since the range is \textbf{Q}, $f$ is not constant. 
+    Choose $x \neq y$ such that $f(x) \neq f(y)$ and wlog $f(x) < f(y)$.
+    By IVT, the range of $f$ must contain everything in $[f(x), f(y)]$. But this implies $f$ contains an
+    irrational, since between any two rationals there is an irrational, contradicting the assumption that the range is \textbf{Q}.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion A function $f$ is \textit{increasing} on $A$ if $f(x) \leq f(y)$ for all $x < y$ in $A$. Show that if $f$ is increasing on $[a, b]$ and satisfies the
+intermediate value property (Definition 4.5.3), then $f$ is continuous on $[a, b]$.
+\begin{solution}
+  To prove that $f$ is continuous at $a \leq c \leq b$, we need to show that given $\epsilon > 0$, there exists $\delta > 0$ such that $|x-c| < \delta \implies |f(x)-f(c)| < \epsilon$.
+
+  We'll prove left continuity: there exists $\delta_{a}$ such that for $x < c$ and $c-x < \delta_{a}$, $f(c)-f(x) < \epsilon$. The proof for $x > c$ is similar and will result in a $\delta_{b}$. Then
+  choose $\delta=\text{min}(\delta_{a}, \delta_{b})$.
+
+  By monotonicity, $f(a) \leq f(c)$ and if $a < x < c$ then $f(a) \leq f(x) \leq f(c)$. By intermediate value property, $f$ takes on all values between $f(a)$ and $f(c)$ so there is an $a < x < c$
+  such that $f(c)-f(x) < \epsilon$. Choose $\delta_{a} = c-x$.
+  This works for all $x < t < c$ as well because monotonicity ensures that $f(c)-f(t) \leq f(c)-f(x) < \epsilon$.
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Let $g$ be continuous on an interval $A$ and let $F$ be the set of points where $g$ fails to be one-to-one; that is,
+\[F = \{x \in A : f(x)=f(y) \text{ for some } y \neq x \text{ and } y \in A\}.\]
+Show $F$ is either empty or uncountable.
+
+\begin{solution}
+  At first I thought the problem statement must be wrong. Take something like $\sin(x)$. Within an interval there's only a finite number of points where $\sin(x)=1$, so it's neither empty nor uncountable. But then I realized
+  it's not only 1 that's repeating, the intervals around $\sin(x)=1$ must be repeating as well and an interval is uncountable. That's what we'll prove; $F$ is either empty or contains repeating intervals of output values.
+
+  If $g$ never fails to be one-to-one then $F$ is trivally empty. Otherwise there exists $x \neq y$ such that $g(x)=g(y)$.
+  
+  If for all $x < c < y$, $g(c)=g(x)=g(y)$, then $[x, y] \subseteq F$ so $F$ is uncountable.
+
+  Otherwise, let $g(c) \neq g(x)$ and wlog $g(c) > g(x)$. By IVT there exists a subset $S_{1} \subseteq (x, c)$ such that $g(S_{1}) = (g(x), g(c))$. Since $g(S_{1})$ is an interval, $S_{1}$ must be uncountable.
+  
+  Similarly, there exists a subset $S_{2} \subseteq (c, y)$ such that $g(S_{2})=(g(y), g(c))$.
+  
+  Since $g(x)=g(y)$ then $g(S_{1})=g(S_{2})$, hence $S_{1}, S_{2} \subseteq F$ and $F$ is uncountable.  Note that $S_{1} \cap S_{2} = \emptyset$ so they're different set of points
+  and can be included in $F$.
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Finish the proof of the Intermediate Value Theorem using the Axiom of Completeness started previously.
+  \item Finish the proof of the Intermediate Value Theorem using the Nested Interval Property started previously.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item The partial proof from the book is as follow. Let $f$ be continuous and consider the special case $f(a) < 0 < f(b)$. We'll show that $f(c)=0$ for some $c \in (a, b)$. Let
+    \[K = \{x \in [a, b] : f(x) \leq 0\}.\]
+    Notice that $K$ is bounded above by $b$ and $a \in K$ so $K$ is not empty. Thus we may appeal to AoC to assert that $s=\text{sup }K$ exists.
+
+    We'll first prove that $f(s) \leq 0$. Since $s$ is a supremum, $s$ is a limit point of some sequence $(x_{n}) \in K$. By continuity, $f(x_{n}) \to f(s)$. Since
+    $f(x_{n}) \leq 0$, then $f(s) \leq 0$.
+
+    Next we need to prove that $f(s) \geq 0$. The idea is that since $s$ is a supremum, it's sort of the "rightmost" point where $f$ is $\leq 0$. But if $f(s) < 0$,
+    since everything to the right of $s$ is $> 0$, there'd be a discontinuity; a jump that skips 0. Or in other words, $f(s)$ is not continuous from the right side.
+
+    Formally, we prove by contradiction. First we note that since $s = \text{sup } K$, if $x > s$ then $x \notin K$ hence $f(x) > 0$.
+    
+    Now let $\epsilon = |f(s)|$. By continuity, there exists a $\delta < (b-s)$ that works (the bound $(b-s)$ is just a trivial detail to ensure
+    we stay within $[a, b]$). Choose $x$ such that $x-s < \delta$. Since $f$ is defined on $[a, b]$, $f(x)$ is defined.
+    
+    We've asserted that $f(x) > 0$. But since $f(s) < 0$, we have $f(x)-f(s) \geq |0-f(s)| = \epsilon$, contradicting continuity of $f$.
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
