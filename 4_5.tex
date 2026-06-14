@@ -107,7 +107,37 @@ Show $F$ is either empty or uncountable.
     we stay within $[a, b]$). Choose $x$ such that $x-s < \delta$. Since $f$ is defined on $[a, b]$, $f(x)$ is defined.
     
     We've asserted that $f(x) > 0$. But since $f(s) < 0$, we have $f(x)-f(s) \geq |0-f(s)| = \epsilon$, contradicting continuity of $f$.
+    
+    \item TODO.
   \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion TODO.
+%------------------------- Problem 7 -------------------------
+\miquestion TODO.
+%------------------------- Problem 8 -------------------------
+\miquestion \textbf{(Inverse functions).} If a function $f: A \to R$ is one-to-one (injective), the we can define the inverse function $f^{-1}$ on the range of $f$ in the
+natural way: $f^{-1}(y)=x$ where $y=f(x)$. Show that if $f$ is continuous on an interval $[a, b]$ and one-to-one, then $f^{-1}$ is also continuous.
+
+\begin{solution}
+  Take a convergent sequence $(y_{n}) \to y$ and let $f^{-1}(y_{n})=(x_{n})$. To prove continuity of $f^{-1}$, we need to prove that $(y_{n}) \to y \implies (x_{n}) \to x$.
+
+  \textbf{Wrong solution}\\
+  My first stupid thought was to argue that since $f$ is continuous, then $(x_{n}) \to x \implies (f(x_{n}) = (y_{n})) \to (f(x)=y)$. But this argument is circular; we're using
+  the thing we're trying to prove, mainly that $(x_{n}) \to x$. We *don't know* that $(x_{n}) \to x$.
+  
+  \textbf{Correct solution}\\
+  In fact, we don't know yet that $(x_{n})$ converges at all. But we can use compactness: since $(x_{n}) \in [a, b]$ then there's a convergent subsequence $(x_{n_{k}}) \to L$.
+
+  Our strategy will be to prove that $L=x$. Then we'll finish the proof by showing that all subsequences $(x_{n_{k}})$ of $(x_{n})$ converges to $x$, hence $(x_{n}) \to x$.
+
+  By continuity of $f$, we have $(x_{n_{k}}) \to L \implies f(x_{n_{k}}) \to f(L)$. But note that since $f(x_{n_{k}})$ is really a subsequence of $(y_{n})$ and
+  by assumption $(y_{n}) \to y$, then $f(x_{n_{k}}) \to f(L) = y = f(x)$, hence $L=x$.
+
+  Note that the above argument works for any arbitrary convergent subsequence $(x_{n_{k}}) \in (x_{n})$. Finally, we invoke Exercise 2.5.5 (which I haven't solved!): if a
+  bounded sequence $(x_{n})$ has the property that every convergent subsequence converges to the same limit $L \in \textbf{R}$, then $(x_{n}) \to L$. Here $(x_{n})$ is bounded by
+  $[a, b]$ and $L=x$.
 \end{solution}
 
 \end{questions}
