@@ -108,14 +108,38 @@ Show $F$ is either empty or uncountable.
     
     We've asserted that $f(x) > 0$. But since $f(s) < 0$, we have $f(x)-f(s) \geq |0-f(s)| = \epsilon$, contradicting continuity of $f$.
     
-    \item TODO.
+    \item Repeat the procedure described in the book to get a sequence of nested intervals. Apply NIP. It's not difficult to conclude that 0 is the intersection.
   \end{enumerate}
 \end{solution}
 
 %------------------------- Problem 6 -------------------------
-\miquestion TODO.
+\miquestion Let $f: [0, 1] \to \textbf{R}$ be continuous with $f(0)=f(1)$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that there must exist $x, y \in [0, 1]$ satisfying $|x-y|=1/2$ and $f(x)=f(y)$.
+  \item Show that for each $n \in \textbf{N}$ there exist $x_{n}, y_{n} \in [0, 1]$ with $|x_{n}-y_{n}|=1/n$ and $f(x_{n})=f(y_{n})$.
+  \item If $h \in (0, 1/2)$ is not of the form $1/n$, there does not necessarily exist $|x-y|=h$ satisfying $f(x)=f(y)$. Provide an example that illustrates this using $h=2/5$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Use the same trick as problem 7 (which I had solved before this). Define $g(x)=f(x)-f(x+1/2)$ for $x \in [0, 1/2]$. Then the required condition is equivalent to the existence
+    of $g(x)=0$.
+    
+    Consider $g(0)$ and $g(1/2)$. Since $f(0)=f(1)$, then $g(0)=-g(1/2)$ (both could possibly be 0 as well). Apply IVT to $[0, 1/2]$. Since $g(0)$ and $g(1/2)$
+    have different signs, there's a $g(x)=0$.
+  \end{enumerate}
+\end{solution}
+
 %------------------------- Problem 7 -------------------------
-\miquestion TODO.
+\miquestion Let $f$ be a continuous function on the closed interval $[0, 1]$ with range also contained in $[0, 1]$. Prove that $f$ must have a fixed point; that is, show $f(x)=x$ for
+at least one value of $x \in [0, 1]$.
+\begin{solution}
+  Stuck with this for quite some time and finally got a hint from chatgpt: consider the auxiliary function $g(x)=f(x)-x$.
+
+  With that hint, the problem becomes much easier. $f(x)=x$ if $g(x)=0$. Since the range of $f$ is in $[0, 1]$, then $0 \leq f(0), f(1) \leq 1$ and $g(1) \leq 0 \leq g(0)$.
+  Note that $g$ is continuous, so we can apply IVT to $[0, 1]$ and conclude there exists an $0 \leq x \leq 1$ such that $g(x)=0$. 
+\end{solution}
+
 %------------------------- Problem 8 -------------------------
 \miquestion \textbf{(Inverse functions).} If a function $f: A \to R$ is one-to-one (injective), the we can define the inverse function $f^{-1}$ on the range of $f$ in the
 natural way: $f^{-1}(y)=x$ where $y=f(x)$. Show that if $f$ is continuous on an interval $[a, b]$ and one-to-one, then $f^{-1}$ is also continuous.
@@ -130,7 +154,7 @@ natural way: $f^{-1}(y)=x$ where $y=f(x)$. Show that if $f$ is continuous on an 
   \textbf{Correct solution}\\
   In fact, we don't know yet that $(x_{n})$ converges at all. But we can use compactness: since $(x_{n}) \in [a, b]$ then there's a convergent subsequence $(x_{n_{k}}) \to L$.
 
-  Our strategy will be to prove that $L=x$. Then we'll finish the proof by showing that all subsequences $(x_{n_{k}})$ of $(x_{n})$ converges to $x$, hence $(x_{n}) \to x$.
+  Our strategy will be to prove that $L=x$. Then we show that the whole sequence $(x_{n}) \to x$.
 
   By continuity of $f$, we have $(x_{n_{k}}) \to L \implies f(x_{n_{k}}) \to f(L)$. But note that since $f(x_{n_{k}})$ is really a subsequence of $(y_{n})$ and
   by assumption $(y_{n}) \to y$, then $f(x_{n_{k}}) \to f(L) = y = f(x)$, hence $L=x$.
