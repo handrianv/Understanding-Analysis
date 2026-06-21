@@ -1,0 +1,83 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition}
+\sheettitle{Chapter 5 - Section 5.2 - Derivatives and the Intermediate Value Property} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Supply proofs for part (i) and (ii) of Theorem 5.2.4.
+\begin{solution}
+  Part (i): $(f+g)'(c) = f'(c) + g'(c)$
+
+  Proof:
+  \begin{align*}
+     (f+g)'(c) = \lim_{x \to c}\frac{f(x)+g(x)-f(c)-g(c)}{x-c} &= \lim_{x \to c}\left(\frac{f(x)-f(c)}{x-c} + \frac{g(x)-g(c)}{x-c}\right)\\ 
+     &= f'(c)+g'(c)
+  \end{align*}
+  where the last step is justified because we know both limits exist, so we can apply the Algebraic Limit Theorem (Theorem 4.2.4).
+
+  Part (ii): $(kf)'(c) = kf'(c)$ for all $k \in \textbf{R}$.
+  
+  Proof:
+  \[(kf)'(c) = \lim_{x \to c} k\left( \frac{f(x)-f(c)}{x-c} \right) = k \lim_{x \to c}\frac{f(x)-f(c)}{x-c} = kf'(c)\]
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Exactly one of the following requests is impossible. Decide which it is, and provide examples for the other three. In each case, assume the functions are defined
+on all of \textbf{R}.
+\begin{enumerate}[label=(\alph*)]
+  \item Functions $f$ and $g$ not differentiable at zero but where $fg$ is differentiable at zero.
+  \item A function $f$ not differentiable at zero and a function $g$ differentiable at zero where $fg$ is differentiable at zero.
+  \item A function $f$ not differentiable at zero and a function $g$ differentiable at zero where $f+g$ is differentiable at zero.
+  \item A function $f$ differentiable at zero but not differentiable at any other point.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item $f(x) = 0$ for $x \geq 0$ and $f(x)=1$ otherwise. $g(x)=1$ for $x \geq 0$ and $g(x) = 0$ otherwise. Both functions are discontinuous at zero hence not differentiable there, but
+    $fg$ is the zero function.
+    \item $f(x) = 0$ for $x \geq 0$ and $f(x)=1$ otherwise. $g(x)=0$ everywhere.
+    \item Impossible. If $f+g$ were differentiable at zero, then $(f+g)-g = f$ must be differentiable at zero as well by Theorem 5.2.4.
+    \item $f(x) = x^2$ for $x \in \textbf{Q}$ and $f(x) = 0$ otherwise.
+    
+    It's differentiable at zero because for $c= 0$, $\frac{f(x)-f(c)}{x-c} = x$ and $\lim_{x \to 0} x = 0$.
+
+    It's not differentiable at $c \neq 0$. Consider a sequence $(x_{n}) \to c$. We can split it into two subsequences $(a_{n}) \in \textbf{Q}$ and $(b_{n}) \notin \textbf{Q}$. We have
+    $(a_{n}) \to c^2$ and $(b_{n}) \to 0$. Since $c^2 \neq 0$ for $c \neq 0$, the two subsequences converge to different limits, hence $(x_{n})$ doesn't converge.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Use Definition 5.2.1 to produce the proper formula for the derivation of $f(x)=1/x$.
+  \item Combine the result in part (a) with the Chain Rule to supply a proof for part (iv) of Theorem 5.2.4.
+  \item Supply a direct proof of Theorem 5.2.4 (iv) by algebraically manipulating the difference quotient for $(f/g)$ in a style similar to the proof of Theorem 5.2.4 (iii).
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item \[\frac{f(x)-f(c)}{x-c}=\frac{\frac{1}{x}-\frac{1}{c}}{x-c}=\frac{-(x-c)}{xc}\frac{1}{x-c}=-\frac{1}{xc}\]
+
+    So we have $f'(c)=\lim_{x \to c}(-\frac{1}{xc})=-\frac{1}{c^2}$ for $c \neq 0$.
+
+    \item We first derive a formula for the derivative of $h(x)=1/g(x)$.
+    
+    \[\frac{h(x)-h(c)}{x-c}=\frac{-(g(x)-g(c))}{g(x)g(c)}\frac{1}{x-c}=-\frac{1}{g(x)g(c)} \cdot \frac{g(x)-g(c)}{x-c}\]
+
+    Taking the limit to $c$ and noting that the second term of the product is the definition of $g'(c)$
+    \[h'(c) = \lim_{x \to c} -\frac{1}{g(x)g(c)} \cdot \frac{g(x)-g(c)}{x-c} = -\frac{g'(c)}{g(c)^2}\]
+
+    Now apply the product rule to $(fh)'(c)$ to get the formula for $(f/g)'(c)$.
+
+    ----- Simpler solution by chatgpt -----\\
+    Derive the formula of $h'(x)$ by defining $h(x)=1/x$ then apply the chain rule to $h(g(x))$.
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
