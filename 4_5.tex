@@ -128,7 +128,20 @@ Show $F$ is either empty or uncountable.
     Consider $g(0)$ and $g(1/2)$. Since $f(0)=f(1)$, then $g(0)=-g(1/2)$ (both could possibly be 0 as well). Apply IVT to $[0, 1/2]$. Since $g(0)$ and $g(1/2)$
     have different signs, there's a $g(x)=0$.
 
-    \item TODO.
+    \item Similar to part (a), consider the function $g(x) = f(x) - f(x + \frac{1}{n})$. Then the required condition is equivalent to the existence of $g(x) = 0$.
+    
+    Assume $n=3$ and consider $g(0), g(\frac{1}{3}), $ and $g(\frac{2}{3})$. If any of them are zero then we're done. Otherwise, like part (a) we'll prove that there exist
+    $i < j$ such that $g(i)$ and $g(j)$ have different signs. Then we'll apply IVT to conclude the existence of $g(x)=0$ for some $x$.
+
+    Is it possible for all three $g$'s to be positive? Suppose $g(0)$ and $g(\frac{1}{3})$ are positive, then we can conclude that $f(0) > f(\frac{1}{3}) > f(\frac{2}{3})$.
+    But $f(0)=f(1)$, so we must have $f(1) > f(\frac{2}{3}) \implies g(\frac{2}{3})$ is negative.
+
+    A very similar argument can be used to prove that we can't have all three $g$'s negative, and it's also easy to generalize to arbitrary $n$.
+
+    Equivalently, we can express the same argument with telescoping sum. Consider 
+    \[\sum_{k=0}^{n-1}g\left(\frac{k}{n}\right) = \sum_{k=0}^{n-1}\left[ f\left(\frac{k}{n}\right) - f\left(\frac{k+1}{n}\right) \right]\]
+
+    This sum telescopes to $f(0)-f(1)=0$. Since the sum is zero, we can't have all terms positive or all terms negative.
     \item TODO.
   \end{enumerate}
 \end{solution}
