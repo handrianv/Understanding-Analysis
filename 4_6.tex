@@ -1,0 +1,39 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition}
+\sheettitle{Chapter 5 - Section 4.6 - Sets of Discontinuity} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Define $D_{f} \subset \textbf{R}$ to be the set of points where the function $f$ is discontinuous. Using modifications of Dirichlet / Thomae functions,
+construct a function $f: \textbf{R} \to \textbf{R}$ so that
+\begin{enumerate}[label=(\alph*)]
+  \item $D_{f} = \textbf{Z}^c$.
+  \item $D_{f} = \{x: 0 < x \leq 1\}$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Let $D(x)$ be the distance from $x$ to the integer closest to it. That is, $D(x) = \min(|x - \lfloor x \rfloor|, |x - \lceil x \rceil|)$.
+      \[f(x) = 
+      \begin{cases}
+         0 & \text{if } x \text{ is an integer or irrational} \\
+         D(x) & \text{if } x \text{ is rational}
+     \end{cases}
+     \]
+
+     It's continuous at integer $x$. If $(x_{n}) \to x$ then $f(x_{n}) \to 0$ for both rationals and irrationals in $(x_{n})$.
+
+     It's discontinuous at rational $x$. Take a sequence of irrationals $(x_{n}) \to x$. We have $f(x_{n}) \to 0$ but $f(x) > 0$.
+
+     It's discontinuous at irrational $x$. Take a sequence of rationals $(x_{n}) \to x$. We have $f(x_{n}) \to D(x) > 0$ but $f(x) = 0$.
+     
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
