@@ -121,5 +121,24 @@ on all of \textbf{R}.
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 5 -------------------------
+\miquestion Let $ l(x) = \begin{cases} x^a & x > 0\\0 & x \leq 0 \end{cases}$.
+\begin{enumerate}[label=(\alph*)]
+  \item For which values of $a$ is $f$ continuous at zero?
+  \item For which values of $a$ is $f$ differentiable at zero? In this case, is the derivative function continuous?
+  \item For which values of $a$ is $f$ twice-differentiable?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item $a > 0$. The limit at 0 from the left is 0. If $a < 0$ then the right limit diverges. If $a=0$ then the right limit is 1. But if $a > 0$ then the right limit is 0.
+    \item From the direction of positive $x$, we have $\lim_{x \to 0^{+}}\frac{x^a-0^a}{x-0}=\lim_{x \to 0^{+}}x^{a-1} = 0^{a-1}$. This is only defined for $a > 1$, in which case it's 0 and
+    agrees with the left limit, so the derivative is defined.
+
+    The derivative is continuous, but seems to require us to use the fact that $l'(x)=ax^{a-1}$ for \textit{non-integer} $a$, which we have not proved yet.
+    \item The next right-side derivative at zero is $\lim_{x \to 0^{+}} x^{a-2} = 0^{a-2}$, so we need $a > 2$.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
