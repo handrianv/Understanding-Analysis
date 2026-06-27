@@ -76,6 +76,48 @@ on all of \textbf{R}.
 
     ----- Simpler solution by chatgpt -----\\
     Derive the formula of $h'(x)$ by defining $h(x)=1/x$ then apply the chain rule to $h(g(x))$.
+
+    \item
+    \begin{align*}
+       \frac{\frac{f}{g}(x) - \frac{f}{g}(c)}{x-c} &=  \frac{\frac{f}{g}(x) - \frac{f(x)}{g(c)} + \frac{f(x)}{g(c)} - \frac{f}{g}(c)}{x-c}\\
+       &= \frac{f(x)}{x-c}\left(\frac{g(c)-g(x)}{g(x)g(c)}\right) + \frac{1}{g(c)(x-c)}\left(f(x)-f(c)\right)\\
+       &= -\frac{f(x)}{g(x)g(c)}\left( \frac{g(x)-g(c)}{x-c} \right) + \frac{1}{g(c)} \left( \frac{f(x)-f(c)}{x-c} \right)
+    \end{align*}
+
+    Take the limit to $c$ to get
+    \begin{align*}
+      -\frac{f(c)g'(c)}{g(c)^2} + \frac{f'(c)}{g(c)} = \frac{f'(c)g(c)-f(c)g'(c)}{g(c)^2}
+    \end{align*} 
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Follow these steps to provide a slightly modified proof of the Chain Rule.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that a function $h: A \to \textbf{R}$ is differentiable at $a \in A$ if and only if there exists a function $l : A \to \textbf{R}$ which is continuous at $a$ and satisfies
+  \[h(x)-h(a) = l(x)(x-a) \qquad \text{for all } x \in A.\]
+  \item Use this criterion for differentiability (in both directions) to prove Theorem 5.2.5.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item First we prove that if such a function $l$ exists then $h$ is differentiable at $a$. We have
+    \[h'(a) = \lim_{x \to a}\frac{h(x)-h(a)}{x-a} = \lim_{x \to a}l(x) = l(a)\]
+
+    Next, we prove that if $h$ is differentiable at $a$ then such a function $l$ exists. Define
+    \[
+      l(x) = 
+      \begin{cases}
+        \frac{h(x)-h(a)}{x-a} & x \neq a\\
+        h'(a) & (x=a)
+      \end{cases}
+    \]
+
+    $l$ is continuous at $a$ since $\lim_{x \to a}l(x) = \lim_{x \to a}\frac{h(x)-h(a)}{x-a} = h'(a) = l(a)$.
+
+    $h(x)-h(a)=l(x)(x-a)$ for all $x \in A$ by definition.
+
+    \item TODO.
   \end{enumerate}
 \end{solution}
 
