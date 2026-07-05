@@ -140,5 +140,77 @@ on all of \textbf{R}.
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 6 -------------------------
+\miquestion Let $g$ be defined on an interval $A$ and let $c \in A$.
+\begin{enumerate}[label=(\alph*)]
+  \item Explain why $g'(c)$ in Definition 5.2.1 could have been given by
+  \[g'(c) = \lim_{h \to 0}\frac{g(c+h) - g(c)}{h}\]
+  \item Assume $A$ is open. If $g$ is differentiable at $c \in A$, show
+  \[g'(c) = \lim_{h \to 0}\frac{g(c+h) - g(c-h)}{2h}\]
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Let $h = x-c$. Then we have
+    \[g'(c) = \lim_{(x-c) \to 0} \frac{g(x)-g(c)}{x-c}\]
+    And use the fact that $\lim_{(x-c) \to 0} = \lim_{x \to c}$.
+    \item
+    \begin{align*}
+      \lim_{h \to 0}\frac{g(c+h)-g(c-h)}{2h} &= \lim_{h \to 0}\frac{g(c+h)-g(c)+g(c)-g(c-h)}{2h}\\
+      &= \frac{1}{2}\lim_{h \to 0}\left( \frac{g(c+h)-g(c)}{h} + \frac{g(c)-g(c-h)}{h}\right)\\
+      &= \frac{1}{2}(g'(c)+g'(c)) = g'(c)
+    \end{align*}
+
+    We used the fact that $g'(c) = \lim_{h \to 0}\frac{g(c)-g(c-h)}{h}$, which we'll now prove. Let $h=c-x$. Then we have
+    \[\lim_{(c-x) \to 0}\frac{g(c)-g(x)}{c-x} = \lim_{(c-x) \to 0}\frac{g(x)-g(c)}{x-c}\]
+    And use the fact that $\lim_{(c-x) \to 0} = \lim_{(x-c) \to 0} = \lim_{x \to c}$ (this is easy to prove with the usual $\epsilon-\delta$).
+
+    One more thing to note is why the problem assumes $A$ is open. This is so that both $g(c-h)$ and $g(c+h)$ are defined.
+    
+    \textbf{--- Slight improvement by chatgpt ---}\\
+    To prove $g'(c) = \lim_{h \to 0}\frac{g(c)-g(c-h)}{h}$, set $k=-h$. Then as $h \to 0$, also $k \to 0$, and
+    \[\frac{g(c)-g(c-h)}{h}=\frac{g(c+k)-g(c)}{k}\]
+    Then reuse part (a).
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 7 -------------------------
+\miquestion TODO
+%------------------------- Problem 8 -------------------------
+\miquestion TODO
+%------------------------- Problem 9 -------------------------
+\miquestion True / false with proof / counterexample.
+\begin{enumerate}[label=(\alph*)]
+  \item If $f'$ exists on an interval and is not constant, then $f'$ must take on some irrational values.
+  \item If $f'$ exists on an open interval and there is some point $c$ where $f'(c) > 0$, then there exists a $\delta-$neighborhood $V_{\delta}(c)$ around $c$ in which
+  $f'(x) > 0$ for all $x \in V_{\delta}(c)$.
+  \item If $f$ is differentiable on an interval containing zero and if $\lim_{x \to 0}f'(x) = L$, then it must be that $L = f'(0)$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item True, by Darboux Theorem and the fact that the irrationals are dense in $\textbf{R}$.
+    \item 
+    \textbf{--- Incorrect ---}\\
+    True. Otherwise $f'(c)$ is an isolated point and that violates Darboux Theorem.
+
+    \textbf{--- Corrected ---} \\
+    The above is wrong because Darboux Theorem only guarantees Intermediate Value Property and not continuity (see Section 4.5).
+
+    I would not have been able to come up with the counterexample myself. It's
+    \[
+      f(x) = 
+      \begin{cases}
+        x/2 + x^2\sin(1/x) & x \neq 0\\
+        0 & x = 0
+      \end{cases}
+    \]
+    The $x/2$ term makes $f'(0) = \frac{1}{2}$ (compare this with $f(x)=x^2+\sin(1/x)$ where $f'(0)$ would be 0).
+    
+    For $x \neq 0$, $f'(x)=\frac{1}{2} - \cos(1/x) + 2x\sin(1/x)$.
+    For any $V_{\delta}(0)$ there's always an $x$ such that $\cos(1/x)=1$, which would make $f'(x)$ negative.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}

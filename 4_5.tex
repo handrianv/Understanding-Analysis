@@ -142,8 +142,25 @@ Show $F$ is either empty or uncountable.
     \[\sum_{k=0}^{n-1}g\left(\frac{k}{n}\right) = \sum_{k=0}^{n-1}\left[ f\left(\frac{k}{n}\right) - f\left(\frac{k+1}{n}\right) \right]\]
 
     This sum telescopes to $f(0)-f(1)=0$. Since the sum is zero, we can't have all terms positive or all terms negative.
+    
     \item TODO.
-  \end{enumerate}
+    
+    \textbf{--- INCORRECT ---}\\
+    Let
+    \[
+      f(x) = 
+      \begin{cases}
+        x & x \in [0, \frac{4}{5}]\\
+        \frac{4}{5} + -4(x - \frac{4}{5}) = 4-4x & x \in (\frac{4}{5}, 1]
+      \end{cases}
+    \]
+    Basically, a line with slope 1 from 0 to $\frac{4}{5}$, then a steeper descent with slope -4 from $\frac{4}{5}$ to 1.
+
+    For $x \in [0, \frac{2}{5}]$, clearly $f(x) \neq f(x+\frac{2}{5})$ since $f(x)=x$ and $f(x+\frac{2}{5})=x+\frac{2}{5}$.
+
+    Now to prove the same for $x \in (\frac{2}{5}, \frac{3}{5}]$. We have $f(x) = x$ and $f(x+\frac{2}{5}) = 4-4(x+\frac{2}{5}) = \frac{12}{5}-4x$. If $f(x)=f(x+\frac{2}{5})$ then
+    we need an $x$ such that $x = \frac{12}{5}-4x \implies 5x = \frac{12}{5} \implies x = \frac{12}{25}$. Eh... this doesn't work after all.
+  \end{enumerate} 
 \end{solution}
 
 %------------------------- Problem 7 -------------------------
