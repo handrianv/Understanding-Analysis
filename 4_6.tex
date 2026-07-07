@@ -23,7 +23,7 @@ construct a function $f: \textbf{R} \to \textbf{R}$ so that
       \begin{cases}
          0 & \text{if } x \text{ is an integer or irrational} \\
          D(x) & \text{if } x \text{ is rational}
-     \end{cases}
+      \end{cases}
      \]
 
      It's continuous at integer $x$. If $(x_{n}) \to x$ then $f(x_{n}) \to 0$ for both rationals and irrationals in $(x_{n})$.
@@ -32,7 +32,37 @@ construct a function $f: \textbf{R} \to \textbf{R}$ so that
 
      It's discontinuous at irrational $x$. Take a sequence of rationals $(x_{n}) \to x$. We have $f(x_{n}) \to D(x) > 0$ but $f(x) = 0$.
      
+    \item Rename the function in part(a) to $g$. We'll reuse it here. Let
+    \[f(x) = 
+      \begin{cases}
+         0 & \text{if } x \leq 0 \\
+         g(x) & \text{if } 0 < x < 1 \\
+         1 & \text{if } x \geq 1
+      \end{cases}
+    \]
+
+    It's continuous on $x < 0$ because it's constant there.\\
+    It's continuous at 0 because by part (a) $x \to 0 \implies g(x) \to 0$ and $g(0)=0$.\\
+    It's discontinuous at $0 < x < 1$ by part(a).\\
+    It's discontinuous at 1 because by part(a), $x^{-} \to 1 \implies g(x) \to 0$ but $g(1)=1$.\\
+    It's continuous on $x > 1$ because it's constant there.
   \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Given a countable set $A = \{a_{1}, a_{2}, a_{3}, ...\}$, define $f(a_{n}) = 1/n$ and $f(x)=0$ for all $x \notin A$. Find $D_{f}$.
+\begin{solution}
+  It's not too difficult to visualize that $f$ must be discontinuous at $c \in A$. Any $\delta$-neighborhood  $V_{\delta}(c)$ must contain an
+  $x \notin A$ (if not then there exists an interval that consists only of $x \in A$, making $A$ uncountable). Then any $V_\delta(c)$ contains an
+  $x$ such that $f(x)=0$ and since $f(c) > 0$, it's discontinuous.
+
+  What about $c \notin A$? If $A=\textbf{Z}$ then it's clearly continuous. If $A = \textbf{Q}$ it's less obvious, but turns out it's still continuous.
+
+  Given $\epsilon > 0$, let $N > \frac{1}{\epsilon}$. Since $N$ is bounded, we can take $m = \min_{1 \leq i \leq N}|a_{i}-c|$.
+  Then for $\delta < m$, $V_\delta(c)$ contains only those $x$ where $f(x)=0$ if $x \notin A$ or $f(x) < \frac{1}{N} < \epsilon$ if $x \in A$.
+  So $f$ is continuous at $c \notin A$.
+
+  In conclusion, $D_{f}=A$.
 \end{solution}
 
 \end{questions}
