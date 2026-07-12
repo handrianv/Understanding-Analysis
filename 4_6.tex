@@ -65,5 +65,58 @@ construct a function $f: \textbf{R} \to \textbf{R}$ so that
   In conclusion, $D_{f}=A$.
 \end{solution}
 
+%------------------------- Problem 3 -------------------------
+\miquestion Define the left-hand limit $\lim_{x \to c^{-}}f(x) = L$.
+\begin{solution}
+  For all $\epsilon > 0$, there exists a $\delta > 0$ such that $|f(x)-L| < \epsilon$ whenever $0< c-x < \delta$.
+  Equivalently, in terms of sequences, $\lim_{x \to c^{-}}f(x) = L$ if $\lim f({x_{n}})=L$ for all sequences $(x_{n})$ satisfying $x_{n} < c$ and $\lim(x_{n})=c$.
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Given $f: A \to \textbf{R}$ and a limit point $c$ of $A$, prove that $\lim_{x \to c}f(x) = L$ if and only if  $\lim_{x \to c^{-}}f(x) = L$ and  $\lim_{x \to c^{+}}f(x) = L$.
+\begin{solution}
+  Necessity: $\lim_{x \to c}f(x) = L$ means $(x_{n}) \to c \implies f(x_{n}) \to L$. This works regardless of whether $x_{n} > c$ or $x_{n} < c$.
+  
+  Sufficiency: Given $(x_{n}) \to c$, split it into two subsequences $(a_{n})$ for $x_{n} > c$ and $(b_{n})$ for $x_{n} < c$. Then $f(a_{n}) \to L$ and $f(b_{n}) \to L$
+  so $f(x_{n}) \to L$ as well.
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion Prove that the only type of discontinuity a monotone function can have is a jump discontinuity.
+\begin{solution}
+  We first prove that a monotone function can have jump discontinuity. Pretty simple: $f(x) = 0$ for $x \leq 0$ and $f(x) = 1$ otherwise.
+
+  Next we prove impossibility of removable discontinuity.  We'll prove it by contradiction. WLOG $f$ is increasing.
+  
+  Suppose $\lim_{x \to c}f(x)=L$ but $f(c) \neq L$. If $L > f(c)$, let $d=L-f(c)$. Then there exists $\delta$ such that
+  $|x-c| < \delta \implies |f(x)-L| < \frac{d}{2}$. Choose $a < c$ with $|a-c| < \delta$, then $a < c$ but $f(a) > f(c)$, contradicting
+  that $f$ is increasing.
+
+  If $L < f(c)$, choose $b > c$ with $|b-c| < \delta$, then $b > c$ but $f(c) > f(b)$, again contradicting that $f$ is increasing.
+
+  Finally, we prove impossibility of essential discontinuity. At first I thought the book is wrong, with $f(x)=1/x$ on $(0, 1]$ having
+  essential discontinuity at $x=0$. But in this case $f(0)$ is undefined, hence the notion of continuity / discontinuity at that point
+  is undefined as well.
+  
+  \textbf{----- Incorrect -----}\\
+  Consider a limit point $c$ and a sequence $(a_{n}) \to c$ with $a_{n} < c$. Since $f(c)$ is defined and $f$ is monotone, $f(a_{n})$ is monotone and bounded.
+  By the Monotone Convergence Theorem, $f(a_{n})$ converges. Similarly for a sequence $(b_{n})$ with $b_{n} > c$. Note that it's possible for $(a_{n})$ or $(b_{n})$
+  to be empty, in which case it's vacuously true that they converge.
+
+  \textbf{----- Correct -----}\\
+  Two mistakes. (1) Just because $(a_{n}) \to c$ does not guarantee that $(a_{n})$ is monotone. (2) We need a single limit that works for all sequences to the left of $c$,
+  not only a particular sequence $(a_{n})$.
+
+  Instead we'll use supremum. Wlog $f$ is increasing. We'll prove the left limit exists.
+
+  The set $\{f(x): x < c\}$ is bounded above by $f(c)$, so it has a supremum $L$. By definition of supremum, given an $\epsilon > 0$, there
+  exists a point $a < c$ such that $L-f(a) < \epsilon$. Let $\delta =c-a$. Then by monotonicity, $0 < c-x < \delta \implies L-f(x) < \epsilon$. Hence the left limit is $L$.
+
+  An analogous argument with infimum proves the right limit also exists.
+
+  Since both the left and right limits exist, either they're equal hence the usual limit exists, or they're unequal in which case it's a jump discontinuity.
+  Either case, an essential discontinuity is impossible.
+\end{solution}
+
 \end{questions}
 \end{document}
