@@ -178,6 +178,7 @@ on all of \textbf{R}.
 \miquestion TODO
 %------------------------- Problem 8 -------------------------
 \miquestion TODO
+
 %------------------------- Problem 9 -------------------------
 \miquestion True / false with proof / counterexample.
 \begin{enumerate}[label=(\alph*)]
@@ -209,6 +210,39 @@ on all of \textbf{R}.
     
     For $x \neq 0$, $f'(x)=\frac{1}{2} - \cos(1/x) + 2x\sin(1/x)$.
     For any $V_{\delta}(0)$ there's always an $x$ such that $\cos(1/x)=1$, which would make $f'(x)$ negative.
+  
+    \item 
+    \textbf{--- Incorrect ---}\\
+    We need the following lemma: if $\lim_{a \to b}f(a)$ is defined for some $b$ near $c$, and $\lim_{a \to c}f(a)$ is also defined,
+    then $\lim_{b \to c}(\lim_{a \to b}f(a))=\lim_{a \to c}f(a)$.
+  
+    The proof is straightforward with $\epsilon-\delta$. There's a $\delta$ such that $|a-c| < \delta \implies |f(a)-L| < \epsilon$.
+    Make $|b-c|< \delta/2$ and $|a-b| < \delta/2$.
+
+    It's very important to note that $\lim_{a \to b}f(a)$ *must* be defined for $b$ near $c$ for this lemma to work. Otherwise,
+    one counterexample is the Dirichlet function. $\lim_{a \to 0}f(a)=0$. But the limit is undefined for all $b \neq 0$ so the expression
+    $\lim_{b \to 0}(\lim_{a \to b}f(a))$ is undefined.
+
+    Now back to the original problem. $f$ is differentiable on an interval containing zero, so $f'(0)$ exists and also
+    \[\lim_{x \to c}\frac{f(x)-f(c)}{x-c}\]
+    exists for $c$ near $0$.
+
+    We also have
+    \[\lim_{c \to 0}\left( \lim_{x \to c}\frac{f(x)-f(c)}{x-c}\right)=L\]
+    Now apply the lemma to conclude that
+    \[\lim_{c \to 0}\left( \lim_{x \to c}\frac{f(x)-f(c)}{x-c}\right)=\lim_{x \to 0}\frac{f(x)-f(0)}{x}=f'(0)=L\]
+  
+    \textbf{--- Corrected ---}\\
+    The nested limit lemma above only applies to functions with a single parameter. For a counterexample, consider
+    $\lim_{c \to 0}(\lim_{x \to c}\frac{x}{c}) = \lim_{c \to 0}1 = 1$.
+    But $\lim_{x \to 0}\frac{x}{c}$ is undefined.
+
+    Instead we can use Darboux Theorem. Suppose for contradiction that $f'(0) \neq L$ and let $d = |f'(0)-L|$. By convergence to $L$, there exists $\delta$ such that
+    $x \in V_{\delta}(0) \implies |f'(x)-L| < d/2$.
+    
+    But by Darboux, for such $x \in V_{\delta}(0)$ then the derivative must take every value between
+    $f'(x)$ and $f'(0)$. In particular, there exists $y \in V_{\delta}(0)$ such that $|f'(y)-f'(0)| < d/2$, contradicting convergence to $L$ ($f'(y)$
+    cannot be within $d/2$ of both $L$ and $f'(0)$).
   \end{enumerate}
 \end{solution}
 
