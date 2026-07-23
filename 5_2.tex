@@ -175,7 +175,82 @@ on all of \textbf{R}.
 \end{solution}
 
 %------------------------- Problem 7 -------------------------
-\miquestion TODO
+\miquestion Let
+\[
+  g_{a}(x) = 
+  \begin{cases}
+    x^a \sin(1/x) & \text{ if } x \neq 0\\
+    0 & \text{ if } x = 0
+  \end{cases}
+\]
+Find a particular (potentially noninteger) value for $a$ so that
+\begin{enumerate}[label=(\alph*)]
+  \item $g_{a}$ is differentiable on \textbf{R} but such that $g'_{a}$ is unbounded on $[0, 1]$.
+  \item  $g_{a}$ is differentiable on \textbf{R} with $g'_{a}$ continuous but not differentiable at zero.
+  \item $g_{a}$ is differentiable on \textbf{R} and $g'_{a}$ is differentiable on \textbf{R}, but such that $g''_{a}$ is not continuous at zero.
+\end{enumerate}
+
+\begin{solution}
+  We're going to use the fact that the derivative of $x^a$ is $ax^{a-1}$ for $a \in \textbf{R}$, even though the book has only proved it for $a \in \textbf{N}$.
+  \begin{enumerate}[label=(\alph*)]
+    \item
+    \[
+      g'_{a}(x) = 
+      \begin{cases}
+        ax^{a-1}\sin(1/x) - x^{a-2}\cos(1/x) & \text{ if } x \neq 0\\
+        \lim_{x \to 0} x^{a-1}\sin(1/x) & \text{ if } x = 0
+      \end{cases}
+    \]
+    For $a < 1$, $g'(0)$ is not defined because the $x^{a-1}$ makes it unbounded. For $a=1$, $g'(0)=\lim_{x \to 0}\sin(1/x)$, which is also not defined (Example 4.2.6).
+    For $a \geq 2$, $g_{a}'(x)$ is bounded in $[0, 1]$.
+  
+    The answer is then $1 < a < 2$, for which $g_{a}'(x)$ is defined everywhere and, by the $x^{a-2}\cos(1/x)$ term is unbounded as 
+    $x \to 0$. But we need to be a little careful in choosing $a$ to avoid even roots
+    like $\sqrt{-1}$ which is not defined in \textbf{R}. We can choose $a=\frac{5}{3}$, which gives
+
+    \[
+      g'_{a}(x) = 
+      \begin{cases}
+        \frac{5}{3}x^{2/3}\sin(1/x) - x^{-\frac{1}{3}}\cos(1/x) & \text{ if } x \neq 0\\
+        0 & \text{ if } x = 0
+      \end{cases}
+    \]
+
+   \item Let $a=3$. Then
+   \[
+      g'_{a}(x) = 
+      \begin{cases}
+        3x^{2} \sin(1/x) - x \cos(1/x) & \text{ if } x \neq 0\\
+        0 & \text{ if } x = 0
+      \end{cases}
+   \]
+
+   Which is continuous at zero. But the second derivative at zero
+   \[
+     g''_{a}(0) = \lim_{x \to 0}\frac{g'(x)-g'(0)}{x} = \lim_{x \to 0} 3x \sin(1/x) - \cos(1/x)
+   \]
+   is undefined, since $3x \sin(1/x)$ tends to zero but $\cos(1/x)$ oscillates between -1 and 1.
+  
+  \item Let $a=4$. Then
+   \[
+      g'_{a}(x) = 
+      \begin{cases}
+        4x^{3} \sin(1/x) - x^{2} \cos(1/x) & \text{ if } x \neq 0\\
+        0 & \text{ if } x = 0
+      \end{cases}
+   \]
+   And the second derivative
+   \[
+      g''_{a}(x) = 
+      \begin{cases}
+        12x^{2} \sin(1/x) - 6x \cos(1/x) - \sin(1/x) & \text{ if } x \neq 0\\
+        0 & \text{ if } x = 0
+      \end{cases}
+   \]
+   Which is discontinuous at zero because in the equation for $x \neq 0$, the first two terms tend to zero while $\sin(1/x)$ oscillates between -1 and 1.
+  \end{enumerate}
+\end{solution}
+
 %------------------------- Problem 8 -------------------------
 \miquestion TODO
 
