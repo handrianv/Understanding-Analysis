@@ -321,5 +321,63 @@ Find a particular (potentially noninteger) value for $a$ so that
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 10 -------------------------
+\miquestion Recall that a function $f: (a, b) \to \textbf{R}$ is increasing on $(a, b)$ if $f(x) \leq f(y)$ whenever $x < y$ in $(a, b)$.
+A familiar mantra from calculus is that a differentiable function is increasing if its derivative is positive, but this statement requires some sharpening
+in order to be completely accurate. Show that the function
+\[
+  g(x) = 
+  \begin{cases}
+    x/2 + x^2\sin(1/x) & \text{ if } x \neq 0\\
+    0 & \text{ if } x=0\\
+  \end{cases}
+\]
+is differentiable on \textbf{R} and satisfies $g'(0) > 0$. Now, prove that $g$ is \textit{not} increasing over any open interval containing 0.
+
+In the next section we will see that
+$f$ is indeed increasing on $(a, b)$ if and only if $f'(x) \geq 0$ for all $x \in (a, b)$.
+
+\begin{solution}
+  Heh, turns out this is the solution to the previous problem... Anyway, the derivative is
+  \[
+    g'(x) = 
+    \begin{cases}
+      \frac{1}{2} + 2x \sin(1/x) - \cos(1/x) & \text{ if } x \neq 0\\
+      \frac{1}{2} & \text{ if } x=0\\
+    \end{cases}
+  \]
+
+  So $g$ is differentiable on \textbf{R} and $g'(0) > 0$ as required.
+
+  To prove that $g$ is not increasing over any open interval containing 0, choose an $x$ such that $\cos(1/x)=1$, hence $\sin(1/x)=0$ and $g'(x)=-\frac{1}{2}$.
+  Since the derivative is negative, $g$ cannot be increasing.
+\end{solution}
+
+%------------------------- Problem 11 -------------------------
+\miquestion TODO
+%------------------------- Problem 12 -------------------------
+\miquestion \textbf{(Inverse functions)}. If $f: [a, b] \to \textbf{R}$ is one-to-one, then there exists an inverse function $f^{-1}$ defined on the range of $f$ given by
+$f^{-1}(y)=x$ where $y=f(x)$. In Exercise 4.5.8 we saw that if $f$ is continuous on $[a, b]$, then $f^{-1}$ is continuous on its domain. Let's add the assumption that $f$
+is differentiable on $[a, b]$ with $f'(x) \neq 0$ for all $x \in [a, b]$. Show $f^{-1}$ is differentiable with
+\[(f^{-1})'(y)=\frac{1}{f'(x)}\]
+
+\begin{solution}
+  Let $c \in [a, b]$. Then the derivative of $f^{-1}$ at $f(c)$ is
+  \begin{align*}
+    (f^{-1})'(f(c)) &= \lim_{y \to f(c)}\frac{f^{-1}(y)-f^{-1}(f(c))}{y-f(c)}\\
+    &= \lim_{y \to f(c)}\frac{x-c}{f(x)-f(c)}
+  \end{align*}
+  
+  Since $f^{-1}$ is continuous on its domain, we can conclude that $y \to f(c) \implies f^{-1}(y) \to f^{-1}(f(c))$ or equivalently, $y \to f(c) \implies x \to c$. Applying
+  this to the limit above
+  \begin{align*}
+    (f^{-1})'(f(c)) &=\lim_{y \to f(c)}\frac{x-c}{f(x)-f(c)}\\
+    &= \lim_{x \to c}\frac{x-c}{f(x)-f(c)}\\
+    &= \frac{1}{f'(c)}
+  \end{align*}
+  Note that in the second equality, $f(x)-f(c) \neq 0$ in the denominator because $f$ is one-to-one, hence $x \neq c \implies f(x) \neq f(c)$. In the last equality,
+  $f'(c) \neq 0$ by the problem's assumption.
+\end{solution}
+
 \end{questions}
 \end{document}
