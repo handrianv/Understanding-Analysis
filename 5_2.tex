@@ -354,7 +354,31 @@ $f$ is indeed increasing on $(a, b)$ if and only if $f'(x) \geq 0$ for all $x \i
 \end{solution}
 
 %------------------------- Problem 11 -------------------------
-\miquestion TODO
+\miquestion Assume that $g$ is differentiable on $[a, b]$ and satisfies $g'(a) < 0 < g'(b)$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that there exists a point $x \in (a, b)$ where $g(a) > g(x)$ and a point $y \in (a, b)$ where $g(y) < g(b)$.
+  \item Now complete the proof of Darboux Theorem started earlier.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item The derivative at $a$ is
+    \[\lim_{h \to 0}\frac{g(a+h)-g(a)}{h} < 0\]
+    The denominator is positive. For the result to be negative, it must be that  $g(a+h) < g(a)$ for small enough $h$.
+
+    Similarly, the derivative at $b$ is
+    \[\lim_{h \to 0}\frac{g(b)-g(b-h)}{h} > 0\]
+    The denominator is positive. For the result to be positive, it must be that  $g(b) > g(b-h)$ for small enough $h$.
+
+    \item To recap the book's partial proof of the theorem: let $g(x)=f(x)-\alpha x$ on $[a, b]$. Notice that $g$ is differentiable
+    on $[a, b]$ with $g'(x)=f'(x)-\alpha$. In terms of $g$, the theorem's hypothesis states that $g'(a) < 0 < g'(b)$ and we need to show
+    that $g'(c)=0$ for some $c \in [a, b]$.
+
+    Now to complete the proof. $g$ differentiable on $[a, b]$ implies it's continuous on $[a, b]$. By the Extreme Value Theorem, $g$ attains a minimum value at a
+    point $c$. By part(a), $c \neq a$ and $c \neq b$. By the Interior Extremum Theorem, $g'(c) = 0$.
+  \end{enumerate}
+\end{solution}
+
 %------------------------- Problem 12 -------------------------
 \miquestion \textbf{(Inverse functions)}. If $f: [a, b] \to \textbf{R}$ is one-to-one, then there exists an inverse function $f^{-1}$ defined on the range of $f$ given by
 $f^{-1}(y)=x$ where $y=f(x)$. In Exercise 4.5.8 we saw that if $f$ is continuous on $[a, b]$, then $f^{-1}$ is continuous on its domain. Let's add the assumption that $f$
