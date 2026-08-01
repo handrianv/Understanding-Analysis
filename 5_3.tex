@@ -1,0 +1,58 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition}
+\sheettitle{Chapter 5 - Section 5.3 - The Mean Value Theorems} 
+
+\begin{document}
+\begin{questions}
+
+  %------------------------- Problem 1 -------------------------
+\miquestion Recall from Exercise 4.4.9 that a function $f: A \to \textbf{R}$ is Lipschitz on $A$ if there exists an $M > 0$ such that
+\[\left|\frac{f(x)-f(y)}{x-y}\right| \leq M\]
+for all $x \neq y$ in $A$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that if $f$ is differentiable on a closed interval $[a, b]$ and if $f'$ is continuous on $[a, b]$, then $f$ is Lipschitz on $[a, b]$.
+  \item Review the definition of a contractive function in Exercise 4.3.11. If we add the assumption that $|f'(x)| < 1$ on $[a, b]$, does it follow that $f$ is
+  contractive on this set?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Continuous function preserves compactness (Theorem 4.4.1) and compact sets are bounded. Since $f'$ is continuous on $[a, b]$, it's bounded.
+    Thus there exists $M > 0$ such that $|f'(c)| \leq M$ for all $c \in [a, b]$.
+
+    Now, by the Mean Value Theorem, for any $x \neq y$ in $[a, b]$, there exists $t$ in $[a, b]$ such that
+    \[\frac{f(x)-f(y)}{x-y} = f'(t)\] 
+    Therefore
+    \[\left|\frac{f(x)-f(y)}{x-y}\right| = |f'(t)| \leq M\]
+    as required.
+
+    \item $f$ is contractive if there exists a constant $0 \leq c < 1$ such that $|f(x)-f(y)| \leq c|x-y|$ for all $x, y \in \textbf{A}$.
+    
+    The answer is yes. From part (a), we have
+    \[\left|f(x)-f(y)\right| = |f'(t)||x-y|\]
+    And we have $|f'(t)| < 1$.
+    
+    But we need to choose a single constant $c$ (whereas $|f'(t)|$ depends on $x$ and $y$). From part (a), $f'$ is continuous on a compact
+    set $[a, b]$ so it attains a maximum. Choose $c = \max_{x \in [a,b]}|f'(x)|$. Since $|f'(x)| < 1$ on $[a, b]$ from the problem's assumption, the contractive condition
+    is satisfied.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion Let $f$ be differentiable on an interval $A$. If $f'(x) \neq 0$ on $A$, show that $f$ is one-to-one on $A$. Provide an example to show that the converse statement
+need not be true.
+\begin{solution}
+  We prove the contrapositive. Suppose $f$ is not one-to-one, then there exists $a < b$ in $A$ such that $f(a)=f(b)$. By the Mean Value Theorem, there exists $c \in A$ such that
+  \[\frac{f(b)-f(a)}{b-a} = 0 = f'(c)\]
+  so $f'$ cannot be non-zero on all of $A$.
+
+  Counterexample to the converse: $x^2$ on $[0, 1]$. It's one-to-one (because we exclude negative domain) with $f'(0)=0$.
+
+  Alternatively, a cleaner counterexample that doesn't involve one-sided derivative is $x^3$.
+\end{solution}
+
+\end{questions}
+\end{document}
