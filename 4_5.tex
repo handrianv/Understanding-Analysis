@@ -167,7 +167,8 @@ Show $F$ is either empty or uncountable.
 \miquestion Let $f$ be a continuous function on the closed interval $[0, 1]$ with range also contained in $[0, 1]$. Prove that $f$ must have a fixed point; that is, show $f(x)=x$ for
 at least one value of $x \in [0, 1]$.
 \begin{solution}
-  Stuck with this for quite some time and finally got a hint from chatgpt: consider the auxiliary function $g(x)=f(x)-x$.
+  Stuck with this for quite some time and finally got a hint from chatgpt: consider the auxiliary function $g(x)=f(x)-x$. Geometrically, we're asking if $f$ intersects the line $y=x$, and we define
+  $g$ to be the vertical distance between them.
 
   With that hint, the problem becomes much easier. $f(x)=x$ if $g(x)=0$. Since the range of $f$ is in $[0, 1]$, then $0 \leq f(0), f(1) \leq 1$ and $g(1) \leq 0 \leq g(0)$.
   Note that $g$ is continuous, so we can apply IVT to $[0, 1]$ and conclude there exists an $0 \leq x \leq 1$ such that $g(x)=0$. 
