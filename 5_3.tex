@@ -78,5 +78,65 @@ need not be true.
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 4 -------------------------
+\miquestion Let $f$ be differentiable on an interval $A$ containing zero, and assume $(x_{n})$ is a sequence in $A$ with $(x_{n}) \to 0$ and $x_{n} \neq 0$.
+\begin{enumerate}[label=(\alph*)]
+  \item If $f(x_{n})=0$ for all $n \in \textbf{N}$, show $f(0)=0$ and $f'(0)=0$.
+  \item Add the assumption that $f$ is twice-differentiable at zero and show that $f''(0)=0$ as well.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item $f(x_{n})$ is the zero sequence, so we have $(x_{n}) \to 0 \implies f(x_{n}) \to 0$. Since $f$ is differentiable on $A$, it's continuous on $A$, so we have
+    $f(0) = 0$.
+
+    Note that it's enough to prove this for the one sequence $(x_{n})$ instead of \textit{any} sequence that converges to zero, because we're given that $f$ is differentiable,
+    so its limit is well defined and any sequence that converges to zero has the same functional limit.
+
+    For $f'(0)$, we compute it from the definition. Using the fact that $f(x_{n})=0$
+    \[f'(0)=\lim_{x_{n} \to 0}\frac{f(x_{n})-f(0)}{x_{n}-0}=0/x_{n}=0\]
+    Again, it's enough to prove this for a single sequence $(x_{n})$ because we know in advance that $f$ is differntiable. Any sequence that converges to zero must produce the
+    same derivative.
+
+    \item TODO.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Supply the details for the proof of Cauchy's Generalized Mean Value Theorem (Theorem 5.3.5).
+  \item Give a graphical interpretation of the Generalized Mean Value Theorem analogous to the one given for the Mean Value Theorem at the beginning of Section 5.3.
+  (Consider $f$ and $g$ as parametric equations for a curve). 
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Define 
+    \[h(x)=[f(b)-f(a)]g(x) - [g(b)-g(a)]f(x)\]
+
+    We have $h(a)=h(b)$, so we can apply Rolle's Theorem to conclude that there exists $c \in (a, b)$ such that
+    \[h'(c)=0=[f(b)-f(a)]g'(c) - [g(b)-g(a)]f'(c)]\]
+    And rearranging gives $[g(b)-g(a)]f'(c)=[f(b)-f(a)]g'(c)$ as required. If $g'(c) \neq 0$, we can also write it as
+    $\frac{f'(c)}{g'(c)}=\frac{f(b)-f(a)}{g(b)-g(a)}$.
+
+    \item Consider the curve defined by the parametric equation $(g(t), f(t))$. Note the ordering, $g$ for the $x$-axis and $f$ for the $y$-axis.
+    
+    A line from $(g(a), f(a))$ to $(g(b), f(b))$ has the slope $\frac{f(b)-f(a)}{g(b)-g(a)}$. This is the rhs of the Theorem (in its fractional form).
+
+    The derivative of the curve at a point $c$ is given by
+    \begin{align*}
+      \lim_{t \to c}\frac{f(t)-f(c)}{g(t)-g(c)} &= \lim_{t \to c}\frac{[f(t)-f(c)] * \frac{1}{t-c}}{[g(t)-g(c)] * \frac{1}{t-c}}\\
+      &= \frac{f'(c)}{g'(c)}
+    \end{align*}
+    and this is the lhs of the Theorem.
+
+    In conclusion, given a line from $(g(a), f(a))$ to $(g(b), f(b))$, the Generalized Mean Value Theorem says that there exists a tangent to the curve
+    at $(g(c), f(c))$ with the same slope (i.e. parallel) to the line, provided $g'(c) \neq 0$.
+
+    The regular Mean Value Theorem is a special case where $g(t)=t$.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
