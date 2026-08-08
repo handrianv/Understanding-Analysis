@@ -210,5 +210,20 @@ need not be true.
   derivatives at non-zero points.
 \end{solution}
 
+%------------------------- Problem 9 -------------------------
+\miquestion Assume $f$ and $g$ are as described in Theorem 5.3.6 but add the assumption that $f$ and $g$ are differentiable at $a$, and $f'$ and $g'$ are continuous at $a$ with
+$g'(a) \neq 0$. Find a short proof for the $0/0$ case of L'Hospital's Rule under this stronger hypothesis.
+\begin{solution}
+  To restate the Rule with the added hypothesis: let $f$ and $g$ be differentiable on an interval containing $a$ with $f'$ and $g'$ continuous at $a$. If $f(a)=g(a)=0$
+  and $g'(x) \neq 0$ on the interval, then
+  \[\lim_{x \to a}\frac{f'(x)}{g'(x)} = L \implies \lim_{x \to a}\frac{f(x)}{g(x)}=L\]
+
+  Now the proof. Since $f'$ and $g'$ are continuous at $a$, we have
+  \[\lim_{x \to a}\frac{f'(x)}{g'(x)}=\frac{f'(a)}{g'(a)}=L\]
+  $g'(a) \neq 0$ so the fraction is defined. Expanding $f'(a)$ and $g'(a)$ with the definition of derivative
+  \[\lim_{x \to a}\frac{\frac{f(x)-f(a)}{x-a}}{\frac{g(x)-g(a)}{x-a}} = \lim_{x \to a}\frac{f(x)-f(a)}{g(x)-g(a)}=L\]
+  And finally, using the given assumption that $f(a)=g(a)=0$ completes the proof.
+\end{solution}
+
 \end{questions}
 \end{document}
