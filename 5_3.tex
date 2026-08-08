@@ -138,5 +138,77 @@ need not be true.
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 6 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Let $g: [0, a] \to \textbf{R}$ be differentiable, $g(0)=0$, and $|g'(x)| \leq M$ for all $x \in [0, a]$. Show $|g(x)| \leq Mx$ for all $x \in [0, a]$.
+  \item Let $h: [0, a] \to \textbf{R}$ be twice differentiable, $h'(0)=h(0)=0$ and $|h''(x)| \leq M$ for all $x \in [0, a]$. Show $|h(x)| \leq Mx^{2}/2$ for all
+  $x \in [0, a]$.
+  \item Conjecture and prove an analogous result for a function that is differentiable three times on $[0, a]$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item For $g(0)$ we have $|g(0)|=0=M\cdot0$ as required.
+    
+    For $x \neq 0$, applying the Mean Value Theorem with the point 0 and $x \in (0, a]$, then there exists $c \in (0, x)$ such that
+    \[\frac{g(x)-g(0)}{x-0}=\frac{g(x)}{x} = g'(c)\]
+    Since $|g'(x)| \leq M$ for all $x \in [0, a]$, we have
+    \[|g'(c)|=\left|\frac{g(x)}{x}\right| \leq M \implies |g(x)| \leq Mx\]
+    as required.
+
+    \item \textbf{(TODO unfinished)} Like part (a), apply MVT to the second derivative 
+    \[\frac{h'(x)-h(0)}{x-0}=\frac{h'(x)}{x}=h''(c)\]
+    Take absolute value
+    \[|h''(c)|=\left|\frac{h'(x)}{x}\right| \leq M \implies |h'(x)| \leq Mx\]
+
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 7 -------------------------
+\miquestion A fixed point of a function $f$ is a value $x$ where $f(x)=x$. Show that if $f$ is differentiable on an interval with $f'(x) \neq 1$, then $f$ can have at most one fixed point.
+\begin{solution}
+  We prove the contrapositive. Suppose that $f$ has two fixed points $x$ and $y$. By MVT, there exists $c$ such that
+  \[f'(c) = \frac{f(x)-f(y)}{x-y}=\frac{x-y}{x-y}=1\]
+\end{solution}
+
+%------------------------- Problem 8 -------------------------
+\miquestion Assume $f$ is continuous on an interval containing zero and differentiable for all $x \neq 0$. If $\lim_{x \to 0}f'(x)=L$, show $f'(0)$ exists and equals $L$.
+\begin{solution}
+  Expanding $\lim_{x \to 0}f'(x) = L$ in $\epsilon-\delta$: given $\epsilon > 0$, there exists $\delta > 0$ such that
+  \[0 < |x| < \delta \implies |f'(x)-L| < \epsilon\]
+  The same $\delta$ works to prove that $f'(0)=L$, because if $|c| < \delta$ then by MVT there exists $|x|$ between 0 and $|c|$ such that
+  \[0 < |x| < |c| < \delta \implies \frac{f(c)-f(0)}{c} = f'(x) \]
+  so
+  \[|f'(x)-L| < \epsilon \implies \left|\frac{f(c)-f(0)}{c}-L\right| < \epsilon\]
+
+  \textbf{--- Doesn't work ---}\\
+  This was my first approach, but I found out in the end that it doesn't work. The idea is the same as proving $\lim_{b \to c}[\lim_{a \to b}f(a)]=\lim_{a \to c}f(a)$ (given all
+  the limits are defined). Make $b$ close to $c$ and $a$ close to $b$, then $a$ is close to $c$.
+
+  We're given
+  \[\lim_{x \to 0}f'(x)=L\]
+
+  Choose $x$ small enough such that derivatives near $x$ is close to $L$
+  \[|x| < \delta \implies |f'(x)-L| < \epsilon\]
+
+  Expanding the definition of $f'(x)$
+  \[f'(x)=\lim_{t \to x} \frac{f(t)-f(x)}{t-x}\]
+  
+  The derivative is defined for all $x \neq 0$. Choose $t$ close enough to $x$ such that the sequence of slopes is close to $f'(x)$
+  \[|t-x| < \delta \implies \left|\frac{f(t)-f(x)}{t-x} - f'(x)\right| < \epsilon\]
+  
+  Combining both choices of $\delta$, we have the distance between $t$ and $0$ is
+  \[|t-0| \leq |t-x + x - 0| \leq |t-x| + |x| < 2\delta\]
+  and the distance between the slope with $L$ is
+  \begin{align*}
+      \left|\frac{f(t)-f(x)}{t-x} - L\right| &\leq \left|\frac{f(t)-f(x)}{t-x} - f'(x) + f'(x) - L\right|\\
+      &\leq \left|\frac{f(t)-f(x)}{t-x} - f'(x)\right| + |f'(x)-L|\\
+      &< 2\epsilon
+  \end{align*}
+  ...aandd it's useless. What we need is the slope between $f(t)$ and $f(0)$, not $f(t)$ and $f(x)$. Instead, we'll need MVT to relate the $f(t)-f(0)$ slope with
+  derivatives at non-zero points.
+\end{solution}
+
 \end{questions}
 \end{document}
