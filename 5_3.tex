@@ -88,17 +88,30 @@ need not be true.
 \begin{solution}
   \begin{enumerate}[label=(\alph*)]
     \item $f(x_{n})$ is the zero sequence, so we have $(x_{n}) \to 0 \implies f(x_{n}) \to 0$. Since $f$ is differentiable on $A$, it's continuous on $A$, so we have
-    $f(0) = 0$.
+    $f(x_{n}) \to f(0) = 0$.
 
     Note that it's enough to prove this for the one sequence $(x_{n})$ instead of \textit{any} sequence that converges to zero, because we're given that $f$ is differentiable,
     so its limit is well defined and any sequence that converges to zero has the same functional limit.
 
     For $f'(0)$, we compute it from the definition. Using the fact that $f(x_{n})=0$
-    \[f'(0)=\lim_{x_{n} \to 0}\frac{f(x_{n})-f(0)}{x_{n}-0}=0/x_{n}=0\]
+    \[f'(0)=\lim_{n \to \infty}\frac{f(x_{n})-f(0)}{x_{n}-0}=\lim_{n \to \infty}0/x_{n}=0\]
     Again, it's enough to prove this for a single sequence $(x_{n})$ because we know in advance that $f$ is differntiable. Any sequence that converges to zero must produce the
     same derivative.
 
-    \item TODO.
+    \item The second derivative, combined with the fact that $f'(0)=0$, is
+    \[f''(0)=\lim_{x \to 0}\frac{f'(x)-f'(0)}{x}=\lim_{x \to 0}\frac{f'(x)}{x}\]
+    To prove this is zero, we need to construct a sequence $(c_{n}) \to 0$ such that $f'(c_{n})$ is eventually all zero. Just like part (a), constructing one such sequence is enough
+    because we're given $f$ is twice-differentiable.
+
+    We can construct $(c_{n})$ out of $(x_{n})$. First, choose a subsequence $(y_{n})$ out of $(x_{n})$ such that $y_{n} \neq y_{n+1}$
+    for all $n$, and also that all $(y_{n})$ lie on one side of zero.
+    
+    Now, $f(y_{n}) = 0$ for all $n$, the slope between $f(y_{n})$ and $f(y_{n+1})$ is zero.
+    By MVT (which we can apply because $y_{n} \neq y_{n+1}$), there exists $c_{n} \in (y_{n}, y_{n+1})$ such that $f'(c_{n})=0$. Also, $c_{n} \neq 0$
+    (because $y_{n}$ and $y_{n+1}$ are on the same side of zero).
+
+    Now we have $(c_{n}) \to 0$, $c_{n} \neq 0$ and $f'(c_{n})=0$ for all $n \in \textbf{N}$. The second derivative at zero is
+    \[f''(0)=\lim_{n \to \infty}\frac{f'(c_{n})}{c_{n}} = \lim_{n \to \infty} \frac{0}{c_{n}} = 0\]
   \end{enumerate}
 \end{solution}
 
