@@ -239,7 +239,17 @@ $g'(a) \neq 0$. Find a short proof for the $0/0$ case of L'Hospital's Rule under
 \end{solution}
 
 %------------------------- Problem 10 -------------------------
-\miquestion TODO
+\miquestion Let $f(x)=x \sin(1/x^4)e^{-1/x^2}$ and $g(x)=e^{1/x^2}$. Using the familiar properties of these functions, compute the limit as $x$ approaches zero of
+$f(x), g(x), f(x)/g(x)$ and $f'(x)/g'(x)$. Explain why the results are surprising but no in conflict with the content of Theorem 5.3.6.
+\begin{solution}
+  \textbf{TODO not finished.} As $x$ approaches zero:
+  \begin{itemize}
+    \item The limit of $\sin(1/x^4)$ is undefined but is bounded by $[-1, 1]$, so $x \sin(1/x^4) \leq |x|$ and by squeeze converges to 0.
+    \item $e^{1/x^2} \to \infty$ because $e > 1$, therefore $e^{-1/x^2}\to0$.
+  \end{itemize}
+
+  All in all, $f(x) \to 0$ and $g(x) \to \infty$.
+\end{solution}
 
 %------------------------- Problem 11 -------------------------
 \miquestion
@@ -264,6 +274,22 @@ $g'(a) \neq 0$. Find a short proof for the $0/0$ case of L'Hospital's Rule under
 
     \item Yes, the same proof works.
   \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 12 -------------------------
+\miquestion If $f$ is twice differentiable on an open interval containing $a$ and $f''$ is continuous at $a$, show 
+\[\lim_{h \to 0}\frac{f(a+h)-2f(a)+f(a-h)}{h^2}=f''(a)\]
+
+\begin{solution}
+  Let $F(h)=f(a+h)-2f(a)+f(a-h)$ and $g(h)=h^2$. We have $F(0)=g(0)=0$, both differentiable on the interval, and $g'(h) \neq 0$ for $h \neq 0$.
+  This satisfies the conditions for L'Hopital's Rule. Applying the rule, we get
+  \[\lim_{h \to 0}\frac{f(a+h)-2f(a)+f(a-h)}{h^2} = \lim_{h \to 0}\frac{f'(a+h)+f'(a-h)}{2h}\]
+  
+  This is again 0/0. Applying the rule a second time
+  \[\lim_{h \to 0}\frac{f'(a+h)+f'(a-h)}{2h} = \lim_{h \to 0}\frac{f''(a+h)-f''(a-h)}{2}\]
+
+  Since $f''$ is continuous at $a$, we have
+  \[\lim_{h \to 0}\frac{f''(a+h)-f''(a-h)}{2}=\frac{f''(a)+f''(a)}{2}=f''(a)\]
 \end{solution}
 
 \end{questions}
