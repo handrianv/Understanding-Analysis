@@ -66,7 +66,7 @@
 
 \begin{solution}
   \begin{enumerate}[label=(\alph*)]
-    \item Yes, each $f_{n}$ is continuous at zero. Simply choose $\delta < \frac{1}{n}$.
+    \item Yes, each $f_{n}$ is continuous at zero. Simply choose $\delta < \frac{1}{n}$, then $f(x)=0$ for $x < \delta$.
     
     To answer uniform convergence, let's first define $f$. For $x$ not of the form $\frac{1}{n}$, $f(x)$ is clearly 0. For $x$ of the form $\frac{1}{n}$, then
     for all $m \geq n$, $f_{m}(x)=1$ i.e. eventually all $f_{n}(x)$ becomes 1. So $f$ is
@@ -75,14 +75,32 @@
         1 & \text{if } x = \frac{1}{n} \text{ for } n \in \textbf{N}\\
         0 & \text{otherwise}
       \end{cases}
-  \]
+   \]
 
    It's not uniformly convergent. Let $\epsilon < 1$. Now say we choose $N=5$, then for $x = \frac{1}{6}$,
-   we have $f_{5}(x)=0$ but $f(x)=1$.
+   we have $f_{5}(\frac{1}{6})=0$ but $f(\frac{1}{6})=1$.
    In general, no single $N$ can work for all $x$ because we can choose $x = \frac{1}{N+1}$, then $|f_{N}(x)-f(x)|=1 > \epsilon$.
 
    Finally, $f$ is not continuous at zero. We have $f(0)=0$. But since $\frac{1}{n} \to 0$, there's always $x$ of the form $\frac{1}{n}$ close enough to zero
    such that $f(x)=1$.
+
+   \item Each $g_{n}$ is continuous at zero. Same argument as part (a), choose $\delta < \frac{1}{n}$ then $|x| < \delta \implies g_{n}(x)=0$.
+   
+   Using a very similar argument as part (a), the limit function $g$ is
+    \[
+      g(x) = \begin{cases}
+        x & \text{if } x = \frac{1}{n} \text{ for } n \in \textbf{N}\\
+        0 & \text{otherwise}
+      \end{cases}
+   \]
+   
+   But unlike part(a), this is uniformly convergent. The idea is to choose $N$ big enough such that even if $g_{N}(x)=0$, then $x$ needs to be really small, hence
+   $|g_{N}(x)-g(x)|=|0-x|=|x|$ is really small as well.
+
+   Formally, choose $N > \frac{1}{\epsilon}$. Then for $n \geq N$, either $g_{n}(x)=g(x)$ or if $g_{n}(x)=0$, then $x=\frac{1}{m}$ with $m > n$.
+   But since $n > \frac{1}{\epsilon}$, if $m > n$ then $\frac{1}{m} < \epsilon$, hence $|g_{n}(\frac{1}{m})-g(\frac{1}{m})|=\frac{1}{m} < \epsilon$.
+
+   $g$ is continuous at zero, as $\frac{1}{n}$ converges to zero.
   \end{enumerate}
 \end{solution}
 
