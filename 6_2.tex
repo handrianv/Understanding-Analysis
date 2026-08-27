@@ -1,0 +1,90 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition}
+\sheettitle{Chapter 6 - Section 6.2 - Uniform Convergence of a Sequence of Functions} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Let
+\[f_{n}(x)=\frac{nx}{1+nx^2}\]
+\begin{enumerate}[label=(\alph*)]
+  \item Find the pointwise limit of $(f_{n})$ for all $x \in (0, \infty)$.
+  \item Is the convergence uniform on $(0, \infty)$?
+  \item Is the convergence uniform on $(0, 1)$?
+  \item Is the convergence uniform on $(1, \infty)$?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Intuitively, as $n$ grows the $+ 1$ term starts to not matter, so it should converge to $\frac{nx}{nx^2}=\frac{1}{x}$. Formally
+    \[\lim_{n \to \infty}\frac{nx}{1+nx^2}=\lim_{n \to \infty}\frac{x}{1/n + x^2}=1/x\]
+    \item No. Given $\epsilon > 0$, let $N$ such that for all $n \geq N$, $|f_{n}(x)-\frac{1}{x}| < \epsilon$. Or in other words
+    \[\left|\frac{nx}{1+nx^2}-\frac{1}{x}\right| = \frac{1}{x(1+nx^2)} < \epsilon\]
+    For this to be uniformly convergent, the $N$ needs to work for all $x$. But the lhs is unbounded as $x \to 0$; there's always a small enough $x$
+    such that the lhs is eventually greater than $\epsilon$.
+    \item No, for the same reason as part (b). We can always choose small enough $x$ to break the uniform convergence.
+    \item Now the answer is yes. Reusing the result from part (b), for $x > 1$, the value is upper-bounded by $x=1$
+    \[\frac{1}{x(1+nx^2)} < \frac{1}{1+n}\]
+    This doesn't depend on $x$, so we can simply choose $N \geq \frac{1}{\epsilon}-1$.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 2 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Define a sequence of functions on \textbf{R} by
+  \[
+    f_{n}(x) = \begin{cases}
+      1 & \text{if } x = 1, \frac{1}{2}, \frac{1}{3}, ..., \frac{1}{n}\\
+      0 & \text{otherwise}
+    \end{cases}
+  \]
+  and let $f$ be the pointwise limit of $f_{n}$.
+
+  Is each $f_{n}$ continuous at zero? Does $f_{n} \to f$ uniformly on \textbf{R}? Is $f$ continuous at zero?
+  \item Repeat this exercise using the sequence of functions
+    \[
+      g_{n}(x) = \begin{cases}
+        x & \text{if } x = 1, \frac{1}{2}, \frac{1}{3}, ..., \frac{1}{n}\\
+        0 & \text{otherwise}
+      \end{cases}
+  \]
+  \item Repeat once more with
+    \[
+      h_{n}(x) = \begin{cases}
+        1 & \text{if } x = \frac{1}{n}\\
+        x & \text{if } x = 1, \frac{1}{2}, \frac{1}{3}, ..., \frac{1}{n-1}\\
+        0 & \text{otherwise}
+      \end{cases}
+  \]
+  In each case, explain how the results are consistent with the Continuous Limit Theorem (Theorem 6.2.6).
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Yes, each $f_{n}$ is continuous at zero. Simply choose $\delta < \frac{1}{n}$.
+    
+    To answer uniform convergence, let's first define $f$. For $x$ not of the form $\frac{1}{n}$, $f(x)$ is clearly 0. For $x$ of the form $\frac{1}{n}$, then
+    for all $m \geq n$, $f_{m}(x)=1$ i.e. eventually all $f_{n}(x)$ becomes 1. So $f$ is
+    \[
+      f(x) = \begin{cases}
+        1 & \text{if } x = \frac{1}{n} \text{ for } n \in \textbf{N}\\
+        0 & \text{otherwise}
+      \end{cases}
+  \]
+
+   It's not uniformly convergent. Let $\epsilon < 1$. Now say we choose $N=5$, then for $x = \frac{1}{6}$,
+   we have $f_{5}(x)=0$ but $f(x)=1$.
+   In general, no single $N$ can work for all $x$ because we can choose $x = \frac{1}{N+1}$, then $|f_{N}(x)-f(x)|=1 > \epsilon$.
+
+   Finally, $f$ is not continuous at zero. We have $f(0)=0$. But since $\frac{1}{n} \to 0$, there's always $x$ of the form $\frac{1}{n}$ close enough to zero
+   such that $f(x)=1$.
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
