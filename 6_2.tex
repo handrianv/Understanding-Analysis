@@ -61,8 +61,8 @@
         0 & \text{otherwise}
       \end{cases}
   \]
-  In each case, explain how the results are consistent with the Continuous Limit Theorem (Theorem 6.2.6).
 \end{enumerate}
+ In each case, explain how the results are consistent with the Continuous Limit Theorem (Theorem 6.2.6).
 
 \begin{solution}
   \begin{enumerate}[label=(\alph*)]
@@ -101,7 +101,64 @@
    But since $n > \frac{1}{\epsilon}$, if $m > n$ then $\frac{1}{m} < \epsilon$, hence $|g_{n}(\frac{1}{m})-g(\frac{1}{m})|=\frac{1}{m} < \epsilon$.
 
    $g$ is continuous at zero, as $\frac{1}{n}$ converges to zero.
+
+   \item Each $h_{n}$ is continuous at zero. Choose $\delta < \frac{1}{n}$, then $|x| < \delta \implies h_{n}(x) = 0$.
+   
+   Using a similar argument as part (a), for each $x$ of the form $\frac{1}{n}$, we have $h_{m}(x)=x=\frac{1}{n}$ for all $m > n$. So $h$ is
+    \[
+      h(x) = \begin{cases}
+        x & \text{if } x = \frac{1}{n} \text{ for } n \in \textbf{N}\\
+        0 & \text{otherwise}
+      \end{cases}
+   \]
+   
+   $h$ is the same as $g$ from part(b), but in this case it's not uniformly convergent. The issue here is that
+   \[h_{N}(\frac{1}{N})-h(\frac{1}{N})=1-\frac{1}{N}\]
+   So as $x = \frac{1}{n}$ gets smaller, we need to choose increasingly larger $N$.
+
+   More formally, let $\epsilon < \frac{1}{2}$ and $x = \frac{1}{2}$. Choose $N \geq 3$. Then for $n \geq N$, we have
+   \[h_{n}(\frac{1}{2})-h(\frac{1}{2})=\frac{1}{2}-\frac{1}{2}=0\]
+   But this same $N$ cannot for $x= \frac{1}{N+1}$ because for $n = N+1$ we have
+   \[h_{N+1}(\frac{1}{N+1})-h(\frac{1}{N+1})=1-\frac{1}{N+1}\]
+   And since $N \geq 3$, then $\frac{1}{N+1} \leq \frac{1}{4}$, hence
+   \[1-\frac{1}{N+1} \geq 1-\frac{1}{4} > \epsilon\]
+
+   Finally, $h$ is continuous at zero as it's the same as $g$ in part(b).
   \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 3 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 4 -------------------------
+\miquestion TODO. It depends on Exercise 5.2.8 which I haven't done yet.
+
+%------------------------- Problem 5 -------------------------
+\miquestion Using the Cauchy Criterion for convergent sequences of real numbers (Theorem 2.6.4), supply a proof for Theorem 6.2.5. (First, define a candidate for $f(x)$,
+and then argue that $f_{n} \to f$ uniformly).
+\begin{solution}
+  The proof strategy is very similar to Theorem 2.6.4.
+
+  \textbf{Necessity: uniform convergence $\implies$ Cauchy}\\
+  There exists $N$ such that for all $n \geq N$, $|f_{n}(x)-f(x)| < \epsilon/2$ for all $x$. Then for any $m, n \geq N$ and any $x$ we have
+  \[|f_{n}(x)-f_{m}(x)| \leq |f_{n}(x) - f(x)| + |f(x)-f_{m}(x)| < \epsilon/2 + \epsilon/2 = \epsilon\]
+  Satisfying Cauchy criterion.
+
+  \textbf{Sufficiency: Cauchy $\implies$ uniform convergence}\\
+  The Cauchy criterion doesn't say what the limit function is, so we need to define it first. For a \textbf{particular} $x$, the sequence of real numbers
+  $f_{1}(x), f_{2}(x), ...$ is a Cauchy sequence, so it converges to a limit $L_{x}$. Define $f$ to be
+  \[f(x)=L_{x}\]
+
+  Now we prove uniform convergence. By the Cauchy hypothesis (for sequence of functions), there exists $N$ such that for all $n, m \geq N$, we have
+  \[|f_{n}(x)-f_{m}(x)| < \epsilon/2\]
+  for any $x$.
+
+  Also, by the fact that $f_{1}(x), f_{2}(x), ... \to L_{x}$, there exists an $k \geq N$ such that $|f_{k}(x)-L_{x}| < \epsilon/2$.
+  The value of $k$ depends on $x$, but that's okay because for any $x$, $k \geq N$ and $N$ does not depend on $x$.
+
+  Combining these two inequalities, we satisfy the condition for uniform convergence. For any $n \geq N$, we have
+  \[|f_{n}(x)-L_{x}| \leq |f_{n}(x)-f_{k}(x)| + |f_{k}(x)-L_{x}| < \epsilon/2 + \epsilon/2 = \epsilon\]
+  for any $x$.
 \end{solution}
 
 \end{questions}
