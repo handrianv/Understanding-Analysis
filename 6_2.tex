@@ -276,7 +276,38 @@ uniformly on $K$ to $1/g$.
 
   Finally, choose $N_{2}$ such that $|g_{n}(x)-g(x)| < \frac{\epsilon m^{2}}{2}$ and choose $N=\max(N_{1}, N_{2})$
   \[\frac{2}{m^2}|g_{n}(x)-g(x)| < \frac{2}{m^2} \frac{\epsilon m^{2}}{2} = \epsilon\]
+\end{solution}
 
+%------------------------- Problem 9 -------------------------
+\miquestion Assume $(f_{n})$ and $(g_{n})$ are uniformly convergent sequences of functions.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $(f_{n}+g_{n})$ is a uniformly convergent sequence of functions.
+  \item Give an example to show that the product $(f_{n}g_{n})$ may not converge uniformly.
+  \item Prove that if there exists an $M > 0$ such that $|f_{n}| \leq M$ and $|g_{n}|\leq M$ for all $n \in \textbf{N}$, then $(f_{n}g_{n})$ does converge uniformly.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Let $(f_{n}) \to f$ and $(g_{n}) \to g$ uniformly, then $(f_{n}+g_{n}) \to (f+g)$.
+    
+    Choose $N_{f}$ such that $|f_{n}(x)-f(x)| < \epsilon/2$ for all $x$. Choose $N_{g}$ similarly, and let $N=\max(N_{f}, N_{g})$. Then
+    \[|(f_{n}(x)+g_{n}(x))-(f(x)+g(x)| \leq |f_{n}(x)-f(x)| + |g_{n}(x)-g(x)| < \epsilon/2 + \epsilon/2 = \epsilon\]
+    
+    \item Let $f(x)=x$ and $g(x)=\frac{1}{n}$. $f_{n} \to f(x)=x$ uniformly, while $g_{n} \to g(x)=0$ uniformly.
+    But $(f_{n}g_{n})=\frac{x}{n}$ does not converge uniformly to $(fg)=0$ because there exists large enough $x$ so that $\frac{x}{n}$ is big.
+
+    Concretely, let $\epsilon=1/2$. For an $N$ that works for a particular $x_{1}$, the same $N$ does not work for $x_{2}=N$ because $\frac{N}{N}=1>\epsilon$.
+
+    \item First, note that if $|f_{n}| \leq M$ then $|f| \leq M$ as well by Squeeze (if $|f| > M$, then we can make $|f_{n}(x)|$ within $M+(|f|-M)/2$ of $f$, a contradiction).
+    The rest follows the typical proof for proving convergence of products
+    \begin{align*}
+      |f_{n}(x)g_{n}(x) - f(x)g(x)| &= |f_{n}(x)g_{n}(x)-f(x)g_{n}(x)+f(x)g_{n}(x)-f(x)g(x)|\\
+      &\leq |g_{n}(x)||f_{n}(x)-f(x)|+|f(x)||g_{n}(x)-g(x)|\\
+      &\leq M|f_{n}(x)-f(x)| + M|g_{n}(x)-g(x)|
+    \end{align*}
+    
+    Then choose $N$ such that $|f_{n}(x)-f(x)|$ and $|g_{n}(x)-g(x)|$ are both less than $\frac{\epsilon}{2M}$.
+  \end{enumerate}
 \end{solution}
 
 \end{questions}
