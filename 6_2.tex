@@ -128,7 +128,72 @@
 \end{solution}
 
 %------------------------- Problem 3 -------------------------
-\miquestion TODO
+\miquestion For each $n \in \textbf{N}$ and $x \in [0, \infty)$, let
+\[g_{n}(x)=\frac{x}{1+x^{n}}\]
+and 
+  \[
+    h_{n}(x) = \begin{cases}
+      1 & \text{if } x \geq 1/n\\
+      nx & \text{if } 0 \leq x < 1/n
+    \end{cases}
+  \]
+\begin{enumerate}[label=(\alph*)]
+  \item Find the pointwise limit on $[0, \infty)$.
+  \item Explain how we know that the convergence \textit{cannot} be uniform on $[0, \infty)$.
+  \item Choose a smaller set over which the convergence is uniform and supply a proof.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item
+    \[
+        g(x) = \begin{cases}
+          x & \text{if } x < 1\\
+          1/2 & \text{if } x = 1\\
+          0 & \text{if } x > 1
+        \end{cases}
+    \]
+
+    For $h$, note that for $x > 0$ and large enough $n$ then $x \geq 1/n$ eventually and we always enter the first case.\\
+    For $x=0$, we always enter the second case. So $h$ is
+    \[
+        h(x) = \begin{cases}
+          1 & \text{if } x > 0\\
+          0 & \text{if } x = 0
+        \end{cases}
+    \]
+
+    \item For $h_{n}$, let's try $\epsilon=1/4$ and $x=1/2$ and see what we get.
+    
+    $h_{1}(1/2)=\frac{1}{2}$ and $|h_{1}(1/2)-h(1/2)|=|1/2 - 1|=1/2 > \epsilon$, so $N=1$ doesn't work.
+
+    $h_{2}(1/2)=1$. So $N \geq 2$ works because $h_{N}(1/2)=1$.
+
+    But this $N$ doesn't work for $x = \frac{1}{N^{2}}$, because $h_{N}(\frac{1}{N^2})=\frac{1}{N}$ and even if we choose the minimum $N=2$, we
+    get $|\frac{1}{2}-1|=\frac{1}{2} > \epsilon$. Choosing larger $N$ will only increase the distance from 1 even more.
+
+    \textbf{-- Better solution by chatgpt --}\\
+    Use the Continuous Limit Theorem. $g_{n}$ and $h_{n}$ is continuous for all $n$, so if they're uniformly convergent then $g$ and $h$ must be continuous.
+    But $g$ is discontinuous at $x=1$ and $h$ at $x=0$.
+
+    \item For $g_{n}$, a simple option is to restrict to $x=1$. Then $g_{n}(1)=g(1)=1/2$ for all $n$ which is certainly uniformly convergent. Likewise for $h_{n}$,
+    restrict to $x=0$. Then $h_{n}(0)=h(0)=0$ for all $n$. But such trivial sets are probably not what the author intended. Let's choose a bigger set.
+
+    \textbf{-- Incorrect -- }\\
+    For $g_{n}$, we can stay away from the discontinuity at $1$. Say, $(1, \infty)$. Then $g(x)=0$ and
+    \[|g_{n}(x)-g(x)|=\frac{x}{1+x^{n}} \leq \frac{x}{x^n}=\frac{1}{x^{n-1}}\]
+
+    \textbf{-- Corrected --}\\
+    Oops, $(1, \infty)$ doesn't work because $x$ can still get arbitrarily close to 1. For any $N$, we can choose $x$ close enough to 1
+    such that $\frac{1}{x^{n-1}}$ gets close to 1 hence far from $g(x)=0$.
+
+    Instead, we need an interval bounded away from 1, say $[2, \infty)$. then
+    \[|g_{n}(x)-g(x)| \leq \frac{1}{x^{n-1}} \leq \frac{1}{2^{n-1}} \to 0\]
+    So for any $\epsilon$, choose $N$ big enough so that $\frac{1}{2^{N-1}} < \epsilon$.
+
+    $h_{n}$ is uniformly convergent on $[1, \infty)$ because for $x \geq 1$ we'll always enter the first case, hence $h_{n}(x)=1$ for all $n$ and $x$.
+  \end{enumerate}
+\end{solution}
 
 %------------------------- Problem 4 -------------------------
 \miquestion TODO. It depends on Exercise 5.2.8 which I haven't done yet.
@@ -153,12 +218,65 @@ and then argue that $f_{n} \to f$ uniformly).
   \[|f_{n}(x)-f_{m}(x)| < \epsilon/2\]
   for any $x$.
 
-  Also, by the fact that $f_{1}(x), f_{2}(x), ... \to L_{x}$, there exists an $k \geq N$ such that $|f_{k}(x)-L_{x}| < \epsilon/2$.
+  Also, by the fact that $f_{1}(x), f_{2}(x), ... \to L_{x}$, there exists a $k \geq N$ such that $|f_{k}(x)-L_{x}| < \epsilon/2$.
   The value of $k$ depends on $x$, but that's okay because for any $x$, $k \geq N$ and $N$ does not depend on $x$.
 
   Combining these two inequalities, we satisfy the condition for uniform convergence. For any $n \geq N$, we have
   \[|f_{n}(x)-L_{x}| \leq |f_{n}(x)-f_{k}(x)| + |f_{k}(x)-L_{x}| < \epsilon/2 + \epsilon/2 = \epsilon\]
   for any $x$.
+\end{solution}
+
+%------------------------- Problem 6 -------------------------
+\miquestion TODO
+
+%------------------------- Problem 7 -------------------------
+\miquestion Let $f$ be uniformly continuous on all of \textbf{R}, and define a sequence of functions by $f_{n}(x)=f(x+\frac{1}{n})$. Show that $f_{n} \to f$ uniformly.
+Give an example to show that this proposition fails if $f$ is only assumed to be continuous and not uniformly continuous on \textbf{R}.
+\begin{solution}
+  We need to show there exists $N$ such that for all $n \geq N$ and for all $x$
+  \[\left|f(x+\frac{1}{n})-f(x)\right| < \epsilon\]
+
+  By uniform continuity, there exists $\delta > 0$ such that for all $x$, if $x-\delta < c < x+\delta$ then $|f(c)-f(x)| < \epsilon$.
+  The idea is we just have to pick $N$ (for the uniform convergence) large enough such that $\frac{1}{N} < \delta$.
+
+  Since $(\frac{1}{n}) \to 0$, choose $N$ large enough such that $\frac{1}{N} < \delta$. Then for all $n \geq N$
+  \[x-\delta < x+\frac{1}{n} < x + \delta \implies \left|f(x+\frac{1}{n})-f(x)\right| < \epsilon\]
+
+  For the counterexample, take $f(x)=x^2$. This is continuous but not uniformly continuous on \textbf{R}. Then
+  \[\left|f(x+\frac{1}{n})-f(x)\right| = \left|\frac{1}{n^2} + \frac{2x}{n}\right|\]
+
+  Suppose there's an $N$ that works for a particular $x_{1}$ and $\epsilon$. There exists another $x_{2}$ large enough such that $\frac{2x}{n}$ is eventually
+  larger than $\epsilon$, so the convergence is not uniform. More formally, let $\epsilon = 1$. If we choose $x=N$ then
+  \[\left|\frac{1}{n^2} + \frac{2x}{n}\right| = 2 + \frac{1}{n^2} > 1\]
+
+  As to how I knew that $x^2$ would work as a counterexample, I don't. I just chose the simplest non uniformly continuous function I can think of and it luckily worked.
+  Chatgpt told me the intuition behind this is that "$x^2$ changes faster if x is large, so shifting by $1/n$ may be tiny, but at large $x$ the vertical change can still be large".
+\end{solution}
+
+%------------------------- Problem 8 -------------------------
+\miquestion Let $(g_{n})$ be a sequence of continuous functions that converges uniformly to $g$ on a compact set $K$. If $g(x) \neq 0$ on $K$, show $(1/g_{n})$ converges
+uniformly on $K$ to $1/g$.
+
+\begin{solution}
+  I missed the fact that we can use compactness to bound $g(K)$ and only realized it with chatgpt's assistance.
+
+  Given $\epsilon > 0$, we need to show that there exists $N$ such that for all $n \geq N$ and for all $x \in K$
+  \[\left|\frac{1}{g_{n}(x)}-\frac{1}{g(x)}\right| = \frac{|g_{n}(x)-g(x)|}{|g_{n}(x)||g(x)|} < \epsilon\]
+
+  The difficulty lies in bounding the denominator. We use the fact that $g$ is continuous on a compact set. By Theorem 4.4.1, $g(K)$ is compact, so it's bounded.
+  And since $0 \notin g(K)$, then there exists a positive lower bound $m$ such that $|g(x)| \geq m$, then
+  \[\frac{|g_{n}(x)-g(x)|}{|g_{n}(x)||g(x)|} \leq \frac{|g_{n}(x)-g(x)|}{|g_{n}(x)|m}\]
+  
+  Since $(g_{n})$ converges uniformly to $g$, we can choose $N_{1}$ such that $g_{n}(x)$ is close to $g(x)$ or equivalently, $|g_{n}(x)|$ close to $|g(x)|$. Formally,
+  this follows from the fact that
+  \[||g_{n}(x)|-|g(x)|| \leq |g_{n}(x)-g(x)|\]
+
+   Choose $N_{1}$ such that $|g_{n}(x)| \geq \frac{m}{2}$, resulting in
+  \[\frac{|g_{n}(x)-g(x)|}{|g_{n}(x)|m} \leq \frac{2}{m^2}|g_{n}(x)-g(x)|\]
+
+  Finally, choose $N_{2}$ such that $|g_{n}(x)-g(x)| < \frac{\epsilon m^{2}}{2}$ and choose $N=\max(N_{1}, N_{2})$
+  \[\frac{2}{m^2}|g_{n}(x)-g(x)| < \frac{2}{m^2} \frac{\epsilon m^{2}}{2} = \epsilon\]
+
 \end{solution}
 
 \end{questions}
