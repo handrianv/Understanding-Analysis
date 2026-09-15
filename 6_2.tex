@@ -342,11 +342,31 @@ $n \in \textbf{N}$ and $x \in A$. Follow these steps to show that there exists a
     pointwise on $\{x_{1}, x_{2}, ..., x_{n}, x_{n+1}\}$.
 
     \textbf{-- Completion by chatgpt --}\\
-    I thought the answer is complete by this point, but chatgpt reminded me that I only have nested subsequences. It remains to produce the single, final subsequence of $(f_{n})$.
+    I thought the answer was complete by this point, but chatgpt reminded me that I only have nested subsequences. It remains to produce the single, final subsequence of $(f_{n})$.
 
     Take the diagonal terms $h_{k} = f_{k,k}$. That is, take the first function of $f_{1, k}$, the second function of $f_{2, k}$, and so on.
 
     Now, for any fixed $m$, $h_{k}$ converges on $x_{m}$ because once $k \geq m$, the tail of $h_{k}$ is a subsequence of $f_{m, k}$.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 14 -------------------------
+\miquestion A sequence of functions $(f_{n})$ defined on a set $E \subseteq \textbf{R}$ is called \textit{equicontinuous} if for every $\epsilon > 0$ there exists a $\delta > 0$
+such that $|f_{n}(x)-f_{n}(y)| < \epsilon$ for all $n \in \textbf{N}$ and $|x-y| < \delta$ in $E$.
+\begin{enumerate}[label=(\alph*)]
+  \item What is the difference between saying that a sequence of functions $(f_{n})$ is equicontinuous and just asserting that each $f_{n}$ in the sequence is individually uniformly continuous?
+  \item Give a qualitative explanation for why the sequence $g_{n}(x)=x^{n}$ is not equicontinuous on $[0, 1]$. Is each $g_{n}$ uniformly continuous on $[0, 1]$?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item The difference is that a single $\delta$ works for all $f_{n}$ at once. If each $f_{n}$ is uniformly continuous but not equicontinuous, then each $f_{n}$ may require different $\delta$.
+    \item Take $\epsilon=1/2$. Given any $\delta > 0$, choose $x < 1$ with $|1-x| < \delta$. Since $x^{n} \to 0$ for $0 \leq x < 1$, there exists big enough $n$ such that $|1-x^{n}| \geq 1/2$.
+
+    Each $g_{n}$ is uniformly continuous on $[0, 1]$. We have $|x^{n}-y^{n}| = |x-y||x^{n}+x^{n-1}{y}+...+y^{n}|$. There are $n$ terms in the binomial and
+    the whole expression is bounded by $x=y=1$, so we have $|x-y||x^{n-1}+x^{n-2}{y}+...+y^{n-1}| \leq n|x-y|$. Pick $\delta < \frac{\epsilon}{n}$.
+
+    Or more compactly (pun intended), use Theorem 4.4.7: a function that is continuous on a compact set $K$ is uniformly continuous on $K$.
   \end{enumerate}
 \end{solution}
 
