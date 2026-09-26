@@ -311,11 +311,40 @@ uniformly on $K$ to $1/g$.
 \end{solution}
 
 %------------------------- Problem 10 -------------------------
-\miquestion TODO
+\miquestion Assume $f_{n} \to f$ pointwise on $[a, b]$ and the limit function $f$ is continuous on $[a, b]$. If each $f_{n}$ is increasing (but not necessarily) continuous, show $f_{n} \to f$ uniformly.
+\begin{solution}
+  This was tough. The following solution is based on \href{https://math.stackexchange.com/questions/834126/sequence-of-monotone-functions-converging-to-a-continuous-limit-is-the-converge}{this MSE answer}.
+
+  $f$ is continuous on a compact set so by Theorem 4.4.7 $f$ is uniformly continuous and there exists $\delta$ such that $|x-y| < \delta \implies |f(x)-f(y)| < \epsilon/2$.
+  Now, since $[a,b]$ is compact, we can choose a partition $t_{0}=a < t_{1} < t_{2} < ... < t_{k}=b$ with $t_{i}-t_{i-1} < \delta$. 
+
+  How does this help? Well, the problem with pointwise convergent is that each $x$ may require a different $N$ and since there are infinitely many $x$, we can't choose a maximum $N$.
+  The partition helps us to reduce the choice to a \textit{finite} number of $N$'s. 
+
+  By pointwise convergence, for each $t_{i}$ there exists $N_{i}$ such that $|f_{n}(t_{i})-f(t_{i})| < \epsilon/2$. Now we're going to group the choice of an arbitrary $t$ by proving that
+  since $f_{n}(t_{i-1}) \leq f_{n}(t) \leq f_{n}(t_{i})$ for some $i$, then $N_{i}$ works for $t$. Then we can pick $N = \max(N_{0}, N_{1}, ..., N_{k})$.
+
+  We want to show that if $n \geq N$ then $f_{n}(t) \to f(t)$ i.e.
+  \[|f_{n}(t)-f(t)| < \epsilon\] 
+
+  By the monotonicity assumption of the problem, we have
+  \[f_{n}(t_{i-1}) \leq f_{n}(t) \leq f_{n}(t_{i})\]
+  By pointwise convergence on $t_{i}$, we have $f_{n}(t_{i}) < f(t_{i}) + \epsilon/2$. Similarly, $f_{n}(t_{i-1}) > f(t_{i-1}) - \epsilon/2$. Substituting this to the previous inequality, we get
+  \[f(t_{i-1})-\epsilon/2 < f_{n}(t) < f(t_{i})+\epsilon/2\]
+  
+  Now, by uniform continuity of $f$, we have 
+  \[|f(t)-f(t_{i})| < \epsilon /2 \implies f(t_{i}) < f(t)+\epsilon/2 \implies f(t_{i})+\epsilon/2 < f(t)+\epsilon\]
+  We can similarly prove that $f(t_{i-1})-\epsilon/2 > f(t)-\epsilon$. Then
+  \[f(t)-\epsilon < f_{n}(t) < f(t)+\epsilon\]
+  As required.
+
+\end{solution}
+
 %------------------------- Problem 11 -------------------------
 \miquestion TODO
 %------------------------- Problem 12 -------------------------
 \miquestion TODO
+
 %------------------------- Problem 13 -------------------------
 \miquestion The Bolzano-Weierstrass Theorem (BWT) is not true in general for sequence of functions, but under stronger hypotheses several different conclusions are possible. One
 avenue is to assume the common domain for all of the functions in the sequence is countable. (Another is explored in the next two exercises.)
