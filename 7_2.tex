@@ -1,0 +1,29 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition}
+\sheettitle{Chapter 7 - Section 7.2 - The Riemann Integral} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Let $f$ be a bounded function on $[a, b]$, and let $P$ be an arbitrary partition of $[a, b]$. First, explain why
+$U(f) \geq L(f, P)$. Now, prove Lemma 7.2.6: for any bounded function $f$ on $[a, b]$, it is always the case that $U(f) \geq L(f)$.
+
+\begin{solution}
+  We'll prove it by contradiction. Suppose that $U(f) < L(f, P)$. By definition of infimum, there must exists a partition $P_{2}$ such that
+  $U(f, P_{2}) < L(f, P)$, for otherwise the infimum would've been at least $L(f, P)$.\\
+  But $U(f, P_{2}) < L(f, P)$ contradicts Lemma 7.2.4: $L(f, P_{1}) \leq U(f, P_{2})$ for any partitions $P_{1}, P_{2}$.
+
+  To use this fact to prove Lemma 7.2.6, note that $L(f)$ is the supremum of all lower sums while $U(f)$ is an upper bound. Since by definition,
+  an upper bound is \textit{at least} the supremum, it follows that $U(f) \geq L(f)$.
+
+  Alternatively, we can prove Lemma 7.2.6 directly by contradiction as well. Suppose $U(f) < L(f)$ and let $m$ be the midpoint i.e. $m=\frac{L(f)+U(f)}{2}$.
+  By definition of infimum, there exists a partition $P_{1}$ such that $U(f, P_{1}) < m$. By definition of supremum, there exists a
+  partition $P_{2}$ such that $m < L(f, P_{2})$. But $U(f, P_{1}) < m < L(f, P_{2})$ contradicts Lemma 7.2.4.
+\end{solution}
+
+\end{questions}
+\end{document}
