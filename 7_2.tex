@@ -60,5 +60,67 @@ $U(f) \geq L(f, P)$. Now, prove Lemma 7.2.6: for any bounded function $f$ on $[a
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 3 -------------------------
+\miquestion \textbf{(Sequential Criterion for Integrability)}
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that a bounded function $f$ is integrable on $[a, b]$ if and only if there exists a sequence of partitions $(P_{n})_{n=1}^{\infty}$ satisfying
+  \[\lim_{n \to \infty} [U(f, P_{n}) - L(f, P_{n})] = 0,\]
+  and in this case $\int_{a}^{b}f = \lim_{n \to \infty} U(f, P_{n}) = \lim_{n \to \infty}L(f, P_{n})$.
+  \item For each $n$, let $P_{n}$ be the partition of $[0, 1]$ into $n$ equal subintervals. Find formulas for $U(f, P_{n})$ and $L(f, P_{n})$ if $f(x)=x$. The formula
+  $1+2+3+...+n=n(n+1)/2$ will be helpful.
+  \item Use the sequential criterion for integrability from (a) to show directly that $f(x)=x$ is integrable on $[0, 1]$ and compute $\int_{0}^{1}f$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We'll prove the equivalence with the criterion of Theorem 7.2.8: for any $\epsilon > 0$ there exists a partition $P_{\epsilon}$ of $[a, b]$ such that
+    \[U(f, P_{\epsilon}) - L(f, P_{\epsilon}) < \epsilon\]
+
+    For the sufficieny direction, assume the sequential criterion is true. Then by definition of sequential convergence, for any $\epsilon > 0$, there exists $N$
+    such that for all $n \geq N$
+    \[U(f, P_{n}) - L(f, P_{n}) < \epsilon\]
+    Then just set $P_{\epsilon}=P_{N}$.
+
+    For the necessity direction, assume Theorem 7.2.8 is true. Then we can build a sequence of partitions $(P_{n})$ where
+    \[U(f, P_{n})-L(f, P_{n}) < 1/n\]
+    And since $\lim_{n \to \infty}1/n = 0$, then $\lim_{n \to \infty}U(f, P_{n}) - L(f, P_{n})=0$ as well.
+
+    \textbf{--- This is incorrect ---}\\
+    Finally, to prove that $\int_{a}^{b}f = \lim_{n \to \infty} U(f, P_{n}) = \lim_{n \to \infty}L(f, P_{n})$, we need to prove that
+    both limits are equal to $U(f)$ and $L(f)$ according to definition 7.2.1 of the Riemann Integral.
+    
+    Note that by exercise 1 and the fact that $U(f)$ and $L(f)$ are infimum / supremum:
+    \[\lim_{n \to \infty} U(f, P_{n}) \geq U(f) \geq L(f) \geq \lim_{n \to \infty} L(f, P_{n})\]
+    Since we know $\lim_{n \to \infty} U(f, P_{n}) = \lim_{n \to \infty}L(f, P_{n})$, the only solution to the inequality is if they're equal $U(f)$ and $L(f)$.
+
+    \textbf{--- Mistake pointed out by chatgpt. Correction by my own. ---}\\
+    The mistake is assuming that both $\lim_{n \to \infty} U(f, P_{n})$ and $\lim_{n \to \infty}L(f, P_{n})$ exist, which is not given and is part of what we need to prove.
+
+    We can prove it directly using the definition of sequential limit. We're given $\lim_{n \to \infty} [U(f, P_{n}) - L(f, P_{n})] = 0$. Choose $N$ large enough
+    such that for every $n \geq N$
+    \[U(f, P_{n}) - L(f, P_{n}) < \epsilon\]
+    The same $N$ works to prove that $\lim_{n \to \infty}U(f, P_{n})=U(f)$ because $U(f, P) \geq U(f) \geq L(f, P)$ for any $P$, hence
+    \[U(f, P_{n})-U(f) \leq U(f, P_{n}) - L(f, P_{n}) < \epsilon\]
+
+    A similar argument can be used to show that $\lim_{n \to \infty}L(f, P_{n}) = L(f)$. Now we can apply the Algebraic Limit Theorem to conclude that
+    $\lim_{n \to \infty} [U(f, P_{n}) - L(f, P_{n})] = 0 \implies \lim_{n \to \infty}U(f, P_{n}) = \lim_{n \to \infty}L(f, P_{n})$.
+  
+    \item \[U(f, P_{n}) = \frac{1}{n}\sum_{i=1}^{n}\frac{i}{n}=\frac{1}{n^2}\sum_{i=1}^{n}i=\frac{n+1}{2n}\]
+    \[L(f, P_{n}) = \frac{1}{n}\sum_{i=1}^{n}\frac{i-1}{n}=\frac{1}{n^2}\sum_{i=1}^{n}(i-1)=\frac{n+1}{2n}-\frac{1}{n}\]
+  
+    \item We have $\lim_{n \to \infty}U(f, P_{n})-L(f, P_{n}) = \lim_{n \to \infty}\frac{1}{n} = 0$, so the sequential criterion is satisfied.
+    
+    To compute $\int_{0}^{1}f$, we note that
+    \[U(f, P_{n}) = \frac{n+1}{2n} = \frac{1}{2} + \frac{1}{2n}\]
+    Hence the area is
+    \[\lim_{n \to \infty}U(f, P_{n}) = \frac{1}{2}\]
+    Similarly, $\lim_{n \to \infty}L(f, P_{n})=\frac{1}{2}$ as well, although we don't really need to check this since the sequential criterion
+    guarantees that $\lim_{n \to \infty}U(f, P_{n}) = \lim_{n \to \infty}L(f, P_{n})$.
+
+    Note that the result agrees with the geometric area as well; the area under $f(x)=x$ from $[0, 1]$ is a triangle with base and height 1, so its
+    area is $\frac{1}{2}$.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
