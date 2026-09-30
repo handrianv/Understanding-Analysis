@@ -46,7 +46,7 @@ $U(f) \geq L(f, P)$. Now, prove Lemma 7.2.6: for any bounded function $f$ on $[a
 
     \item I initially solved this by adding more points to the initial partition + some random guessing, but chatgpt suggested a smarter way.
     
-    Let's create an equallys-spaced partition. Then we have
+    Let's create an equally-spaced partition. Then we have
     \[U - L = \Delta{x}\sum_{i=1}^{n}M_{i}-m_{i}\]
     For $f(x)=1/x$, the supremum $M_{i}=f(x_{i-1})$ and the infimum $m_{i}=f(x_{i})$. The sum telescopes:
     \begin{align*}
@@ -122,5 +122,19 @@ $U(f) \geq L(f, P)$. Now, prove Lemma 7.2.6: for any bounded function $f$ on $[a
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 4 -------------------------
+\miquestion Let $g$ be bounded on $[a, b]$ and assume there exists a partition $P$ with $L(g, P)=U(g, P)$. Describe $g$. Is $g$ necessarily continuous? Is it integrable?
+If so, what is the value of $\int_{a}^{b}g$?
+
+\begin{solution}
+  This can happen if and only if each segment of the partition is a constant i.e. for each segment $[x_{i-1}, x_{i}]$, we have $g(x)=c_{i}$.
+  Otherwise one segment will have a supremum greater than infimum, causing $U(g, P) > L(f, P)$.
+
+  But note that two adjacent segments share an endpoint e.g. $x_{i}$ is both in $[x_{i-1}, x_{i}]$ and $[x_{i}, x_{i+1}]$. This forces the
+  whole interval to be a constant.
+
+  So $g$ is just a constant function $g(x)=c$. It's continuous, integrable, and assuming the partition has length $n$, the integral is
+  \[\int_{a}^{b}g = \sum_{i=1}^{n}(x_{i}-x_{i-1})c = (b-a)c\]
+\end{solution}
 \end{questions}
 \end{document}
