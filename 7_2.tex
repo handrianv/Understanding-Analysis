@@ -136,5 +136,43 @@ If so, what is the value of $\int_{a}^{b}g$?
   So $g$ is just a constant function $g(x)=c$. It's continuous, integrable, and assuming the partition has length $n$, the integral is
   \[\int_{a}^{b}g = \sum_{i=1}^{n}(x_{i}-x_{i-1})c = (b-a)c\]
 \end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion Assume that for each $n$, $f_{n}$ is an integrable function on $[a, b]$. If $(f_{n}) \to f$ uniformly on $[a, b]$, prove that $f$ is also integrable on this set.
+(We will see that this conclusion does not necessarily follow if the convergence is pointwise).
+
+\begin{solution}
+  We need to somehow relate the upper/lower sums of $f_{n}$ with those of $f$.
+
+  First, let's use the uniform convergence to choose an $N$ such that for all $n \geq N$, $|f_{n}(x)-f(x)| < \epsilon$ for all $x \in [a, b]$.
+  
+  Now take a partition $P=\{x_{0},...,x_{m}\}$ and let's see how this affects $U(f_{n}, P)$ and $U(f, P)$. We have
+  \[U(f_{n}, P) = \sum_{i=1}^{m}(x_{i}-x_{i-1})M_{n, i}\]
+  where $M_{n,i}$ is the supremum of $f_{n}$ in $[x_{i-1}, x_{i}]$
+
+  Since $f(x) < f_{n}(x) + \epsilon \leq M_{n, i} + \epsilon$, it follows that the supremum $M_{i}$ of $f$ is bounded by $M_{i} \leq M_{n, i} + \epsilon$.
+  Then $U(f, P)$ is bounded by
+  \[U(f, P) \leq \sum_{i=1}^{m}(x_{i}-x_{i-1})(M_{n, i} + \epsilon) = U(f_{n}, P) + (b-a)\epsilon\]
+
+  We can adjust our initial choice of $N$ so that $|f_{n}(x)-f(x)| < \frac{\epsilon}{4(b-a)}$ instead, which gives
+  \[U(f, P) \leq U(f_{n}, P) + \frac{\epsilon}{4}\]
+
+  Similarly, we can prove that $L(f, P) \geq L(f_{n}, P) - \frac{\epsilon}{4}$.
+  
+  Our goal is to prove the integrability of $f$ by Theorem 7.2.8: given an $\epsilon > 0$, produce a partition $P_{\epsilon}$ such that
+  $U(f, P_{\epsilon}) - L(f, P_{\epsilon}) < \epsilon$.
+  
+  Let's see what we have so far with an arbitrary partition $P$:
+  \[U(f, P) - L(f, P) \leq [U(f_{n}, P) + \frac{\epsilon}{4}] - [L(f_{n}, P) - \frac{\epsilon}{4}] = U(f_{n}, P) - L(f_{n}, P) + \frac{\epsilon}{2}\]
+
+  The remaining issue is to control $U(f_{n}, P) - L(f_{n}, P)$. Note that while this inequality holds for all $n \geq N$, to prove Theorem 7.2.8 we
+  can pick a single specific $f_{n}$. By integrability of $f_{n}$, there exists a partition $P_{n}$ such that
+  
+  \[U(f_{n}, P_{n})-L(f_{n}, P_{n}) < \frac{\epsilon}{2}\]
+
+  Set $P_{\epsilon}=P_{n}$, then
+  \[U(f, P_{n}) - L(f, P_{n}) \leq U(f_{n}, P_{n})-L(f_{n}, P_{n}) + \frac{\epsilon}{2} < \frac{\epsilon}{2}+\frac{\epsilon}{2} = \epsilon\]
+\end{solution}
+
 \end{questions}
 \end{document}
