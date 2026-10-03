@@ -228,5 +228,45 @@ is proved in Section 8.1).
   Since this works for any $\epsilon > 0$, by Theorem 1.2.6 $I=A$.
 \end{solution}
 
+%------------------------- Problem 7 -------------------------
+\miquestion Let $f: [a, b] \to \textbf{R}$ be increasing on the set $[a, b]$ (i.e. $f(x) \leq f(y)$ whenever $x \leq y$). Show that $f$ is integrable on $[a, b]$.
+\begin{solution}
+  Play around with how an increasing function affects $U(f, P)$ and $L(f, P)$ for a partition $P$. Some observations (in the order I noticed them):
+  \begin{enumerate}
+    \item As $k$ increases, $M_{k}$ and $m_{k}$ increase as well so the upper / lower sum in the subinterval $[x_{k-1}, x_{k}]$ must also increase. But this observation doesn't seem to help.
+    \item The lower sum of $[x_{k}, x_{k+1}]$ must be equal or greater than the upper sum of $[x_{k-1}, x_{k}]$, as $m_{k+1} \geq M_{k}$. This doesn't seem to help either.
+    \item But (2) led me to realize that actually for any subinterval $[x_{k-1}, x_{k}]$, we have $m_{k}=f(x_{k-1})$ and $M_{k}=f(x_{k})$. In particular, $m_{k}=M_{k-1}$.
+  \end{enumerate}
+  Observation (3) strongly hints towards telescoping sum. We have
+  \begin{align*}
+      U(f, P) - L(f, P) &= (\Delta{x_{1}}M_{1} + ... + \Delta{x_{n}}M_{n}) - (\Delta{x_{1}}m_{1} + ... + \Delta{x_{n}}m_{n})\\
+      &= [\Delta{x_{1}}f(x_{1}) + ... + \Delta{x_{n}}f(x_{n})] - [\Delta{x_{1}}f(x_{0}) + ... + \Delta{x_{n}}f(x_{n-1})]\\
+      &= \sum_{k=1}^{n}\Delta{x_{k}}[f(x_{k})-f(x_{k-1})]
+  \end{align*}
+
+  That didn't telescope as cleanly as I'd hoped due to the differing $\Delta{x_{k}}$ coefficients, but it's still the right approach.
+
+  \textbf{--- Incorrect attempt ---}\\
+  Let $\Delta{f_{k}} = f(x_{k})-f(x_{k-1})$. We can choose a partition $P$ such that $\Delta{x_{k}} < \frac{\epsilon}{n\Delta{f_{k}}}$. Then
+  \begin{align*}
+    U(f, P) -  L(f, P) &= \sum_{k=1}^{n}\Delta{x_{k}}\Delta{f_{k}}\\
+    &< \sum_{k=1}^{n}\frac{\epsilon}{n\Delta{f_{k}}}\Delta{f_{k}}\\
+    &= \epsilon
+  \end{align*}
+
+  Satisfying the integrability criterion of Theorem 7.2.8.
+
+  (In the special case where $\Delta{f_{k}}=0$, then $\Delta{x_{k}}\Delta{f_{k}} = 0$ so choose any number for the $\Delta{x_{k}}$).
+
+  \textbf{--- Mistake pointed out by chatgpt. Correction my own. ---}\\
+  The above doesn't work becaue the value of $\Delta{f_{k}}$ itself depends on the chosen partition, so the argument is circular.
+  The other issue is that $\sum_{k=1}^{n}\Delta{x_{k}}$ must sum up to $(b-a)$.
+  
+  Instead, consider an equally-spaced partition (this is the same trick as exercise 2c). Let $L=(b-a)$ and $\Delta{x_{k}}=\frac{L}{n}$, then
+  \[U(f, P) - L(f, P) = \sum_{k=1}^{n}\frac{L}{n}\Delta{f_{k}} = \frac{L}{n}[f(b)-f(a)]\]
+
+  Then choose a partition with $n$ large enough such that $\frac{L}{n}[f(b)-f(a)] < \epsilon$, satisfying the integrability criterion of Theorem 7.2.8.
+\end{solution}
+
 \end{questions}
 \end{document}
