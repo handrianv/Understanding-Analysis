@@ -174,5 +174,59 @@ If so, what is the value of $\int_{a}^{b}g$?
   \[U(f, P_{n}) - L(f, P_{n}) \leq U(f_{n}, P_{n})-L(f_{n}, P_{n}) + \frac{\epsilon}{2} < \frac{\epsilon}{2}+\frac{\epsilon}{2} = \epsilon\]
 \end{solution}
 
+%------------------------- Problem 6 -------------------------
+\miquestion A \textit{tagged partition} $(P, \{c_{k}\})$ is one where in addition to a partition $P$ we choose a sampling point $c_{k}$ in each of the subintervals
+$[x_{k-1}, x_{k}]$. The corresponding \textit{Riemann sum} is defined as
+\[R(f, P) = \sum_{k=1}^{n}f(c_{k})\Delta_{x_{k}}\]
+
+\textbf{Riemann's Original Definition of the Integral:} A bounded function $f$ is \textit{integrable} on $[a, b]$ with $\int_{a}^{b}f=A$ if for all $\epsilon > 0$ there
+exists a $\delta > 0$ such that for any tagged partition $(P, \{c_{k}\})$ satisfying $\Delta{x_{k}} < \delta$ for all $k$, it follows that
+\[|R(f, P) - A| < \epsilon\]
+Show that if $f$ satisfies Riemann's definition above, then $f$ is integrable in the sense of Definition 7.2.7. (The full equivalence of these two characterizations of integrability
+is proved in Section 8.1).
+
+\begin{solution}
+  My first thought was to choose $c_{k}$ such that $f(c_{k})$ is the supremum / infimum so that $R(f, P)$ becomes equal the upper/lower sum. But this doesn't work because there
+  may be no point $c_{k} \in [x_{k-1}, x_{k}]$ such that $f(c_{k})$ is the supremum.
+
+  Instead, we can choose $c_{k}$ such that $f(c_{k})$ is close to the supremum so that $U(f, P)$ is close to $R(f, P)$.
+  Then control $R(f, P)$ so that it's close to $A$, then we can make
+  $U(f, P)$ close to $A$. Do the same with $L(f, P)$, then we can make $U(f, P)$ close to $L(f, P)$ by controlling their distance to $A$.
+
+  More formally, we're going to prove this by Theorem 7.2.8: for any $\epsilon > 0$, produce a partition $P_{\epsilon}$
+  such that $U(f, P_{\epsilon}) - L(f, P_{\epsilon}) < \epsilon$.
+
+  Riemann's original definition works for *any* tagged partition $(P, \{c_{k}\})$ satisfying $\Delta{x_{k}} < \delta$. Pick a $\delta$ such that
+  \[|R(f, P) - A| < \frac{\epsilon}{4}\]
+  
+  Now choose a specific partition $P_{n} = \{x_{0}, ..., x_{n}\}$ with $\Delta{x_{k}} < \delta$ and with tags $\{c_{k}\}$ such that for all $k$
+  \[M_{k}-f(c_{k}) < \frac{\epsilon}{4(b-a)}\]
+  It's always possible to choose such $f(c_{k})$ by virtue of $M_{k}$ being a supremum. Then we have
+  \begin{align*}
+    U(f, P_{n}) - R(f, P_{n}) &= \sum_{k=1}^{n}(M_{k}-f(c_{k}))\Delta{x_{k}}\\
+    &< \frac{\epsilon}{4(b-a)} \sum_{k=1}^{n}\Delta{x_{k}}
+    = \frac{\epsilon}{4}
+  \end{align*}
+
+  Combining them, we get
+  \[|U(f, P_{n}) - A| \leq |U(f, P_{n}) - R(f, P_{n})| + |R(f, P_{n}) - A| < \frac{\epsilon}{4} + \frac{\epsilon}{4} = \frac{\epsilon}{2}\]
+
+  Now for the lower sum. We can reuse the same partition $P_{n}$ (it's important we do so for Theorem 7.2.8) but with a different sampling point $d_{k}$ such that
+  \[f(d_{k}) - m_{k} < \frac{\epsilon}{4(b-a)}\]
+  And we do a similar computation as the upper sum to get
+  \[|L(f, P_{n})-A| < \frac{\epsilon}{2}\]
+
+  And now we've satisfied Theorem 7.2.8. Let $P_{\epsilon} = P_{n}$, then
+  \[U(f, P_{n})-L(f, P_{n}) \leq |U(f, P_{n})-A| + |A - L(f, P_{n})| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon\]
+
+  We can also prove that $U(f)=L(f)=A$. Theorem 7.2.8 already gives $U(f)=L(f)$. Let $U(f)=L(f)=I$, then
+  \begin{align*}
+    &L(f, P_{n}) \leq L(f) = I = U(f)  \leq U(f, P_{n})\\
+    \implies &A - \frac{\epsilon}{2} < I < A + \frac{\epsilon}{2}\\
+    \implies &|I-A| < \frac{\epsilon}{2}
+  \end{align*}
+  Since this works for any $\epsilon > 0$, by Theorem 1.2.6 $I=A$.
+\end{solution}
+
 \end{questions}
 \end{document}
