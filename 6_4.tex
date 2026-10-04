@@ -1,0 +1,34 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition}
+\sheettitle{Chapter 6 - Section 6.4 - Series of Functions} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Supply the details for the proof of the Weierstrass M-Test (Corollary 6.4.5).
+\begin{solution}
+  We have for every fixed $x$
+  \[0 \leq |f_{n}(x)| \leq M_{n}\]
+  and $\sum_{n=1}^{\infty}M_{n}$ converges. This satisfies the conditions for the Comparison Test, so $\sum_{n=1}^{\infty}|f_{n}(x)|$ converges. 
+
+  Then by the Absolute Convergence Test, $\sum_{n=1}^{\infty}|f_{n}(x)|$ converges implies $\sum_{n=1}^{\infty}f_{n}(x)$ converges.
+
+  It remains to prove that the convergence is uniform. $\sum_{n=1}^{\infty}M_{n}$ converges so it satisfies the Cauchy Criterion for Series (Theorem 2.7.2):
+  for any $\epsilon > 0$, there exists $N$ such that for all $n > m \geq N$:
+  \[M_{m+1} + M_{m+2} + ... + M_{n} < \epsilon\]
+  Reusing the same $N$, we can prove that $\sum_{n=1}^{\infty}f_{n}(x)$ satisfies the Cauchy Criterion for Uniform Convergence of Series (Theorem 6.4.4). Because
+  $|f_{n}(x)| \leq M_{n}$, then
+  \begin{align*}
+    |f_{m+1}(x) + f_{m+2}(x) + ... + f_{n}(x)| &\leq |f_{m+1}(x)| + |f_{m+2}(x)| + ... + |f_{n}(x)|\\
+    &\leq M_{m+1} + M_{m+2} + ... + M_{n}\\
+    &< \epsilon 
+  \end{align*}
+  Since the same $N$ works for any $x$ (because the bound $M_{n}$ is independent of $x$), the convergence is uniform.
+\end{solution}
+
+\end{questions}
+\end{document}
