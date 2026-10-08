@@ -30,5 +30,45 @@
   Since the same $N$ works for any $x$ (because the bound $M_{n}$ is independent of $x$), the convergence is uniform.
 \end{solution}
 
+%------------------------- Problem 2 -------------------------
+\miquestion Short proof or counterexample.
+\begin{enumerate}[label=(\alph*)]
+  \item If $\sum_{n=1}^{\infty}g_{n}$ converges uniformly, then $(g_{n})$ converges uniformly to zero.
+  \item If $0 \leq f_{n}(x) \leq g_{n}(x)$ and $\sum_{n=1}^{\infty}g_{n}$ converges uniformly, then $\sum_{n=1}^{\infty}f_{n}$ converges uniformly.
+  \item If $\sum_{n=1}^{\infty}f_{n}$ converges uniformly on $A$, then there exist constants $M_{n}$ such that $|f_{n}(x)| \leq M_{n}$ for all $x \in A$
+  and $\sum_{n=1}^{\infty}M_{n}$ converges.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item True. This is analogous with the $n$th-term test for series of numbers (Theorem 2.7.3).
+    
+    $\sum_{n=1}^{\infty}g_{n}$ converges uniformly so there exists $N$ such that for all $n > m > N$ and for all $x$
+    \[|g_{m+1}(x) + ... + g_{n}(x)| < \epsilon\]
+    The same $N$ works to prove $(g_{n})$ converges uniformly. Set $n=m+1$.
+
+    Alternatively, without using the Cauchy Criterion, let $s_{k} = \sum_{n=1}^{k}g_{n}(x)$. Then
+    \[\lim_{k \to \infty}s_{k}-s_{k-1}=\lim_{k \to \infty}s_{k} - \lim_{k \to \infty}s_{k-1}=0\]
+    And note that $s_{k}-s_{k-1}=g_{k}$, so $\lim_{k \to \infty}s_{k}-s_{k-1} = \lim_{k \to \infty}g_{k}(x)=0$.
+
+    The important intuition here is that uniform convergence allows us to reuse many results from series of numbers,
+    because any bound works uniformly so we may treat $g_{n}(x)$ for all $x$ like a single entity.
+  
+    \item True. This is analogous to the Comparison Test for series of numbers (Theorem 2.7.4).
+    
+    Like part (a), but we can get rid of the absolute values because it's all non-negative
+    \[g_{m+1}(x) + ... + g_{n}(x) < \epsilon\]
+    then reusing the same $N$ and the problem's assumption that $0 \leq f_{n}(x) \leq g_{n}(x)$
+    \[f_{m+1}(x) + ... + f_{n}(x) \leq g_{m+1}(x) + ... + g_{n}(x) < \epsilon\]
+
+    \item False. This is analogous to conditional convergence for series of numbers (Theorem 2.7.8).
+    
+    Take $f_{n}(x)=\frac{(-1)^{n+1}}{n}$ for all $x$.
+    Then $\sum_{n=1}^{\infty}f_{n}$ is the alternating harmonic series for all $x$ so it converges uniformly.
+
+    But $M_{n} \geq \frac{1}{n}$ so $\sum_{n=1}^{\infty}M_{n}$ diverges by comparison test with $\sum_{n=1}^{\infty}\frac{1}{n}$.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
