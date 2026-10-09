@@ -70,5 +70,39 @@
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 3 -------------------------
+\miquestion
+\begin{enumerate}[label=(\alph*)]
+  \item Show that
+  \[g(x) = \sum_{n=0}^{\infty}\frac{\cos(2^{n}x)}{2^n}\]
+  is continuous on all of \textbf{R}.
+  \item The function $g$ was cited in Section 5.4 as an example of a continuous nowhere differentiable function. What happens if we try to use Theorem 6.4.3 to
+  explore whether $g$ is differentiable?
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We have $|\cos(2^{n}x)| \leq 1$ for any $n$ and $x$. Then
+    \[\left|\frac{\cos(2^{n}x)}{2^n}\right| \leq \frac{1}{2^n}\]
+    for all $x$ and $\sum_{n=0}^{\infty}\frac{1}{2^n} = 2$. This satisfies the Weierstrass M-test, so $\sum_{n=0}^{\infty}\frac{\cos(2^{n}x)}{2^n}$ converges uniformly.
+
+    By Theorem 6.4.2 (Term-by-term Continuity Theorem), since $\frac{\cos(2^{n}x)}{2^n}$ is continuous for any $n$ and $\sum_{n=0}^{\infty}\frac{\cos(2^{n}x)}{2^n}$
+    converges uniformly, then $g$ is continuous.
+
+    \item The series of derivative is
+    \[\sum_{n=0}^{\infty}-\sin(2^{n}x)\]
+    This fails to converge uniformly so we can't apply Theorem 6.4.3. For example, take $x=\pi/3$, then the terms are
+    \[
+      -\sin\left(\frac{2^{n}\pi}{3}\right)=\begin{cases}
+        -\frac{\sqrt{3}}{2}, & n=0\\
+        (-1)^{n}\frac{\sqrt{3}}{2}, & n \geq 1\\
+      \end{cases}
+    \]
+    Since the terms fail to approach 0, the series fails to converge.
+    
+    This does not prove that $g$ is not differentiable; it only means we can't use Theorem 6.4.3 to conclude differentiability.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
