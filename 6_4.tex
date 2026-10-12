@@ -99,8 +99,55 @@
       \end{cases}
     \]
     Since the terms fail to approach 0, the series fails to converge.
-    
+
     This does not prove that $g$ is not differentiable; it only means we can't use Theorem 6.4.3 to conclude differentiability.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Define
+\[g(x)=\sum_{n=0}^{\infty}\frac{x^{2n}}{(1+x^{2n})}\]
+Find the values of $x$ where the series converge and show that we get a continuous function on this set.
+
+\begin{solution}
+  \textbf{TODO: not finished yet}\\
+  We have
+  \[\frac{x^{2n}}{(1+x^{2n})} = \frac{x^{2n}+1-1}{(1+x^{2n})}=1-\frac{1}{1+x^{2n}}\]
+
+  For $x \geq 1$ or $x \leq -1$, the terms converge to 1, so the series diverges.
+
+  \textbf{TODO: prove continuity in $[-1, 1]$}.
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion 
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that
+  \[h(x) = \sum_{n=1}^{\infty}\frac{x^n}{n^2} = x + \frac{x^2}{4} + \frac{x^3}{9} + ...\]
+  is continuous on $[-1, 1]$.
+
+  \item The series
+  \[f(x) = \sum_{n=1}^{\infty}\frac{x^n}{n} = x + \frac{x^2}{2} + \frac{x^3}{3} + ...\]
+  converges for every $x$ in the half-open interval $[-1, 1)$ but does not converge when $x=1$. For a fixed $x_{0} \in (-1, 1)$, explain how we can
+  still use the Weierstrass M-Test to prove that $x$ is continuous at $x_{0}$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We have for $x \in [-1, 1]$
+    \[\left|\frac{x^n}{n^2}\right| \leq \frac{1}{n^2}\]
+    and $\sum_{n=1}^{\infty}\frac{1}{n^2}$ converges. This satisfies the conditions for the Weierstrass M-Test, hence the series converges uniformly.
+
+    We have $\frac{x^n}{n^2}$ continuous for every $n$. Combined with the uniform convergence above, we may apply
+    the Term-by-term Continuity Theorem to conclude that $h$ is continuous.
+
+    \item For any $x_{0} \in (-1, 1)$, we can find an $r$ such that $|x_{0}| < r < 1$. Now we can bound the function with $r$. For every $x \in [-r, r]$:
+    \[\frac{x^{n}}{n} \leq \frac{|x^n|}{n} \leq r^{n}\]
+    Since $|r| < 1$, the geometric series $\sum_{n=1}^{\infty}r^{n}$ converges and we can apply the Weierstrass M-Test to conclude that
+    $\sum_{n=1}^{\infty}\frac{x^n}{n}$ converges uniformly on $[-r, r]$.
+
+    Since each term of the function is continuous, we may apply the Term-by-term Continuity Theorem to conclude that
+    $f(x)$ is continuous on $[-r, r]$. Since $x_{0} \in [-r, r]$, $f$ is continuous on $x_{0}$ as well.
   \end{enumerate}
 \end{solution}
 
