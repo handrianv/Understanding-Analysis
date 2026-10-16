@@ -110,13 +110,20 @@
 Find the values of $x$ where the series converge and show that we get a continuous function on this set.
 
 \begin{solution}
-  \textbf{TODO: not finished yet}\\
   We have
   \[\frac{x^{2n}}{(1+x^{2n})} = \frac{x^{2n}+1-1}{(1+x^{2n})}=1-\frac{1}{1+x^{2n}}\]
 
   For $x \geq 1$ or $x \leq -1$, the terms converge to 1, so the series diverges.
 
-  \textbf{TODO: prove continuity in $[-1, 1]$}.
+  For $x \in (-1, 1)$ the series converges but not uniformly so we can't directly apply Theorem 6.4.2. But we can use the same trick as problem 5(b).
+  Choose $r$ such that $|x| < r < 1$, then on $[-r, r]$
+  \[0 \leq \frac{x^{2n}}{1+x^{2n}} \leq x^{2n} \leq r^{2n}\]
+  Since $\sum_{n=0}^{\infty}r^{2n}$ is a convergent geometric series, we may apply the Weierstrass M-Test to conclude that $\sum_{n=0}^{\infty}\frac{x^{2n}}{(1+x^{2n})}$
+  converges uniformly on $[-r, r]$.
+
+  Since each term of the series is continuous, we may apply the Term-by-term Continuity Theorem to conclude that $g$ is continuous on $[-r, r]$ hence continuous on $x$.
+  Since this argument works for any $x \in (-1, 1)$, $g$ is continuous on $(-1, 1)$.
+
 \end{solution}
 
 %------------------------- Problem 5 -------------------------
@@ -146,7 +153,7 @@ Find the values of $x$ where the series converge and show that we get a continuo
     Since $|r| < 1$, the geometric series $\sum_{n=1}^{\infty}r^{n}$ converges and we can apply the Weierstrass M-Test to conclude that
     $\sum_{n=1}^{\infty}\frac{x^n}{n}$ converges uniformly on $[-r, r]$.
 
-    Since each term of the function is continuous, we may apply the Term-by-term Continuity Theorem to conclude that
+    Since each term of the series is continuous, we may apply the Term-by-term Continuity Theorem to conclude that
     $f(x)$ is continuous on $[-r, r]$. Since $x_{0} \in [-r, r]$, $f$ is continuous on $x_{0}$ as well.
   \end{enumerate}
 \end{solution}
