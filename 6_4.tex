@@ -158,5 +158,38 @@ Find the values of $x$ where the series converge and show that we get a continuo
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 6 -------------------------
+\miquestion Let
+\[f(x) = \frac{1}{x} - \frac{1}{x+1} + \frac{1}{x+2} - \frac{1}{x+3} + \frac{1}{x+4} - ...\]
+Show $f$ is defined for all $x > 0$. Is $f$ continuous on $(0, \infty)$? How about differentiable?
+
+\begin{solution}
+  By the Alternating Series Test, the series converges for all $x > 0$.
+  
+  It's continuous on $(0, \infty)$. We use the same trick as problem 4 and 5. For any $x \in (0, \infty)$, there exists $a, b$ such that $0 < a \leq x \leq b$.
+  We'll prove that $f$ converges uniformly on $[a, b]$. Then by the Term-by-term Continuity Theorem, $f$ is continuous on $[a, b]$.
+
+  We'll prove uniform convergence by using the Cauchy Criterion (this is very similar to Exercise 2.7.1).
+  First, recall the following fact about partial sums of an Alternating Series
+  \[|s_j - s_{i}| = |\sum_{k=i+1}^{j}(-1)^{k+1}a_{k}| \leq a_{i+1}\]
+
+  Pick $N$ large enough such that $\frac{1}{a+N} < \epsilon$. Note that because the domain is $[a, b]$, then for any $x \in [a, b]$
+  \[\frac{1}{x+N} \leq \frac{1}{a+N} < \epsilon\] 
+  Now for any $n > m > N$ and any $x \in [a, b]$, we have
+  \[|s_{n}(x)-s_{m}(x)| \leq \frac{1}{x+N} \leq \frac{1}{a+N} < \epsilon\]
+  satisfying the Cauchy Criterion.
+
+  It's differentiable. We'll show that it satisfies the conditions of the Term-by-term Differentiability Theorem.
+  
+  Condition \#1: We have $f_{n}(x)=\frac{(-1)^n}{x+n}$ is differentiable with $f_{n}'(x)=-\frac{(-1)^{n+1}}{(x+n)^2}$.
+
+  Condition \#2: $\sum_{n=1}^{\infty}f_{n}'(x)$ converges uniformly by the Weierstrass M-test. The bound is
+  \[\left|\frac{(-1)^{n+1}}{(x+n)^2}\right| \leq \frac{1}{n^2}\]
+  and $\sum_{n=1}^{\infty}\frac{1}{n^2}$ converges.
+
+  Condition \#3: We've already established that $f$ is defined for all $x > 0$ (the Theorem only requires a single point $x_{0} \in [a, b]$ where $f$ is defined).
+  Now all conditions are satisfied.
+\end{solution}
+
 \end{questions}
 \end{document}
