@@ -64,5 +64,29 @@ has a countable set of discontinuities occurring at precisely every rational num
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 3 -------------------------
+\miquestion Let
+\[f(x) =
+  \begin{cases}
+    1 & \text{if } x = 1/n \text{ for some } n \in \textbf{N}\\
+    0 & \text{otherwise}
+  \end{cases}
+\]
+Show that $f$ is integrable on $[0, 1]$ and compute $\int_{0}^{1}f$.
+
+\begin{solution}
+  We'll use Theorem 7.3.2: prove that $f$ is integrable on $[a, 1]$ for any $a \in (0, 1)$, then $f$ is integrable on $[0, 1]$.
+
+  First note that $L(f, P)=0$ for any $P$ by density of irrationals. Now we only need to prove that $U(f, P)$ converges to 0.
+
+  There is only a finite amount of points $\{\frac{1}{k_{1}}, \frac{1}{k_{2}}, ..., \frac{1}{k_{n}}\}$ such that $\frac{1}{k_{i}} \geq a$.
+  Create a partition $P$ such that each $\frac{1}{k_{i}}$ is contained in an interval of length less than $\frac{\epsilon}{2n}$. The upper sum of
+  the intervals that don't contain $\frac{1}{k_{i}}$ is 0 because $f(x)=0$ at those points. The total upper sum is then determined by the (at most)
+  $2n$ intervals that contain $\frac{1}{k_{i}}$
+  \[U(f, P) < 2n\frac{\epsilon}{2n}=\epsilon\]
+
+  So $U(f)=L(f)=0$ and $\int_{0}^{1}f = 0$.
+\end{solution}
+
 \end{questions}
 \end{document}
