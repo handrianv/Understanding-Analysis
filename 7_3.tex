@@ -1,0 +1,68 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition}
+\sheettitle{Chapter 7 - Section 7.3 - Integrating Functions with Discontinuities} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Straightforward.
+
+%------------------------- Problem 2 -------------------------
+\miquestion Recall the Thomae's function
+\[
+  t(x)=
+  \begin{cases}
+    1 & \text{if } x=0 \\
+    1/n & \text{if } x=m/n \in \textbf{Q} \backslash \{0\} \text{ is in lowest terms with } n > 0 \\
+    0 & \text{if } x \notin \textbf{Q}
+  \end{cases}
+\]
+has a countable set of discontinuities occurring at precisely every rational number. Follow these steps to prove that $t(x)$ is integrable on $[0, 1]$ with $\int_{0}^{1}t=0$.
+\begin{enumerate}[label=(\alph*)]
+  \item First argue that $L(t, P)=0$ for any partition $P$ of $[0, 1]$.
+  \item Let $\epsilon > 0$ and consider the set of points $D_{\epsilon/2}=\{x \in [0, 1] : t(x) \geq \epsilon/2\}$. How big is $D_{\epsilon/2}$?
+  \item To complete the argument, explain how to construct a partition $P_{\epsilon}$ of $[0, 1]$ so that $U(t, P_{\epsilon}) < \epsilon$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item By the density of the irrationals, every interval in $P$ contains an irrational number, which makes the infimum in the interval 0.
+  
+    \item It's finite. Let $n$ be the largest natural number such that $\frac{1}{n} \geq \frac{\epsilon}{2}$. Then $D_{\epsilon/2}$ consists
+    of $x$ such that $t(x)=\frac{1}{k}$ with $k \leq n$. There are only finitely many $k$ and for each $k$, there are only finitely many such $x$.
+
+    A concrete example, suppose $k=4$. How many $x$ are there such that $t(x)=\frac{1}{4}$? There are only 2, $x=\frac{1}{4}$ and $x=\frac{3}{4}$.
+    For $x=\frac{4}{4}$, $t(x)=1$ and once the numerator goes past $4$, we're already outside the $[0, 1]$ domain.
+    
+    In general, the number of $x$ such that $t(x)=\frac{1}{k}$ is at most $k+1$ because there are only $k+1$ candidates in $[0, 1]$:
+    $\frac{0}{k}$ up to $\frac{k}{k}$.
+
+    \item By part (b), there's only a finite set of rationals $R = \{r_{1}=0 < r_{2} < ... < r_{n}=1\}$ where $t(r_{i}) \geq \frac{\epsilon}{2}$.
+    Also, since $t(x) \leq 1$ for all $x$, then $\frac{\epsilon}{2} \leq t(r_{i}) \leq 1$.
+    The idea is to bound this finite set of large points in a small interval.
+
+    To control the interval size around the $r_{i}$'s, we need to insert two points between each of them. Let $P = \{r_{1}, p_{1}, p_{2}, r_{2}, p_{3}, p_{4}, r_{3}, ..., r_{n-1}, p_{2n-3}, p_{2n-2}, r_{n}\}$.
+    There are $2n-2$ intervals that contain $r_{i}$. Set the distance between adjacent $r$ and $p$ to be $< \frac{\epsilon}{4n}$. Remembering that $t(x) \leq 1$ for all $x$, let $s_{1}$ be the sum of all intervals
+    that contain $r_{i}$, then
+    \[s_{1} < (2n-2) \frac{\epsilon}{4n} < 2n\frac{\epsilon}{4n} = \frac{\epsilon}{2}\]
+
+    Now we need to consider the sum between adjacent $p$'s. Since $R$ contains \textit{all} points where $t(x) \geq \frac{\epsilon}{2}$,
+    then for $x \in [p_{i}, p_{i+1}]$, $x \notin R$ hence $t(x) < \frac{\epsilon}{2}$. The sum $s_{2}$ between adjacent $p_{i}$'s is then
+    \[s_{2} \leq \sum_{i=1}^{n-1}\frac{\epsilon}{2}(p_{2i}-p_{2i-1}) = \frac{\epsilon}{2}\sum_{i=1}^{n-1}(p_{2i}-p_{2i-1})\]
+    (we use $\leq$ because the supremum can still be $\frac{\epsilon}{2}$)
+
+    The tricky part is that we have no control over the length of individual $(p_{2i}-p_{2i-1})$. But note that since the domain is $[0, 1]$, we can conclude
+    that the sum of interval lengths is at most 1 i.e. $\sum_{i=1}^{n-1}(p_{2i}-p_{2i-1}) \leq 1$. Then
+    \[s_{2} \leq \frac{\epsilon}{2}\sum_{i=1}^{n-1}(p_{2i}-p_{2i-1}) \leq \frac{\epsilon}{2}\]
+
+    Finally
+    \[U(t, P) = s_{1} + s_{2} < \frac{\epsilon}{2}+\frac{\epsilon}{2} = \epsilon\]
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
