@@ -108,10 +108,42 @@ so that the composition $g \circ f$ is properly defined.
         1 & \text{if } x \in (0, 1]
       \end{cases}
     \]
-    $f$ is integrable by Exercise 7.3.2 and $g$ is integrable because is only has a single discontinuity, but $g \circ f$ is the Dirichlet function which is not integrable.
+    $f$ is integrable by Exercise 7.3.2 and $g$ is integrable because it only has a single discontinuity, but $g \circ f$ is the Dirichlet function which is not integrable.
 
     \item The answer seems to be no, but the counterexamples I can find on MSE seem to require Measure Theory.
     \item No. Part (a) serves as a counterexample.
+  \end{enumerate}
+\end{solution}
+
+%------------------------- Problem 5 -------------------------
+\miquestion Example or prove impossible
+\begin{enumerate}[label=(\alph*)]
+  \item A sequence $(f_{n}) \to f$ pointwise, where each $f_{n}$ has at most a finite number of discontinuities but $f$ is not integrable.
+  \item A sequence $(g_{n}) \to g$ uniformly where each $g_{n}$ has at most a finite number of discontinuities and $g$ is not integrable.
+  \item A sequence $(h_{n}) \to h$ uniformly where each $h_{n}$ is not integrable but $h$ is integrable.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Let $\{r_{1}, r_{2}, r_{3}, ...\}$ be the enumeration of the rationals. Define
+      \[
+          f_{n}(x) = \begin{cases}
+            1, & x \in \{r_{1}, r_{2}, r_{3}, ..., r_{n}\} \\
+            0, & \text{otherwise}
+          \end{cases}
+      \]
+      Each $f_{n}$ only has a finite number of discontinuities and $(f_{n})$ converges pointwise to the Dirichlet function which is not integrable.
+    \item Impossible. Because $g_{n}$ has only a finite number of discontinuities, it's integrable. By exercise 7.2.5, if $(g_{n}) \to g$ uniformly and each $g_{n}$
+    is integrable, then $g$ is integrable.
+    \item Define
+      \[
+          h_{n}(x) = \begin{cases}
+            1/n, & x \in \textbf{Q}\\
+            0, & x \notin \textbf{Q}
+          \end{cases}
+      \]
+      Each $h_{n}$ is not integrable by the same reasoning that the Dirichlet function is not integrable, but $(h_{n})$ converges to the
+      zero function uniformly.
   \end{enumerate}
 \end{solution}
 
