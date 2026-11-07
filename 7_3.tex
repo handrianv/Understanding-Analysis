@@ -71,7 +71,7 @@ has a countable set of discontinuities occurring at precisely every rational num
     1 & \text{if } x = 1/n \text{ for some } n \in \textbf{N}\\
     0 & \text{otherwise}
   \end{cases}
-\]
+\]  
 Show that $f$ is integrable on $[0, 1]$ and compute $\int_{0}^{1}f$.
 
 \begin{solution}
@@ -86,6 +86,33 @@ Show that $f$ is integrable on $[0, 1]$ and compute $\int_{0}^{1}f$.
   \[U(f, P) < 2n\frac{\epsilon}{2n}=\epsilon\]
 
   So $U(f)=L(f)=0$ and $\int_{0}^{1}f = 0$.
+\end{solution}
+
+%------------------------- Problem 4 -------------------------
+\miquestion Let $f$ and $g$ be functions defined on (possibly different) closed intervals, and assume the range of $f$ is contained in the domain of $g$
+so that the composition $g \circ f$ is properly defined.
+\begin{enumerate}[label=(\alph*)]
+  \item Show, by example, that it is not the case that if $f$ and $g$ are integrable, then $g \circ f$ is integrable.
+  
+  Now decide on the validity of each of the following conjectures, supplying a proof or counterexample as appropriate.
+  \item If $f$ is increasing and $g$ is integrable, then $g \circ f$ is integrable.
+  \item If $f$ is integrable and $g$ is increasing, then $g \circ f$ is integrable.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item Let $f$ be the Thomae function on $[0, 1]$ and define $g$
+    \[g(x) = 
+      \begin{cases}
+        0 & \text{if } x = 0\\
+        1 & \text{if } x \in (0, 1]
+      \end{cases}
+    \]
+    $f$ is integrable by Exercise 7.3.2 and $g$ is integrable because is only has a single discontinuity, but $g \circ f$ is the Dirichlet function which is not integrable.
+
+    \item The answer seems to be no, but the counterexamples I can find on MSE seem to require Measure Theory.
+    \item No. Part (a) serves as a counterexample.
+  \end{enumerate}
 \end{solution}
 
 \end{questions}
