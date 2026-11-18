@@ -1,0 +1,61 @@
+\documentclass{oxmathproblems}
+
+\printanswers
+
+\course{Understanding Analysis, 2nd Edition}
+\sheettitle{Chapter 6 - Section 6.5 - Power Series} 
+
+\begin{document}
+\begin{questions}
+
+%------------------------- Problem 1 -------------------------
+\miquestion Consider the function $g$ defined by the power series
+\[g(x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \frac{x^5}{5} - ...\]
+\begin{enumerate}[label=(\alph*)]
+  \item Is $g$ defined on $(-1, 1)$? Is it continuous on this set? Is $g$ defined on $(-1, 1]$? Is it continuous on this set? What happens on $[-1, 1]$?
+  Can the power series for $g(x)$ possibly converge for any other points $|x| > 1$? Explain.
+  \item For what values of $x$ is $g'(x)$ defined? Find a formula for $g'$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item $g$ is defined on $(-1, 1)$. For $x=1$, $g$ is the alternating harmonic series which converges. By Theorem 6.5.1, $g$ converges absolutely on $|x| < 1$.
+    
+    $g$ is continuous on $(-1, 1)$, by Theorem 6.5.2.
+
+    $g$ is defined on $(-1, 1]$, as shown above.
+
+    $g$ continuous on $(-1, 1]$, by Theorem 6.5.5.
+
+    $g$ is not defined on $x=-1$, as $g$ becomes the (negative) harmonic series which diverges.
+
+    $g$ cannot converge for any other points $|x| > 1$, for then the radius of convergence would include -1, contradicting the fact that it diverges at $-1$.
+  
+    \item Because $g$ is defined on $(-1, 1]$, by Theorem 6.5.7 $g$ is differentiable on $(-1, 1)$ and the derivative is
+    \[g'(x)=1-x+x^2-x^3+x^4-...\]
+    A geometric series with ratio $-x$, which means it diverges on $x=1$. But this is not enough to conclude that $g'(1)$ is not defined. It only proves that
+    $g'(1)$ cannot be obtained by term-by-term differentiation, but $g'(1)$ may still be defined in some other form.
+
+    In fact, $g'(1)$ does exist. We can use Exercise 5.3.8 to conclude that
+    \[\lim_{x \to 1}g'(x)=g'(1)\]
+    but it's worth proving it again from scratch because it's an important application of MVT. The crux is that
+    MVT allows us to use derivatives at interior points (here $|x| < 1$) to compute the derivative at a boundary point (here $x=1$).
+
+    By definition of derivative
+    \[g'(1) = \lim_{x \to 1}\frac{g(x)-g(1)}{x-1}\]
+
+    By MVT on $[x, 1]$ for $|x| < 1$
+    \[\frac{g(x)-g(1)}{x-1} = g'(c)\]
+    for some $c \in (x, 1)$. Taking the limit as $x$ approaches 1
+    \[\lim_{x \to 1}\frac{g(x)-g(1)}{x-1} = g'(1) = \lim_{x \to 1}g'(c)\]
+
+    Since $x < c < 1$, by squeeze if $x \to 1$ then $c \to 1$, so we can rewrite the last expression as
+    \[\lim_{x \to 1}g'(c) = \lim_{c \to 1}g'(c)\]
+
+    We have proved above that $g'(c)$ is defined on $|c| < 1$. By the geometric series formula, we have $g'(c) = \frac{1}{1+c}$. Then
+    \[g'(1) = \lim_{c \to 1}\frac{1}{1+c} = \frac{1}{2}\]
+  \end{enumerate}
+\end{solution}
+
+\end{questions}
+\end{document}
