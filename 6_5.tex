@@ -57,5 +57,32 @@
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 2 -------------------------
+\miquestion Find suitable coefficients $(a_{n})$ so that the resulting power series $\sum a_{n}x^{n}$ has the given properties, or explain why such a
+request is impossible.
+\begin{enumerate}[label=(\alph*)]
+  \item Converges for every value $x \in \textbf{R}$.
+  \item Diverges for every value $x \in \textbf{R}$.
+  \item Converges absolutely for all $x \in [-1, 1]$ and diverges off of this set.
+  \item Converges conditionally at $x=-1$ and converges absolutely at $x=1$.
+  \item Converges conditionally at both $x=-1$ and $x=1$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item All coefficients zero. Alternatively, make something that decreases faster than $x^{n}$. For example
+    \[\sum \frac{x^{n}}{n!}\]
+    which converges absolutely for all $x$ by the Ratio Test.
+    \item Impossible. A power series always converges at 0.
+    \item $\frac{x^{n}}{n^2}$. For $|x| \leq 1$, the series converges absolutely by comparison test with $\frac{1}{n^2}$. For $|x| > 1$, the series diverges
+    by the ratio test because
+    \[\left| \frac{x^{n+1}/(n+1)^2}{x^n/n^2} \right| = |x|\frac{n^2}{(n+1)^2} \to |x| > 1\]
+    \item Impossible. At $x=1$, $\sum |a_{n}|$ converges absolutely. Now plugging in $x=-1$, we get $\sum a_{n}(-1)^{n}$. Since $|a_{n}(-1)^{n}|=|a_{n}|$,
+    then $\sum a_{n}(-1)^{n}$ converges absolutely as well.
+    \item \[\sum (-1)^{n}\frac{x^{2n}}{n}\]
+    which produces the alternating harmonic series at both 1 and -1.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
