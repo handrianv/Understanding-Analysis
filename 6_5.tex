@@ -93,5 +93,38 @@ request is impossible.
   $\sum a_{n}x^{n}$ converges uniformly on $[-c, c]$.
 \end{solution}
 
+%------------------------- Problem 4 -------------------------
+\miquestion \textbf{(Term-by-term Antidifferentiation).} Assume $f(x) = \sum_{n=0}^{\infty} a_{n}x^{n}$ converges on $(-R, R)$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show
+  \[F(x) = \sum_{n=0}^{\infty}\frac{a_{n}}{n+1}x^{n+1}\]
+  is defined on $(-R, R)$ and satisfies $F'(x)=f(x)$.
+  \item Antiderivatives are not unique. If $g$ is an arbitrary function satisfying $g'(x)=f(x)$ on $(-R, R)$, find a power series representation for $g$.
+\end{enumerate}
+
+\begin{solution}
+  \begin{enumerate}[label=(\alph*)]
+    \item We have
+    \[F(x) = \sum_{n=0}^{\infty}\frac{a_{n}}{n+1}x^{n+1} = \sum_{n=0}^{\infty} a_{n}x^{n}\frac{x}{n+1}\]
+    
+    \textbf{--- Incorrect ---}\\
+    For large enough $n$, $\frac{x}{n+1} < 1$ so that eventually $a_{n}x^{n}\frac{x}{n+1} < a_{n}x^{n}$. Then $F(x)$ converges by the
+    comparison test.
+
+    \textbf{--- Corrected ---}\\
+    The terms of the power series may be negative, so the conditions for the comparison test are not satisfied.
+
+    Instead, we'll use absolute convergence first. By Theorem 6.5.1, $\sum_{n=0}^{\infty} |a_{n}x^{n}|$ converges absolutely on $(-R, R)$.
+    Now, for big enough $n$, $\frac{|x|}{n+1} < 1$, so we have the following inequality
+    \[|a_{n}x^{n}| \frac{|x|}{n+1} \leq |a_{n}x^{n}|\]
+    for $x \in (-R, R)$. Then by the comparison test, $F(x)$ converges absolutely on $(-R, R)$.
+
+    Since $F(x)$ converges on $(-R, R)$, by Theorem 6.5.7 we can apply term-by-term differentiation to conclude that $F'(x)=f(x)$.
+  
+    \item \[g(x) = c + \sum_{n=0}^{\infty} \frac{a_{n}}{n+1}x^{n+1}\]
+    for some constant $c$.
+  \end{enumerate}
+\end{solution}
+
 \end{questions}
 \end{document}
