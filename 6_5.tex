@@ -163,5 +163,27 @@ request is impossible.
   \end{enumerate}
 \end{solution}
 
+%------------------------- Problem 6 -------------------------
+\miquestion Previous work on geometric series justifies the formula
+\[\frac{1}{1-x} = 1 + x + x^2 + x^3 + ..., \quad  \text{for all } |x| < 1\]
+Use the results about power series proved in this section to find values for $\sum_{n=1}^{\infty}n/2^{n}$ and $\sum_{n=1}^{\infty}n^{2}/2^{n}$.
+The discussion in Section 6.1 may be helpful.
+
+\begin{solution}
+  Section 6.1 has already proved that $\sum_{n=1}^{\infty}\frac{n}{2^{n-1}}=4$. Then by the Algebraic Limit Theorem for Series
+  \[\sum_{n=1}^{\infty}\frac{n}{2^{n}}=\frac{1}{2}\sum_{n=1}^{\infty}\frac{n}{2^{n-1}} = 2\]
+
+  For the second series, we start with the differentiated geometric series
+  \[\frac{1}{(1-x)^2} = 0 + 1 + 2x + 3x^2 + 4x^3 + ...\]
+  Multiply it by $x$
+  \[\frac{x}{(1-x)^2} = 0 + x + 2x^2 + 3x^3 + 4x^4 + ...\]
+  Then differentiate
+  \[\frac{1+x}{(1-x)^3} = 0 + 1 + 4x + 9x^2 + 16x^3 + ...\]
+  Plugging $x=1/2$ gives
+  \[12 = \sum_{n=1}^{\infty} \frac{n^2}{2^{n-1}} = 0 + 1 + \frac{4}{2} + \frac{9}{4} + \frac{16}{8} + ...\]
+  Then
+  \[\sum_{n=1}^{\infty}\frac{n^2}{2^{n}}=\frac{1}{2}\sum_{n=1}^{\infty}\frac{n^2}{2^{n-1}} = 6\]
+\end{solution}
+
 \end{questions}
 \end{document}
